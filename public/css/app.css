@@ -450,6 +450,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.inline {
+  display: inline;
+}
 .flex {
   display: flex;
 }

@@ -36,10 +36,13 @@
             <!-- If the user is logged in, show Logout button -->
             @auth
                 <li>
-                    <a href="" class="p-4 font-bold">Logged in as: NAME</a>
+                    <a class="p-4 font-bold">Logged in as: {{ auth()->user()->name }}</a>
                 </li>
                 <li>
-                    <a href="" class="p-4 border-l border-gray-200 font-bold text-rose-500">Logout</a>
+                    <form action="{{ route('logout') }}" method="post" class="p-4 inline border-l border-gray-200">
+                        @csrf
+                        <button type="submit" class="font-bold text-rose-500">Logout</button>
+                    </form>
                 </li>
             @endauth
         </ul>
