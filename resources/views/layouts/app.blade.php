@@ -17,10 +17,10 @@
                 <a href="/" class="p-4 font-bold">Home</a>
             </li>
             <li>
-                <a href="" class="p-4 font-bold border-l border-black">Quotation List</a>
+                <a href="" class="p-4 font-bold border-l border-gray-200">Quotation List</a>
             </li>
             <li>
-                <a href="" class="p-4 font-bold border-l border-black">Create Quotation</a>
+                <a href="" class="p-4 font-bold border-l border-gray-200">Create Quotation</a>
             </li>
         </ul>
 
@@ -29,17 +29,17 @@
             <!-- If the user is not logged in, show Login button -->
             @guest
                 <li>
-                    <a href="" class="p-4 font-bold text-blue-500">Login</a>
+                    <a href="{{ route('login') }}" class="p-4 font-bold text-blue-500">Login</a>
                 </li>
             @endguest
 
             <!-- If the user is logged in, show Logout button -->
             @auth
                 <li>
-                    <a href="" class="p-4 font-bold text-rose-500">Logged in as: NAME</a>
+                    <a href="" class="p-4 font-bold">Logged in as: NAME</a>
                 </li>
                 <li>
-                    <a href="" class="p-4 border-l font-bold text-rose-500">Logout</a>
+                    <a href="" class="p-4 border-l border-gray-200 font-bold text-rose-500">Logout</a>
                 </li>
             @endauth
         </ul>
