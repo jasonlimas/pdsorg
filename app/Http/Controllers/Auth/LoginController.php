@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        // Prevent authenticated users from accessing the login page
+        $this->middleware('guest');
+    }
+
     public function index()
     {
+        // Save the previous URL in the session so we can return to it after logging in
+        session(['url.intended' => url()->previous()]);
         return view('auth.login');
     }
 
@@ -28,7 +36,8 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid login details');
         }
 
-        // After successful login attempt, redirect user to home page
-        return redirect()->route('home');
+        // After successful login attempt, redirect user to previous page before login, or to
+        // home page if no previous page is found
+        return redirect()->intended(route('home'));
     }
 }

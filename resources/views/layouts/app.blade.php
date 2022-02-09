@@ -8,40 +8,43 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-sky-600">
+<body class="bg-sky-900">
     <!-- Header -->
-    <nav class="p-6 bg-white flex justify-between mb-6">
+    <nav class="p-6 bg-sky-700 flex justify-between mb-6">
         <!-- Left header -->
-        <ul class="flex items-center">
+        <ul class="flex items-center text-cyan-200">
             <li>
-                <a href="/" class="p-4 font-bold">Home</a>
+                <a href="/" class="p-3 font-semibold">Home</a>
             </li>
             <li>
-                <a href="" class="p-4 font-bold border-l border-gray-200">Quotation List</a>
+                <a href="" class="p-3 font-semibold border-l border-sky-900">Quotation List</a>
             </li>
             <li>
-                <a href="" class="p-4 font-bold border-l border-gray-200">Create Quotation</a>
+                <a href="{{ route('quote.create') }}" class="p-3 font-semibold border-l border-sky-900">Create Quotation</a>
+            </li>
+            <li>
+                <a href="{{ route('profiles') }}" class="p-3 font-semibold border-l border-sky-900">Profiles</a>
             </li>
         </ul>
 
         <!-- Right header -->
-        <ul class="flex items-center">
+        <ul class="flex items-center text-cyan-200">
             <!-- If the user is not logged in, show Login button -->
             @guest
                 <li>
-                    <a href="{{ route('login') }}" class="p-4 font-bold text-blue-500">Login</a>
+                    <a href="{{ route('login') }}" class="p-3 font-bold text-lime-400">Login</a>
                 </li>
             @endguest
 
             <!-- If the user is logged in, show Logout button -->
             @auth
                 <li>
-                    <a class="p-4 font-bold">Logged in as: {{ auth()->user()->name }}</a>
+                    <a class="p-3 font-semibold">Logged in as: {{ auth()->user()->name }}</a>
                 </li>
                 <li>
-                    <form action="{{ route('logout') }}" method="post" class="p-4 inline border-l border-gray-200">
+                    <form action="{{ route('logout') }}" method="POST" class="p-3 inline border-l border-sky-900">
                         @csrf
-                        <button type="submit" class="font-bold text-rose-500">Logout</button>
+                        <button type="submit" class="font-bold text-red-400">Logout</button>
                     </form>
                 </li>
             @endauth

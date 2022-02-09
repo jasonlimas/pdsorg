@@ -14,7 +14,7 @@
             @endif
 
             <!-- Form for username box, password box, remember me checkbox, login button -->
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <!-- Username textbox -->
                 <div class="mb-4">

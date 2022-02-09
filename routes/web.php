@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CreateQuoteController;
+use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +26,13 @@ Route::get('/', function () {
 // Quotation List
 
 // Create Quotation
+Route::get('/quote/create', [CreateQuoteController::class, 'index'])->name('quote.create');
+Route::post('/quote/create', [CreateQuoteController::class, 'store']);
+
+// Profiles
+Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
+Route::get('/profiles/create_client', [ClientController::class, 'index'])->name('profiles.create_client');
+Route::post('/profiles/create_client', [ClientController::class, 'store']);
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');

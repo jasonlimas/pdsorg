@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap');
+
+body {
+    font-family: 'Baloo Bhaijaan 2', cursive;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
