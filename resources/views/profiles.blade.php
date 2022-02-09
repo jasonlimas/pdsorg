@@ -94,7 +94,11 @@
 
             <!-- Client Profiles -->
             <div class=" bg-gray-100 p-6 rounded-lg mb-3">
-                <h2 class="text-2xl font-medium mb-5">Client Profiles</h2>
+                <!-- Client profiles header -->
+                <h2 class="text-2xl font-medium">Client Profiles</h2>
+                <p class="text-gray-600 mb-5">
+                    List of clients here, or add a new one by clicking the button below
+                </p>
 
                 <!-- Table -->
                 <div class="overflow-auto rounded-lg shadow mb-4">
@@ -111,15 +115,21 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <!-- Odd rows will have white background, even rows will have darker background -->
                         <tbody class="divide-y divide-gray-100">
-                            <x-client />
-                            <x-client />
-                            <x-client />
+                            <!-- Add a new row for every client stored in the database -->
+                            @foreach ($clients as $client)
+                                <x-client :client="$client" />
+                            @endforeach
                         </tbody>
                     </table>
+
+                    <!-- Pagination links -->
+                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                        {{ $clients->links() }}
+                    </div>
                 </div>
 
+                <!-- Add new client button -->
                 <div class="flex justify-end">
                     <a
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

@@ -1,7 +1,9 @@
+@props(['client' => $client])
+
 <tr class="bg-white">
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">1</td>
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">John Doe</td>
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">hello@mail.com</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->id }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->name }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->email }}</td>
     <td class="p-3">
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
