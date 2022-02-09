@@ -8,10 +8,18 @@
             <p>Store a new client to the database</p>
         </div>
 
-        <!-- Client Details -->
         <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <!-- Session Messages -->
+            @if (session('status'))
+                <div class="bg-green-500 p-4 rounded-lg mb-6 text-white text-center">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <!-- Client details header -->
             <h2 class="text-2xl font-medium mb-5">Client Details</h2>
 
+            <!-- Client details form -->
             <form action="{{ route('profiles.create_client') }}" method="post">
                 @csrf
                 <!-- Name -->

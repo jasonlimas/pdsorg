@@ -30,6 +30,6 @@ class ClientController extends Controller
             'address' => $request->address,
         ]);
 
-        return back();
+        return back()->with('status', 'Client created successfully');
     }
 }
