@@ -20,7 +20,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'ADMIN',
             'email' => 'admin@pdsorg.com',
             'password' => bcrypt('AdminPdsOrg!'),
-            'role' => 'admin'
+            'role' => 'admin',
+            'phone' => '0412345678',
         ]);
 
         // User
@@ -29,7 +30,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'USER',
             'email' => 'user@mail.com',
             'password' => bcrypt('UserPdsOrg!'),
-            'role' => 'sales'
+            'role' => 'sales',
+            'phone' => '0412345678',
         ]);
     }
 }

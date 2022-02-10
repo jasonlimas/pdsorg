@@ -3,67 +3,99 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-8/12">
+            <!-- Main header -->
             <div class="p-6 text-gray-200">
                 <h1 class="text-4xl font-semibold mb-1">Profiles</h1>
                 <p>Manage profiles here</p>
             </div>
+            <!-- Session Messages -->
+            @if (session('status'))
+                <div class="bg-green-500 p-4 rounded-lg mb-6 text-white text-center">
+                    {{ session('status') }}
+                </div>
+            @endif
 
             <!-- Currently logged in user's details -->
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <div class="bg-gray-100 p-6 rounded-lg mb-3">
                 <h2 class="text-2xl font-medium">Your Details</h2>
                 <p class="text-gray-600 mb-5">
                     Your details. Will be shown in the generated quotes as part of sender
                 </p>
 
-                <form action="">
+                <form action="{{ route('profiles.update', auth()->user()) }}" method="POST">
+                    @csrf
                     <!-- Name -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                            <label class="text-md p-3 inline-block align-middle" for="name">
                                 Your Name
                             </label>
                         </div>
                         <div class="w-2/3">
                             <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="user_name"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('name') border-red-500 @enderror"
+                                name="name"
+                                id="name"
                                 type="text"
                                 placeholder="Your Name"
                                 value="{{ $user->name }}">
+
+                                @error('name')
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
                     </div>
 
                     <!-- Email -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                            <label class="text-md p-3 inline-block align-middle" for="email">
                                 Your Work Email
                             </label>
                         </div>
                         <div class="w-2/3">
                             <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="user_email"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('email') border-red-500 @enderror"
+                                name="email"
+                                id="email"
                                 type="text"
                                 placeholder="Work Email"
                                 value="{{ $user->email }}">
+
+                            @error('email')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Phone -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                            <label class="text-md p-3 inline-block align-middle" for="phone">
                                 Your Work Phone
                             </label>
                         </div>
                         <div class="w-2/3">
                             <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="user_phone"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('phone') border-red-500 @enderror"
+                                name="phone"
+                                id="phone"
                                 type="text"
                                 placeholder="Work Phone"
                                 value="{{ $user->phone }}">
+
+                            @error('phone')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -71,7 +103,7 @@
                     <div class="flex justify-end">
                         <button
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="button">
+                            type="submit">
                             Save Info
                         </button>
                     </div>

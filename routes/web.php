@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreateQuoteController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,10 @@ Route::get('/quote/create', [CreateQuoteController::class, 'index'])->name('quot
 Route::post('/quote/create', [CreateQuoteController::class, 'store']);
 
 // Profiles
-Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
+Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');
+
+// User Profile
+Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
 
 // Sender Organization Profiles
 
