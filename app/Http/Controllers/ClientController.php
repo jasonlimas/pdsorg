@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        // Prevent unauthenticated users from accessing the page
+        $this->middleware(['auth'])->only(['index', 'store', 'destroy']);
+    }
+
+    // Return the client create view
     public function index()
     {
         return view('client.create');
     }
 
+    // Add a new client to the database. Called when clicking the add client button
     public function store(Request $request)
     {
         // Validation
@@ -23,13 +31,24 @@ class ClientController extends Controller
         ]);
 
         // Create client
-        Client::create([
+        $request->user()->clients()->create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
         ]);
 
+        // Redirect back with success message
         return back()->with('status', 'Client created successfully');
+    }
+
+    // Delete a client from the database. Called when clicking the delete icon
+    public function destroy(Client $client)
+    {
+        $this->authorize('delete', $client);    // Make sure the user is authorized to delete the client
+        $client->delete();                      // Delete the client
+
+        // Redirect back with success message
+        return back()->with('status', 'Client deleted successfully');
     }
 }

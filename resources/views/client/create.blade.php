@@ -20,7 +20,7 @@
             <h2 class="text-2xl font-medium mb-5">Client Details</h2>
 
             <!-- Client details form -->
-            <form action="{{ route('profiles.create_client') }}" method="post">
+            <form action="{{ route('profiles.client.create') }}" method="post">
                 @csrf
                 <!-- Name -->
                 <div class="flex flex-wrap mb-4">
