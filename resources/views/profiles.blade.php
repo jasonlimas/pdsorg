@@ -8,9 +8,83 @@
                 <p>Manage profiles here</p>
             </div>
 
+            <!-- Currently logged in user's details -->
+            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+                <h2 class="text-2xl font-medium">Your Details</h2>
+                <p class="text-gray-600 mb-5">
+                    Your details. Will be shown in the generated quotes as part of sender
+                </p>
+
+                <form action="">
+                    <!-- Name -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                                Your Name
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="user_name"
+                                type="text"
+                                placeholder="Your Name"
+                                value="{{ $user->name }}">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                                Your Work Email
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="user_email"
+                                type="text"
+                                placeholder="Work Email"
+                                value="{{ $user->email }}">
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="organization_name">
+                                Your Work Phone
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="user_phone"
+                                type="text"
+                                placeholder="Work Phone"
+                                value="{{ $user->phone }}">
+                        </div>
+                    </div>
+
+                    <!-- Save button -->
+                    <div class="flex justify-end">
+                        <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button">
+                            Save Info
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
             <!-- Organization Details -->
             <div class=" bg-gray-100 p-6 rounded-lg mb-3">
-                <h2 class="text-2xl font-medium mb-5">Your Organization Details</h2>
+                <h2 class="text-2xl font-medium">Your Organization Details</h2>
+                <p class="text-gray-600 mb-5">
+                    Your organization. Will be displayed in generated quotes as part of sender
+                </p>
 
                 <form action="">
                     <!-- Organization name -->

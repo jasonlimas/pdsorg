@@ -12,6 +12,7 @@ class ProfilesController extends Controller
         $clients = Client::paginate(7);
 
         return view('profiles', [
+            'user' => auth()->user(),
             'clients' => $clients,
         ]);
     }

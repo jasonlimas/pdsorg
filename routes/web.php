@@ -31,6 +31,11 @@ Route::post('/quote/create', [CreateQuoteController::class, 'store']);
 
 // Profiles
 Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
+
+// Sender Organization Profiles
+
+
+// Client Profiles
 Route::get('/profiles/client/create', [ClientController::class, 'createIndex'])->name('profiles.client.create');
 Route::get('/profiles/client/{client}/edit', [ClientController::class, 'editIndex'])->name('profiles.client.edit');
 Route::post('/profiles/client/create', [ClientController::class, 'store']);
