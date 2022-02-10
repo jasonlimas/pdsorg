@@ -31,9 +31,11 @@ Route::post('/quote/create', [CreateQuoteController::class, 'store']);
 
 // Profiles
 Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
-Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
+Route::get('/profiles/client/create', [ClientController::class, 'createIndex'])->name('profiles.client.create');
+Route::get('/profiles/client/{client}/edit', [ClientController::class, 'editIndex'])->name('profiles.client.edit');
 Route::post('/profiles/client/create', [ClientController::class, 'store']);
-Route::delete('profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroya');
+Route::post('/profiles/client/{client}', [ClientController::class, 'update'])->name('profiles.client.update');
+Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');

@@ -20,7 +20,7 @@
             <h2 class="text-2xl font-medium mb-5">Client Details</h2>
 
             <!-- Client details form -->
-            <form action="{{ route('profiles.client.create') }}" method="post">
+            <form action="{{ route('profiles.client.create') }}" method="POST">
                 @csrf
                 <!-- Name -->
                 <div class="flex flex-wrap mb-4">
@@ -124,6 +124,11 @@
 
                 <!-- Add client button -->
                 <div class="flex justify-end">
+                    <!-- Cancel button -->
+                    <a href="{{ route('profiles') }}"
+                        class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Cancel
+                    </a>
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit">

@@ -14,9 +14,16 @@ class ClientController extends Controller
     }
 
     // Return the client create view
-    public function index()
+    public function createIndex()
     {
         return view('client.create');
+    }
+
+    public function editIndex(Client $client)
+    {
+        return view('client.edit', [
+            'client' => $client
+        ]);
     }
 
     // Add a new client to the database. Called when clicking the add client button
@@ -40,6 +47,29 @@ class ClientController extends Controller
 
         // Redirect back with success message
         return back()->with('status', 'Client created successfully');
+    }
+
+    // Update a client in the database. Called when clicking the edit client button
+    public function update(Request $request, Client $client)
+    {
+        // Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'address' => 'required|max:255',
+        ]);
+
+        // Update client
+        $client->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+
+        // Redirect back with success message
+        return back()->with('status', 'Client updated successfully');
     }
 
     // Delete a client from the database. Called when clicking the delete icon

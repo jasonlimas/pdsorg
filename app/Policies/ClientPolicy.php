@@ -14,4 +14,9 @@ class ClientPolicy
     {
         return $user->id === $client->user_id;
     }
+
+    public function edit(User $user, Client $client)
+    {
+        return $user->id === $client->user_id;
+    }
 }

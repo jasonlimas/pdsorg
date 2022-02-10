@@ -12,22 +12,33 @@
 
     <!-- Edit Icon (TODO) -->
     <td class="p-3">
-        <form action="#" method="POST">
+        <form action="{{ route('profiles.client.edit', $client) }}" method="GET">
             @csrf
-            <button type="submit" class="mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-            </button>
+            @can('edit', $client)
+                <button type="submit" class="mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </button>
+            @elsecannot('edit', $client)
+                <button disabled class="mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </button>
+            @endcan
+
         </form>
     </td>
 
     <!-- Delete Icon -->
     <td class="p-3">
         <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
-        <form action="{{ route('profiles.client.destroya', $client) }}" method="POST">
+        <form action="{{ route('profiles.client.destroy', $client) }}" method="POST">
             @csrf
             @method('DELETE')
             @can('delete', $client) <!-- If authenticated user can delete the client, show the delete icon with red color-->
@@ -39,7 +50,7 @@
                     </svg>
                 </button>
             @elsecannot('delete', $client)  <!-- If user can't delete the client, show the delete icon with gray color -->
-                <button class="mt-1" disabled>
+                <button class="mt-1" disabled>  <!-- Disabled button -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
