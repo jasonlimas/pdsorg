@@ -10,7 +10,7 @@ class ClientController extends Controller
     public function __construct()
     {
         // Prevent unauthenticated users from accessing the page
-        $this->middleware(['auth'])->only(['index', 'store', 'destroy']);
+        $this->middleware(['auth'])->only(['createIndex', 'editIndex', 'store', 'destroy']);
     }
 
     // Return the client create view
@@ -31,9 +31,9 @@ class ClientController extends Controller
     {
         // Validation
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric|max:255',
             'address' => 'required|max:255',
         ]);
 

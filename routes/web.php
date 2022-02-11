@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreateQuoteController;
 use App\Http\Controllers\ProfilesController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\SenderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +37,8 @@ Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')-
 Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
 
 // Sender Organization Profiles
-
+Route::get('/profiles/sender/create', [SenderController::class, 'createIndex'])->name('profiles.sender.create');
+Route::post('/profiles/sender/create', [SenderController::class, 'store']);
 
 // Client Profiles
 Route::get('/profiles/client/create', [ClientController::class, 'createIndex'])->name('profiles.client.create');
