@@ -37,12 +37,14 @@ Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')-
 Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
 
 // Sender Organization Profiles
-Route::get('/profiles/sender/create', [SenderController::class, 'createIndex'])->name('profiles.sender.create');
+Route::get('/profiles/sender/create', [SenderController::class, 'index'])->name('profiles.sender.create');
+Route::get('/profiles/sender/{sender}', [SenderController::class, 'show'])->name('profiles.sender.show');
 Route::post('/profiles/sender/create', [SenderController::class, 'store']);
+Route::post('/profiles/sender/{sender}', [SenderController::class, 'update'])->name('profiles.sender.update');
 
 // Client Profiles
-Route::get('/profiles/client/create', [ClientController::class, 'createIndex'])->name('profiles.client.create');
-Route::get('/profiles/client/{client}/edit', [ClientController::class, 'editIndex'])->name('profiles.client.edit');
+Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
+Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
 Route::post('/profiles/client/create', [ClientController::class, 'store']);
 Route::post('/profiles/client/{client}', [ClientController::class, 'update'])->name('profiles.client.update');
 Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Sender;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,13 @@ class ProfilesController extends Controller
 {
     public function index()
     {
-        $clients = Client::paginate(7);
+        $senders = Sender::paginate(5);
+        $clients = Client::paginate(5);
 
+        //dd($senders);
         return view('profiles', [
             'user' => auth()->user(),
+            'senders' => $senders,
             'clients' => $clients,
         ]);
     }

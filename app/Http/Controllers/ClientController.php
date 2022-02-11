@@ -14,12 +14,12 @@ class ClientController extends Controller
     }
 
     // Return the client create view
-    public function createIndex()
+    public function index()
     {
         return view('client.create');
     }
 
-    public function editIndex(Client $client)
+    public function show(Client $client)
     {
         return view('client.edit', [
             'client' => $client
@@ -33,7 +33,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|numeric|max:255',
+            'phone' => 'required|numeric',
             'address' => 'required|max:255',
         ]);
 

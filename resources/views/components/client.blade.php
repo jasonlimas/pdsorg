@@ -10,9 +10,9 @@
     <!-- Client Email -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->email }}</td>
 
-    <!-- Edit Icon (TODO) -->
+    <!-- Edit Icon -->
     <td class="p-3">
-        <form action="{{ route('profiles.client.edit', $client) }}" method="GET">
+        <form action="{{ route('profiles.client.show', $client) }}" method="GET">
             @csrf
             @can('edit', $client)
                 <button type="submit" class="mt-1">
@@ -31,7 +31,6 @@
                     </svg>
                 </button>
             @endcan
-
         </form>
     </td>
 

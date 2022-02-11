@@ -14,7 +14,7 @@ class SenderController extends Controller
     }
 
     // Create Sender Organization Profile page
-    public function createIndex()
+    public function index()
     {
         return view('sender.create');
     }
@@ -37,4 +37,33 @@ class SenderController extends Controller
         // Redirect back with success message
         return back()->with('status', 'Sender Organization Profile created successfully');
     }
+
+    // Show Sender Organization Profile
+    public function show(Sender $sender)
+    {
+        return view('sender.edit', [
+            'sender' => $sender
+        ]);
+    }
+
+    // Update Sender Organization Profile
+    public function update(Request $request, Sender $sender)
+    {
+        // Validation
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
+        ]);
+
+        // Update Sender Organization Profile
+        $sender->update([
+            'name' => $request->name,
+            'address' => $request->address,
+        ]);
+
+        // Redirect back with success message
+        return back()->with('status', 'Sender Organization Profile updated successfully');
+    }
+
+    // Destroy Sender Organization Profile
 }

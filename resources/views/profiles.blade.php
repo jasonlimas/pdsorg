@@ -119,7 +119,35 @@
                     Your organization. Will be displayed in generated quotes as part of sender
                 </p>
 
-                <!-- Form -->
+                <!-- Table -->
+                <div class="overflow-auto rounded-lg shadow mb-4">
+                    <table class="w-full">
+                        <!-- Table Headers -->
+                        <thead class="bg-gray-50 border-b-2 border-gray-300">
+                            <tr>
+                                <th class="w-20 p-3 text-sm tracking-wide text-left">ID</th>
+                                <th class="p-3 text-sm tracking-wide text-left">Name</th>
+                                <th class="w-20 p-3 text-sm tracking-wide text-left">Edit</th>
+                                <th class="w-20 p-3 text-sm tracking-wide text-left">Delete</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Table Body -->
+                        <tbody class="divide-y divide-gray-100">
+                            <!-- Add a new row for every sender organization details stored in the database -->
+                            @foreach ($senders as $sender)
+                                <x-sender :sender="$sender" />
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination links -->
+                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                        {{ $senders->links() }}
+                    </div>
+                </div>
+
+                <!-- Add Details button -->
                 <div class="flex justify-end">
                     <a
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
