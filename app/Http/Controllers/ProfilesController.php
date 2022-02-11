@@ -11,10 +11,10 @@ class ProfilesController extends Controller
 {
     public function index()
     {
+        // Get senders and clients from the database
         $senders = Sender::paginate(5, ['*'], 'senders');
         $clients = Client::paginate(5, ['*'], 'clients');
 
-        //dd($senders);
         return view('profiles', [
             'user' => auth()->user(),
             'senders' => $senders,

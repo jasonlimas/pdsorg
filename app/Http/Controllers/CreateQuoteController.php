@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Sender;
 use Illuminate\Http\Request;
 
 class CreateQuoteController extends Controller
 {
     public function index()
     {
-        return view('quote.create');
+        // Get senders and clients from the database
+        $senders = Sender::all();
+        $clients = Client::all();
+
+        return view('quote.create', [
+            'senders' => $senders,
+            'clients' => $clients,
+        ]);
     }
 
     public function store(Request $request)
