@@ -11,8 +11,8 @@ class ProfilesController extends Controller
 {
     public function index()
     {
-        $senders = Sender::paginate(5);
-        $clients = Client::paginate(5);
+        $senders = Sender::paginate(5, ['*'], 'senders');
+        $clients = Client::paginate(5, ['*'], 'clients');
 
         //dd($senders);
         return view('profiles', [

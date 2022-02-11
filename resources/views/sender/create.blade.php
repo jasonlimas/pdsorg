@@ -18,7 +18,7 @@
 
             <div class=" bg-gray-100 p-6 rounded-lg mb-3">
                 <!-- Client details header -->
-                <h2 class="text-2xl font-medium mb-5">Client Details</h2>
+                <h2 class="text-2xl font-medium mb-5">Sender Organization Details</h2>
 
                 <!-- Client details form -->
                 <form action="{{ route('profiles.sender.create') }}" method="POST">

@@ -143,7 +143,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $senders->links() }}
+                        {{ $senders->appends(['clients' => $clients->currentPage()])->links() }}
                     </div>
                 </div>
 
@@ -191,7 +191,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $clients->links() }}
+                        {{ $clients->appends(['senders' => $senders->currentPage()])->links() }}
                     </div>
                 </div>
 
