@@ -10,7 +10,7 @@ class SenderController extends Controller
     public function __construct()
     {
         // Prevent unauthenticated users from accessing the page
-        $this->middleware(['auth'])->only(['createIndex', 'store', 'destroy']);
+        $this->middleware(['auth'])->only(['index', 'store', 'show', 'destroy']);
     }
 
     // Create Sender Organization Profile page
@@ -66,4 +66,12 @@ class SenderController extends Controller
     }
 
     // Destroy Sender Organization Profile
+    public function destroy(Sender $sender)
+    {
+        //$this->authorize('delete', $sender);    // Make sure the user is authorized to delete the client
+        $sender->delete();                      // Delete Sender Organization Profile
+
+        // Redirect back with success message
+        return back()->with('status', 'Sender Organization Profile deleted successfully');
+    }
 }

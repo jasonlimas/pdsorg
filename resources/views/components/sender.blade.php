@@ -23,7 +23,7 @@
 
     <!-- Delete Icon -->
     <td class="p-3">
-        <form action="#" method="">
+        <form action="{{ route('profiles.sender.destroy', $sender) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="mt-1" onclick="return confirm('Are you sure?')">

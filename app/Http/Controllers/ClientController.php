@@ -10,7 +10,7 @@ class ClientController extends Controller
     public function __construct()
     {
         // Prevent unauthenticated users from accessing the page
-        $this->middleware(['auth'])->only(['createIndex', 'editIndex', 'store', 'destroy']);
+        $this->middleware(['auth'])->only(['index', 'show', 'store', 'destroy']);
     }
 
     // Return the client create view

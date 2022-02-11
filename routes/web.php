@@ -41,6 +41,7 @@ Route::get('/profiles/sender/create', [SenderController::class, 'index'])->name(
 Route::get('/profiles/sender/{sender}', [SenderController::class, 'show'])->name('profiles.sender.show');
 Route::post('/profiles/sender/create', [SenderController::class, 'store']);
 Route::post('/profiles/sender/{sender}', [SenderController::class, 'update'])->name('profiles.sender.update');
+Route::delete('/profiles/sender/{sender}', [SenderController::class, 'destroy'])->name('profiles.sender.destroy');
 
 // Client Profiles
 Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
