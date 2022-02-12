@@ -8,15 +8,11 @@ use Livewire\Component;
 
 class TermsConditions extends Component
 {
-    public $senders = [];
-    public $clients = [];
     public $termsConditions = [""];
 
     public function mount()
     {
-        // Get senders and clients from the database
-        $this->senders = Sender::all();
-        $this->clients = Client::all();
+        //
     }
 
     public function render()

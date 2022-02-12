@@ -27,8 +27,8 @@ Route::get('/', function () {
 // Quotation List
 
 // Create Quotation
-Route::get('/quote/create', [CreateQuoteController::class, 'index'])->name('quote.create');
-Route::post('/quote/create', [CreateQuoteController::class, 'store']);
+Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quote.create');
+Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
 
 // Profiles
 Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');
