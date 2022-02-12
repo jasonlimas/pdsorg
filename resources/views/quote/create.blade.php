@@ -104,7 +104,7 @@
                         </div>
 
                         <!-- Sender and receiver div -->
-                        @livewire('sender-receiver')
+                        @livewire('quote-sender-receiver')
 
                         <!-- Quote items div -->
                         <div>
@@ -119,7 +119,7 @@
                         </div>
 
                         <!-- Terms and conditions div -->
-                        @livewire('terms-conditions')
+                        @livewire('quote-terms-conditions')
 
                         <!-- Submit button -->
                         <div>

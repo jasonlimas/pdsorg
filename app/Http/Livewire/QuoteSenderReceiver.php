@@ -6,7 +6,7 @@ use App\Models\Client;
 use App\Models\Sender;
 use Livewire\Component;
 
-class SenderReceiver extends Component
+class QuoteSenderReceiver extends Component
 {
     public $senders = [];
     public $clients = [];
@@ -20,6 +20,6 @@ class SenderReceiver extends Component
 
     public function render()
     {
-        return view('livewire.sender-receiver');
+        return view('livewire.quote-sender-receiver');
     }
 }

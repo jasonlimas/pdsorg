@@ -6,7 +6,7 @@ use App\Models\Client;
 use App\Models\Sender;
 use Livewire\Component;
 
-class TermsConditions extends Component
+class QuoteTermsConditions extends Component
 {
     public $termsConditions = [""];
 
@@ -17,7 +17,7 @@ class TermsConditions extends Component
 
     public function render()
     {
-        return view('livewire.terms-conditions');
+        return view('livewire.quote-terms-conditions');
     }
 
     // Add terms and conditions line
