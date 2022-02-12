@@ -7,6 +7,7 @@
     <title>Paradisestore.org</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body class="bg-sky-900">
     <!-- Header -->
@@ -53,5 +54,7 @@
 
     <!-- Display section -->
     @yield('content')
+
+    @livewireScripts
 </body>
 </html>

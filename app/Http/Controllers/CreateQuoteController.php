@@ -10,14 +10,7 @@ class CreateQuoteController extends Controller
 {
     public function index()
     {
-        // Get senders and clients from the database
-        $senders = Sender::all();
-        $clients = Client::all();
-
-        return view('quote.create', [
-            'senders' => $senders,
-            'clients' => $clients,
-        ]);
+        return view('quote.create');
     }
 
     public function store(Request $request)

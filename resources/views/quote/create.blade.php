@@ -32,141 +32,7 @@
 
                 <!-- Show the form for logged in user -->
                 @auth
-                    <form action="">
-                        @csrf
-                        <!-- Quote number div -->
-                        <div>
-                                <!-- Quote number texts -->
-                            <h2 class="text-2xl font-medium">Quote Number</h2>
-                            <p class="text-gray-600 mb-5">
-                                Number that will be used to identify the quote.
-                            </p>
-
-                            <!-- Quote number input -->
-                            <div class="grid grid-cols-5 gap-2 mb-4">
-                                <!-- Year -->
-                                <label for="numberYear" class="sr-only">Year</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberYear" id="numberYear" placeholder="Year"
-                                value="{{ now()->year }}">
-
-                                <!-- Division -->
-                                <label for="numberDivision" class="sr-only">Division</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberDivision"
-                                id="numberDivision"
-                                placeholder="Division"
-                                value="{{ old('numberDivision') }}">
-
-                                <!-- Sales -->
-                                <label for="numberSales" class="sr-only">Sales</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberSales"
-                                id="numberSales"
-                                placeholder="Sales"
-                                value="{{ old('numberSales') }}">
-
-                                <!-- Month -->
-                                <label for="numberMonth" class="sr-only">Month</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberMonth"
-                                id="numberMonth"
-                                placeholder="Month"
-                                value="{{ now()->month }}">
-
-                                <!-- Number -->
-                                <label for="numberNumber" class="sr-only">Number</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberNumber"
-                                id="numberNumber"
-                                placeholder="Number"
-                                value="{{ old('numberNumber') }}">
-                            </div>
-                        </div>
-
-                        <!-- Date div -->
-                        <div>
-                            <!-- Quote date texts -->
-                            <h2 class="text-2xl font-medium">Date</h2>
-                            <p class="text-gray-600 mb-5">
-                            Select the date from the calendar or leave it to use today's date.
-                            </p>
-                        </div>
-
-                        <!-- Sender and receiver div -->
-                        <div>
-                            <!-- Quote sender and receiver texts -->
-                            <h2 class="text-2xl font-medium">Sender and Receiver Details</h2>
-                            <p class="text-gray-600 mb-5">
-                                Your details as the sender, and the client details as the receiver.
-                            </p>
-
-                            <!-- Sender and receiver inputs -->
-                            <div class="grid grid-cols-2 gap-2 mb-1">
-                                <h2 class="text-xl font-bold">Quote From</h2>
-                                <h2 class="text-xl font-bold">Quote To</h2>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 mb-4">
-                                <!-- Sender input -->
-                                <label for="sender" class="sr-only">Sender</label>
-                                <select
-                                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="sender"
-                                    id="sender">
-                                    <option value="">Select a sender</option>
-                                    @foreach ($senders as $sender)
-                                        <option value="{{ $sender->id }}">ID:{{ $sender->id}} - {{ $sender->name }}</option>
-                                    @endforeach
-                                </select>
-
-                                <!-- Receiver input -->
-                                <label for="receiver" class="sr-only">Quote To</label>
-                                <select
-                                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="receiver"
-                                    id="receiver">
-                                    <option value="">Select a client</option>
-                                    @foreach ($clients as $client)
-                                        <option value="{{ $client->id }}">ID:{{ $client->id}} - {{ $client->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Quote items div -->
-                        <div>
-                            <!-- Items texts -->
-                            <h2 class="text-2xl font-medium">Items, Tax, and Total Price</h2>
-                            <p class="text-gray-600 mb-5">
-                                Add items, tax, and total price.
-                            </p>
-                        </div>
-
-                        <!-- Terms & conditions div -->
-                        <div>
-                            <!-- Terms & Conditions texts -->
-                            <h2 class="text-2xl font-medium">Terms & Conditions</h2>
-                            <p class="text-gray-600 mb-5">
-                                Add terms and conditions.
-                            </p>
-                        </div>
-
-                        <!-- Submit button -->
-                        <div>
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
-                            font-medium w-full">Create Quotation</button>
-                        </div>
-                    </form>
+                    @livewire('terms-conditions')
                 @endauth
 
             </div>
@@ -174,7 +40,7 @@
         </div>
     </div>
 
-    <div class="flex justify-center">
+    {{-- <div class="flex justify-center">
         <!-- Create a quote form div -->
         <div class=" bg-white p-4 rounded-lg">
             <form action="" method="POST">
@@ -233,5 +99,5 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> --}}
 @endsection
