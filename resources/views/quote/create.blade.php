@@ -47,15 +47,15 @@
                                 <!-- Year -->
                                 <label for="numberYear" class="sr-only">Year</label>
                                 <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                type="number"
                                 name="numberYear" id="numberYear" placeholder="Year"
                                 value="{{ now()->year }}">
 
                                 <!-- Division -->
                                 <label for="numberDivision" class="sr-only">Division</label>
                                 <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                 type="text"
                                 name="numberDivision"
                                 id="numberDivision"
@@ -65,7 +65,7 @@
                                 <!-- Sales -->
                                 <label for="numberSales" class="sr-only">Sales</label>
                                 <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                 type="text"
                                 name="numberSales"
                                 id="numberSales"
@@ -75,8 +75,8 @@
                                 <!-- Month -->
                                 <label for="numberMonth" class="sr-only">Month</label>
                                 <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                type="number"
                                 name="numberMonth"
                                 id="numberMonth"
                                 placeholder="Month"
@@ -85,8 +85,8 @@
                                 <!-- Number -->
                                 <label for="numberNumber" class="sr-only">Number</label>
                                 <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                type="number"
                                 name="numberNumber"
                                 id="numberNumber"
                                 placeholder="Number"
@@ -103,22 +103,13 @@
                             </p>
                         </div>
 
-                        <!-- Sender and receiver div -->
+                        <!-- Sender and receiver component -->
                         @livewire('quote-sender-receiver')
 
-                        <!-- Quote items div -->
-                        <div>
-                            <!-- Items texts -->
-                            <h2 class="text-2xl font-medium">Items, Tax, and Total Price</h2>
-                            <p class="text-gray-600 mb-3">
-                                Add items, tax, and total price.
-                            </p>
+                        <!-- Quote items component -->
+                        @livewire('quote-items')
 
-                            <!-- Items input -->
-
-                        </div>
-
-                        <!-- Terms and conditions div -->
+                        <!-- Terms and conditions component -->
                         @livewire('quote-terms-conditions')
 
                         <!-- Submit button -->

@@ -498,6 +498,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0px;
   margin-right: 0px;
 }
+.mx-0\.5 {
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -533,6 +537,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .ml-1 {
   margin-left: 0.25rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mb-0\.5 {
+  margin-bottom: 0.125rem;
+}
+.mb-0 {
+  margin-bottom: 0px;
 }
 .block {
   display: block;
@@ -626,6 +639,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-9 {
   width: 2.25rem;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-2 {
+  width: 0.5rem;
+}
+.w-40 {
+  width: 10rem;
+}
+.w-60 {
+  width: 15rem;
+}
+.w-80 {
+  width: 20rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -748,6 +776,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .border-l {
   border-left-width: 1px;
+}
+.border-b-4 {
+  border-bottom-width: 4px;
 }
 .border-red-500 {
   --tw-border-opacity: 1;
@@ -879,6 +910,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -902,6 +941,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .align-middle {
   vertical-align: middle;
+}
+.align-text-bottom {
+  vertical-align: text-bottom;
 }
 .text-4xl {
   font-size: 2.25rem;
@@ -927,6 +969,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 3rem;
   line-height: 1;
 }
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .font-semibold {
   font-weight: 600;
 }
@@ -939,11 +985,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .font-light {
   font-weight: 300;
 }
+.uppercase {
+  text-transform: uppercase;
+}
 .leading-tight {
   line-height: 1.25;
 }
 .leading-5 {
   line-height: 1.25rem;
+}
+.leading-none {
+  line-height: 1;
 }
 .tracking-wide {
   letter-spacing: 0.025em;
@@ -999,6 +1051,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

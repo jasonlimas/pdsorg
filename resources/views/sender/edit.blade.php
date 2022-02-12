@@ -32,7 +32,7 @@
                         </div>
                         <div class="w-2/3">
                             <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('name') border-red-500 @enderror"
                                 name="name"
                                 id="name"

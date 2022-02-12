@@ -10,16 +10,16 @@
         <table class="w-full">
             <thead class="bg-gray-50 border-b-2 border-gray-300">
                 <tr>
-                    <th class="w-10"></th>
-                    <th class="pt-1">Add your input below</th>
-                    <th class="w-9"></th>
+                    <th class="w-10">No.</th>
+                    <th class="pt-1">Terms & Conditions</th>
+                    <th class="w-9">Del.</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($termsConditions as $index => $termCondition)
                     <tr>
-                        <td class="text-4xl align-middle text-center">
-                            •
+                        <td class="align-middle text-center">
+                            {{ $index + 1 }}
                         </td>
                         <td>
                             <div class="flex flex-wrap">
@@ -27,7 +27,7 @@
                                 <div class="w-full">
                                     <label for="terms" class="sr-only">Terms & Conditions</label>
                                     <input
-                                        class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        class="shadow appearance-none border rounded w-full p-1 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                         name="termsConditions[{{ $index }}]"
                                         placeholder="Terms & Conditions"
                                         wire:model="termsConditions.{{ $index }}">

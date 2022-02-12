@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class QuoteTermsConditions extends Component
 {
-    public $termsConditions = [""];
+    public $termsConditions = [''];
 
     public function mount()
     {
