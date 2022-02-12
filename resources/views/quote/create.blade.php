@@ -99,8 +99,20 @@
                             <!-- Quote date texts -->
                             <h2 class="text-2xl font-medium">Date</h2>
                             <p class="text-gray-600 mb-3">
-                            Select the date from the calendar or leave it to use today's date.
+                                Select the date from the calendar.
                             </p>
+
+                            <!-- Quote date input -->
+                            <div class="mb-4">
+                                <!-- Date -->
+                                <label for="date" class="sr-only">Date</label>
+                                <input
+                                class="shadow appearance-none border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                type="date"
+                                name="date"
+                                id="date"
+                                value="{{ old('date') }}">
+                            </div>
                         </div>
 
                         <!-- Sender and receiver component -->
