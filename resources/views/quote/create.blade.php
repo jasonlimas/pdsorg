@@ -39,7 +39,7 @@
 
                 <!-- Show the form for logged in user -->
                 @auth
-                    <form action="{{ route('quotes.create') }}" method="POST" target="_blank">
+                    <form action="{{ route('quotes.create') }}" method="POST">
                         @csrf
                         <!-- Quote number div -->
                         <div>
@@ -52,54 +52,99 @@
                             <!-- Quote number input -->
                             <div class="grid grid-cols-5 gap-2 mb-4">
                                 <!-- Year -->
-                                <label for="numberYear" class="sr-only">Year</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                type="number"
-                                name="numberYear"
-                                id="numberYear"
-                                placeholder="Year"
-                                value="{{ now()->year }}">
+                                <div>
+                                    <label for="numberYear" class="sr-only">Year</label>
+                                    <input
+                                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                    @error('numberYear') border-red-500 @enderror"
+                                    type="number"
+                                    name="numberYear"
+                                    id="numberYear"
+                                    placeholder="Year"
+                                    value="{{ now()->year }}">
+
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        @error('numberYear')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Division -->
-                                <label for="numberDivision" class="sr-only">Division</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberDivision"
-                                id="numberDivision"
-                                placeholder="Division"
-                                value="{{ old('numberDivision') }}">
+                                <div>
+                                    <label for="numberDivision" class="sr-only">Division</label>
+                                    <input
+                                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                    @error('numberDivision') border-red-500 @enderror"
+                                    type="text"
+                                    name="numberDivision"
+                                    id="numberDivision"
+                                    placeholder="Division"
+                                    value="{{ old('numberDivision') }}">
+
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        @error('numberDivision')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Sales -->
-                                <label for="numberSales" class="sr-only">Sales</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                type="text"
-                                name="numberSales"
-                                id="numberSales"
-                                placeholder="Sales"
-                                value="{{ old('numberSales') }}">
+                                <div>
+                                    <label for="numberSales" class="sr-only">Sales</label>
+                                    <input
+                                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                    @error('numberSales') border-red-500 @enderror"
+                                    type="text"
+                                    name="numberSales"
+                                    id="numberSales"
+                                    placeholder="Sales"
+                                    value="{{ old('numberSales') }}">
+
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        @error('numberSales')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Month -->
-                                <label for="numberMonth" class="sr-only">Month</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                type="number"
-                                name="numberMonth"
-                                id="numberMonth"
-                                placeholder="Month"
-                                value="{{ now()->month }}">
+                                <div>
+                                    <label for="numberMonth" class="sr-only">Month</label>
+                                    <input
+                                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                    @error('numberMonth') border-red-500 @enderror"
+                                    type="number"
+                                    name="numberMonth"
+                                    id="numberMonth"
+                                    placeholder="Month"
+                                    value="{{ now()->month }}">
+
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        @error('numberMonth')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Number -->
-                                <label for="numberNumber" class="sr-only">Number</label>
-                                <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                type="number"
-                                name="numberNumber"
-                                id="numberNumber"
-                                placeholder="Number"
-                                value="{{ old('numberNumber') }}">
+                                <div>
+                                    <label for="numberNumber" class="sr-only">Number</label>
+                                    <input
+                                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                    @error('numberNumber') border-red-500 @enderror"
+                                    type="number"
+                                    name="numberNumber"
+                                    id="numberNumber"
+                                    placeholder="Number"
+                                    value="{{ old('numberNumber') }}">
+
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        @error('numberNumber')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -116,11 +161,18 @@
                                 <!-- Date -->
                                 <label for="date" class="sr-only">Date</label>
                                 <input
-                                class="shadow appearance-none border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('date') border-red-500 @enderror"
                                 type="date"
                                 name="date"
                                 id="date"
                                 value="{{ old('date') }}">
+
+                                @error('date')
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 

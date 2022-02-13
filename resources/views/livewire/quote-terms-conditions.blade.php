@@ -8,7 +8,7 @@
     <!-- Terms & conditions input -->
     <div class="overflow-auto rounded-lg shadow mb-4">
         <table class="w-full">
-            <thead class="bg-gray-50 border-b-2 border-gray-300">
+            <thead class="bg-gray-50 border-b-1 border-gray-400">
                 <tr>
                     <th class="w-10">No.</th>
                     <th class="pt-1">Terms & Conditions</th>
@@ -50,13 +50,19 @@
             </tbody>
         </table>
 
+        @error('termsConditions')
+            <div class="text-red-500 mt-1 text-sm ml-2">
+                {{ $message }}
+            </div>
+        @enderror
+
         <!-- Add line button -->
         <div class="flex flex-wrap">
             <button
                 class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 m-2 rounded focus:outline-none focus:shadow-outline"
                 wire:click.prevent="addTermsCondition"
                 type="button">
-                + Add Line
+                + Add Row
             </button>
         </div>
     </div>

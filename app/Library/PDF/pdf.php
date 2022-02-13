@@ -83,7 +83,7 @@ class PDF {
         // * Output PDF
         // *===================================== *
         $outputName = PDF::buildQuoteNumber($quoteNumber, '-');
-        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'I');
+        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'D');
     }
 
     /**

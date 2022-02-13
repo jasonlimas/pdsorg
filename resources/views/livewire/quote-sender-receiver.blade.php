@@ -11,32 +11,50 @@
         <h2 class="text-xl font-bold bg-gray-200 rounded px-2 py-1">Quote To</h2>
     </div>
     <!-- Input combo boxes -->
-    <div class="grid grid-cols-2 gap-2 mb-1">
+    <div class="grid grid-cols-2 gap-2">
         <!-- Sender input -->
-        <label for="sender" class="sr-only">Sender</label>
-        <select
-            class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="sender"
-            id="sender"
-            wire:model="selectedSender">
-            <option value="">-- Select a sender --</option>
-            @foreach ($senders as $sender)
-                <option value="{{ $sender->id }}">ID:{{ $sender->id}} - {{ $sender->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="sender" class="sr-only">Sender</label>
+            <select
+                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                @error('sender') border-red-500 @enderror"
+                name="sender"
+                id="sender"
+                wire:model="selectedSender">
+                <option value="">-- Select a sender --</option>
+                @foreach ($senders as $sender)
+                    <option value="{{ $sender->id }}">ID:{{ $sender->id}} - {{ $sender->name }}</option>
+                @endforeach
+            </select>
+
+            <div class="text-red-500 mt-1 text-xs">
+                @error('sender')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
 
         <!-- Receiver input -->
-        <label for="receiver" class="sr-only">Quote To</label>
-        <select
-            class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="receiver"
-            id="receiver"
-            wire:model="selectedClient">
-            <option value="">-- Select a client --</option>
-            @foreach ($clients as $client)
-                <option value="{{ $client->id }}">ID:{{ $client->id}} - {{ $client->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="receiver" class="sr-only">Quote To</label>
+            <select
+                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                @error('receiver') border-red-500 @enderror"
+                name="receiver"
+                id="receiver"
+                wire:model="selectedClient">
+                <option value="">-- Select a client --</option>
+                @foreach ($clients as $client)
+                    <option value="{{ $client->id }}">ID:{{ $client->id}} - {{ $client->name }}</option>
+                @endforeach
+            </select>
+
+            <div class="text-red-500 mt-1 text-xs">
+                @error('receiver')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
     </div>
 
     <!-- Quote sender and receiver details -->

@@ -458,6 +458,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .m-2 {
   margin: 0.5rem;
 }
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -499,6 +503,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .-ml-px {
   margin-left: -1px;
+}
+.ml-2 {
+  margin-left: 0.5rem;
 }
 .block {
   display: block;
@@ -637,6 +644,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-md {
   border-radius: 0.375rem;
 }
+.rounded-sm {
+  border-radius: 0.125rem;
+}
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
@@ -675,6 +685,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-sky-900 {
   --tw-border-opacity: 1;
   border-color: rgb(12 74 110 / var(--tw-border-opacity));
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+.border-blue-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(191 219 254 / var(--tw-border-opacity));
 }
 .bg-gray-100 {
   --tw-bg-opacity: 1;
@@ -791,6 +809,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .font-semibold {
   font-weight: 600;
