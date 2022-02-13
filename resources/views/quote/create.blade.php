@@ -23,6 +23,13 @@
                 @endauth
             </div>
 
+            <!-- Session Messages -->
+            @if (session('status'))
+                <div class="bg-green-500 p-4 rounded-lg mb-3 text-white text-center">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <!-- Create Quote Form. Only logged in user can see the form -->
             <div class="bg-gray-100 p-6 rounded-lg mb-3">
                 <!-- If user is not logged in, tell the user -->
@@ -32,7 +39,7 @@
 
                 <!-- Show the form for logged in user -->
                 @auth
-                    <form action="{{ route('quotes.create') }}" method="POST">
+                    <form action="{{ route('quotes.create') }}" method="POST" target="_blank">
                         @csrf
                         <!-- Quote number div -->
                         <div>
@@ -49,7 +56,9 @@
                                 <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                 type="number"
-                                name="numberYear" id="numberYear" placeholder="Year"
+                                name="numberYear"
+                                id="numberYear"
+                                placeholder="Year"
                                 value="{{ now()->year }}">
 
                                 <!-- Division -->
@@ -129,7 +138,7 @@
                             <button
                                 onclick="return confirm('Create quote?')"
                                 type="submit"
-                                class="bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
+                                class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-3 rounded
                             font-medium w-full">Create Quotation</button>
                         </div>
                     </form>

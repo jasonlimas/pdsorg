@@ -2,56 +2,9 @@
 namespace App\Library\PDF;
 
 class PDF {
-    public static function create() {
+    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
-
-        // Variables below
-        $quoteNumber = array_fill_keys(array('year', 'division', 'sales', 'month', 'number'), '');
-        $sender = array_fill_keys(array('name', 'addr', 'phone', 'email'), '');
-        $recipient = array_fill_keys(array('name', 'addr', 'phone', 'email'), '');
-        $item = array_fill_keys(array('name', 'quantity', 'price'), '');
-        $items = [];
-        $tax = 11;
-        $termsConditions = [];
-
-        // ! ------------------------==================================
-        // ! Test values
-        // ! TODO: Delete this block of comment when finished
-        $quoteNumber['year'] = '2021';
-        $quoteNumber['division'] = 'DIV';
-        $quoteNumber['sales'] = 'SAL';
-        $quoteNumber['month'] = 'IX';
-        $quoteNumber['number'] = '014';
-
-        $sender['name'] = 'Sender Name';
-        $sender['addr'] = 'KETAPANG BUSINESS CENTER BLOK D2-D3 NO. 20, Jl. Kyai Haji Zainul Arifin';
-        $sender['phone'] = '+62 21 6348020';
-        $sender['email'] = 'email@email.com';
-
-        $recipient['name'] = 'Recipient Name';
-        $recipient['addr'] = 'KETAPANG BUSINESS CENTER BLOK D2-D3 NO. 20, Jl. Kyai Haji Zainul Arifin';
-        $recipient['phone'] = '+62 dfsfaf324432';
-        $recipient['email'] = 'emailrecipient@email.com';
-
-        // ITEM 1
-        $item['name'] = 'MSI GL65-9SC-028ID (Ci7-9750H/512GB/8GB/GTX1650/4GfdsafasdfdsafsdfsadfdsafasdfdsafdsafdsdB/W10H/2YR)';
-        $item['quantity'] = 2;
-        $item['price'] = 14499000;
-        $items[] = $item;
-
-        // ITEM 2
-        $item['name'] = 'MSI GL65-9SC-028ID (Ci7-9750H/512GB/8GB/GTX1650/4GBdfasfdsafasdfsdafdsafsfsd/W10H/2YR)';
-        $item['quantity'] = 3;
-        $item['price'] = 14499000;
-        $items[] = $item;
-
-        $termsConditions[] = 'This is TnC number 1';
-        $termsConditions[] = 'This is TnC number 2';
-        $termsConditions[] = 'This is TnC number 3';
-        $termsConditions[] = 'This is TnC number 4';
-        $termsConditions[] = 'This is TnC number 5';
-        // ! ------------------------==================================
 
         // *===================================== *
         // * PDF template
@@ -76,7 +29,7 @@ class PDF {
         // * Quote number and date
         // *===================================== *
         PDF::writeQuoteNumber($mpdf, $quoteNumber, $border);
-        PDF::writeDate($mpdf, $border);
+        PDF::writeDate($mpdf, $date, $border);
 
         // *===================================== *
         // * Draw sender and receiver box
@@ -139,6 +92,8 @@ class PDF {
      * @param MPDF $mdpf: MPDF object
      * @param string $imgPath: Path to the logo image
      * @param int $border: Border value
+     *
+     * @return void
      */
     private static function writeQuotationTitle($mpdf, $imgPath, $border) {
         // Cell width and height
@@ -166,6 +121,8 @@ class PDF {
      * @param MPDF $mpdf: MPDF object
      * @param array $number: Quote number data
      * @param int $border: Border value
+     *
+     * @return void
      */
     private static function writeQuoteNumber($mpdf, $number, $border) {
         // Quote number cell width and height
@@ -188,18 +145,22 @@ class PDF {
      *
      * @param MPDF $mpdf: MPDF object
      * @param int $border: Border value
+     *
+     * @return void
      */
-    private static function writeDate($mpdf, $border) {
+    private static function writeDate($mpdf, $date, $border) {
         // Dater cell width and height
         $cellWidth = 0;
         $cellHeight = 7;
 
         // Get current date with built-in PHP date() function
-        date_default_timezone_set('Asia/Jakarta');  // Set timezone to Asia/Jakarta
-        $date = date('l, d F Y');
+        // date_default_timezone_set('Asia/Jakarta');  // Set timezone to Asia/Jakarta
+        // $date = date('l, d F Y');
+        $brokenDate = explode('-', $date);
+        $formattedDate = date('l, d F Y', mktime(0, 0, 0, $brokenDate[1], $brokenDate[2], $brokenDate[0]));
 
         // Write date
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Date    : ' . $date, $border, 2);
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'Date    : ' . $formattedDate, $border, 2);
     }
 
     /**
@@ -399,6 +360,8 @@ class PDF {
      * @param object $mpdf: MPDF object
      * @param int $total: Total price amount
      * @param int $border: Border value
+     *
+     * @return void
      */
     private static function writeTotalInWords($mpdf, $total, $border) {
         // Write Cell max width and height
@@ -430,6 +393,8 @@ class PDF {
      * @param object $mpdf: MPDF object
      * @param array $termsConditions: Array of strings, containing terms and conditions
      * @param int $border: Border value
+     *
+     * @return void
      */
     private static function writeTermsConditions($mpdf, $text, $border) {
         // Write Cell max width and height
@@ -464,6 +429,8 @@ class PDF {
      * @param object $mpdf: MPDF object
      * @param array $data: Array of strings, containing sender data
      * @param int $border: Border value
+     *
+     * @return void
      */
     private static function writeBestRegards($mpdf, $data, $border) {
         // Write Cell max height
@@ -494,6 +461,8 @@ class PDF {
      * Just the boxes. No text.
      *
      * @param object $mpdf: MPDF object
+     *
+     * @return float: Y position after drawing the boxes
      */
     private static function drawSenderRecipientBoxes($mpdf) {
         // Rectangle settings
@@ -544,6 +513,8 @@ class PDF {
      * Draw item table header. Without rows.
      *
      * @param object $mpdf: MPDF object
+     *
+     * @return float: X position of unit price column
      */
     private static function drawItemTable($mpdf) {
         $itemNumWidth = 10;
@@ -571,6 +542,8 @@ class PDF {
      *
      * @param object $mpdf: MPDF object
      * @param string $file: Path to file
+     *
+     * @return void
      */
     private static function addAttachment($mpdf, $file) {
         // Select the source file to be added as attachment
