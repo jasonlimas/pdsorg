@@ -21,7 +21,7 @@
                 <a href="" class="p-3 font-semibold border-l border-sky-900">Quotation List</a>
             </li>
             <li>
-                <a href="{{ route('quote.create') }}" class="p-3 font-semibold border-l border-sky-900">Create Quotation</a>
+                <a href="{{ route('quotes.create') }}" class="p-3 font-semibold border-l border-sky-900">Create Quotation</a>
             </li>
             <li>
                 <a href="{{ route('profiles') }}" class="p-3 font-semibold border-l border-sky-900">Profiles</a>
