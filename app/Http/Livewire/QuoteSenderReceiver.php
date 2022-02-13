@@ -10,6 +10,10 @@ class QuoteSenderReceiver extends Component
 {
     public $senders = [];
     public $clients = [];
+    public $selectedSender = '';
+    public $selectedClient = '';
+    public $senderAddress = '';
+    public $clientAddress = '';
 
     public function mount()
     {
@@ -20,6 +24,16 @@ class QuoteSenderReceiver extends Component
 
     public function render()
     {
+        // Update the selected sender address box to display the selected sender's address
+        if ($this->selectedSender != '')
+            $this->senderAddress = Sender::find($this->selectedSender)->address;
+        else $this->senderAddress = '';
+
+        // Do the same for client address
+        if ($this->selectedClient != '')
+            $this->clientAddress = Client::find($this->selectedClient)->address;
+        else $this->clientAddress = '';
+
         return view('livewire.quote-sender-receiver');
     }
 }
