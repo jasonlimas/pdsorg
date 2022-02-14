@@ -18,6 +18,20 @@ class QuotationFactory extends Factory
         $tax = 11;
         $tPrice = $uPrice * $qty;
         $tPriceTax = $tPrice + ($tPrice * $tax / 100);
+        $items = [];
+        $items[] = [
+            'name' => $this->faker->name,
+            'quantity' => $qty,
+            'price' => $uPrice,
+            'totalPrice' => $qty * $uPrice,
+        ];
+
+        $items[] = [
+            'name' => $this->faker->name,
+            'quantity' => $qty,
+            'price' => $uPrice,
+            'totalPrice' => $qty * $uPrice,
+        ];
 
         return [
             'div' => $this->faker->randomElement(['A', 'B', 'C']),
@@ -25,16 +39,13 @@ class QuotationFactory extends Factory
             'number' => $this->faker->randomNumber(5),
             'quote_date' => $this->faker->date(),
             'sender_id' => 1,
-            'client_id' => $this->faker->numberBetween(18, 67),
-            'items' => [
-                'name' => $this->faker->name,
-                'quantity' => $qty,
-                'unitPrice' => $uPrice,
-                'totalPrice' => $qty * $uPrice,
-            ],
+            'client_id' => $this->faker->numberBetween(1, 51),
+            'items' => $items,
             'tax' => $tax,
             'terms_conditions' => [
                 $this->faker->sentence(),
+                $this->faker->sentence(),
+                $this->faker->sentence()
             ],
             'amount' => $tPriceTax
         ];

@@ -12,8 +12,8 @@ class ProfilesController extends Controller
     public function index()
     {
         // Get senders and clients from the database
-        $senders = Sender::paginate(5, ['*'], 'senders');
-        $clients = Client::paginate(5, ['*'], 'clients');
+        $senders = Sender::latest()->paginate(5, ['*'], 'senders');
+        $clients = Client::latest()->paginate(5, ['*'], 'clients');
 
         return view('profiles', [
             'user' => auth()->user(),

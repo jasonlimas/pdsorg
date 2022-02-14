@@ -2,13 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\PDF\PDF;
+use App\Models\Client;
 use App\Models\Quotation;
+use App\Models\Sender;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
 {
     public function index()
     {
-        return view('quote.index');
+        $quotes = Quotation::latest()->paginate(10);
+
+        foreach($quotes as $quote) {
+            $quote->client = Client::find($quote['client_id'])->name;
+            $quote->amount = 'Rp ' . number_format($quote['amount']);
+        }
+
+        return view('quote.index', [
+            'quotes' => $quotes,
+        ]);
+    }
+
+    public function download(Quotation $quote)
+    {
+        $quoteNumber = [
+            'year' => substr($quote->quote_date, 0, 4),
+            'division' => $quote->div,
+            'sales' => $quote->sales_person,
+            'month' => substr($quote->quote_date, 5, 2),
+            'number' => $quote->number,
+        ];
+
+        $date = $quote->quote_date;
+
+        $sender = [
+            'name' => Sender::find($quote->sender_id)->name,
+            'addr' => Sender::find($quote->sender_id)->address,
+            'phone' => User::find($quote->user_id)->phone,
+            'email' => User::find($quote->user_id)->email,
+        ];
+
+        $recipient = [
+            'name' => Client::find($quote->client_id)->name,
+            'addr' => Client::find($quote->client_id)->address,
+            'phone' => Client::find($quote->client_id)->phone,
+            'email' => Client::find($quote->client_id)->email,
+        ];
+
+        $items = [];
+        foreach ($quote->items as $item) {
+            $items[] = [
+                'name' => $item['name'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ];
+        }
+
+        $tax = $quote->tax;
+
+        $termsConditions = [];
+        foreach ($quote->terms_conditions as $term) {
+            $termsConditions[] = $term;
+        }
+
+        // Create PDF
+        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
+    }
+
+    public function destroy(Quotation $quote)
+    {
+        $quote->delete();
+
+        // Redirect back with success message
+        return back()->with('status', 'Quote deleted successfully');
     }
 }

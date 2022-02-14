@@ -27,6 +27,8 @@ Route::get('/', function () {
 
 // Quotation List
 Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
+Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
+Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
 
 // Create Quotation
 Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
