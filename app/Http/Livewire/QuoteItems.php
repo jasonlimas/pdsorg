@@ -27,7 +27,7 @@ class QuoteItems extends Component
 
         // Calculate sub total: Sum of all total prices
         $tempSubTotal = array_sum(array_column($this->items, 'totalPrice'));
-        $this->subTotal = 'Rp. ' . number_format($tempSubTotal, 0, ',', '.');
+        $this->subTotal = 'Rp. ' . number_format($tempSubTotal);
 
         // Calculate the grand total: sub total + tax
         $this->grandTotal = 'Rp. ' . number_format(intval($tempSubTotal + ($tempSubTotal * (intval($this->tax) / 100))));

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreateQuoteController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SenderController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::get('/', function () {
 })->name('home');
 
 // Quotation List
+Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
 
 // Create Quotation
 Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');

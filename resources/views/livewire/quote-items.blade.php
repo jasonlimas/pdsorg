@@ -12,14 +12,12 @@
             <table class="w-full">
                 <thead class="bg-gray-50 border-b-1 border-gray-400">
                     <tr>
-                        <th class="w-10">No.</th>
-                        <th class="">Item Name</th>
-                        <th class="w-14">Qty</th>
-                        <th class="w-40">Unit Price</th>
-                        <th class="w-40">Total Price</th>
-                        <th class="w-10">
-                            Del.
-                        </th>
+                        <th class="w-1/12">No.</th>
+                        <th class="w-5/12">Item Name</th>
+                        <th class="w-1/12">Qty</th>
+                        <th class="w-2/12">Unit Price</th>
+                        <th class="w-2/12">Total Price</th>
+                        <th class="w-1/12"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +25,7 @@
                         <tr>
                             <!-- Number -->
                             <td class="text-center align-middle">
-                                {{ $index + 1 }}
+                                <p class="font-semibold">{{ $index + 1 }}</p>
                             </td>
 
                             <!-- Item name -->
@@ -35,6 +33,7 @@
                                 <div class="flex flex-wrap">
                                     <div class="w-full">
                                         <textarea
+                                            rows="2"
                                             class="shadow appearance-none border rounded w-full p-1 leading-tight text-gray-700 focus:outline-none focus:shadow-outline align-middle"
                                             name="items[{{ $index }}][name]"
                                             placeholder="Item name"
@@ -88,14 +87,17 @@
                             </td>
 
                             <!-- Delete button -->
-                            <td>
-                                <a href="" wire:click.prevent="removeItem({{ $index }})">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-1 text-red-500 text-center" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </a>
+                            <td class="text-center">
+                                <form>
+                                    @csrf
+                                    <button type="submit" class="mt-1" wire:click.prevent="removeItem({{ $index }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-red-500" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

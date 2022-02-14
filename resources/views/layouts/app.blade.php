@@ -7,6 +7,7 @@
     <title>Paradisestore.org</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7f8b46f267.js" crossorigin="anonymous"></script>
     @livewireStyles
 </head>
 <body class="bg-sky-900">
@@ -18,7 +19,7 @@
                 <a href="/" class="p-3 font-semibold">Home</a>
             </li>
             <li>
-                <a href="" class="p-3 font-semibold border-l border-sky-900">Quotation List</a>
+                <a href="{{ route('quotes') }}" class="p-3 font-semibold border-l border-sky-900">Quotation List</a>
             </li>
             <li>
                 <a href="{{ route('quotes.create') }}" class="p-3 font-semibold border-l border-sky-900">Create Quotation</a>

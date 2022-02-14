@@ -21,6 +21,7 @@ class Quotation extends Model
         'items',
         'tax',
         'terms_conditions',
+        'amount',
     ];
 
     protected $casts = [

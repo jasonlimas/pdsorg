@@ -40,17 +40,6 @@ class CreateQuoteController extends Controller
         // * Input validation
         $this->validate($request, $validateMe);
 
-        // Validate items
-        foreach ($request->items as $item) {
-            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['price'] < 0) {
-                $error = \Illuminate\Validation\ValidationException::withMessages([
-                    'items' => ['One or more values are not valid'],
-                ]);
-
-                throw $error;
-            }
-        }
-
         // Validate terms and conditions
         if (in_array(null, $request->termsConditions, true)) {
             $error = \Illuminate\Validation\ValidationException::withMessages([
@@ -86,15 +75,30 @@ class CreateQuoteController extends Controller
         ];
 
         $items = [];
+        $amount = 0;
         foreach ($request->items as $item) {
             $items[] = [
                 'name' => $item['name'],
                 'quantity' => $item['quantity'],
                 'price' => $item['unitPrice'],
             ];
+
+            // Validate items
+            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['unitPrice'] < 0) {
+                $error = \Illuminate\Validation\ValidationException::withMessages([
+                    'items' => ['One or more values are not valid'],
+                ]);
+
+                throw $error;
+            }
+
+            $amount += $item['quantity'] * $item['unitPrice'];
         }
 
         $tax = $request->tax;
+
+        // Calculate amount again, but with tax
+        $amount = $amount + ($amount * $tax / 100);
 
         $termsConditions = [];
         foreach ($request->termsConditions as $term) {
@@ -112,6 +116,7 @@ class CreateQuoteController extends Controller
             'items' => $items,
             'tax' => $tax,
             'terms_conditions' => $termsConditions,
+            'amount' => $amount,
         ]);
 
         // Create PDF
