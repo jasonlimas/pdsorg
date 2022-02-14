@@ -323,7 +323,7 @@ class PDF {
         }
 
         // Calculate the grand total (sub total with tax)
-        $tax = $subtotal * ($taxRate / 100);
+        $tax = intval($subtotal * ($taxRate / 100));
         $grandtotal = $subtotal + $tax;
 
         // Write the sub total (sum of all number from Total Price)

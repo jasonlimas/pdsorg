@@ -13,4 +13,9 @@ class Sender extends Model
         'name',
         'address',
     ];
+
+    public function quotes()
+    {
+        return $this->hasMany(Quotation::class);
+    }
 }

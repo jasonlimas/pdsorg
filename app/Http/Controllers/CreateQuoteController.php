@@ -101,6 +101,19 @@ class CreateQuoteController extends Controller
             $termsConditions[] = $term;
         }
 
+        // Save to database
+        $request->user()->quotes()->create([
+            'div' => $quoteNumber['division'],
+            'sales_person' => $quoteNumber['sales'],
+            'number' => $quoteNumber['number'],
+            'quote_date' => $date,
+            'sender_id' => $request->sender,
+            'client_id' => $request->receiver,
+            'items' => $items,
+            'tax' => $tax,
+            'terms_conditions' => $termsConditions,
+        ]);
+
         // Create PDF
         pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
 
