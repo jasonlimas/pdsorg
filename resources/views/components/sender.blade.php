@@ -11,7 +11,7 @@
     <td class="p-3">
         <form action="{{ route('profiles.sender.show', $sender) }}" method="GET">
             @csrf
-            <button type="submit" class="mt-1">
+            <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -26,7 +26,7 @@
         <form action="{{ route('profiles.sender.destroy', $sender) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="mt-1" onclick="return confirm('Are you sure?')">
+            <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded" onclick="return confirm('Are you sure?')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

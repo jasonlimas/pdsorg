@@ -90,7 +90,7 @@
                             <td class="text-center">
                                 <form>
                                     @csrf
-                                    <button type="submit" class="mt-1" wire:click.prevent="removeItem({{ $index }})">
+                                    <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded" wire:click.prevent="removeItem({{ $index }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-red-500" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

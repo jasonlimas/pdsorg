@@ -15,7 +15,7 @@
         <form action="{{ route('profiles.client.show', $client) }}" method="GET">
             @csrf
             @can('edit', $client)
-                <button type="submit" class="mt-1">
+                <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -23,7 +23,7 @@
                     </svg>
                 </button>
             @elsecannot('edit', $client)
-                <button disabled class="mt-1">
+                <button disabled class="mt-1 p-2 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -41,7 +41,7 @@
             @csrf
             @method('DELETE')
             @can('delete', $client) <!-- If authenticated user can delete the client, show the delete icon with red color-->
-                <button type="submit" class="mt-1" onclick="return confirm('Are you sure?')">
+                <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded" onclick="return confirm('Are you sure?')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,7 +49,7 @@
                     </svg>
                 </button>
             @elsecannot('delete', $client)  <!-- If user can't delete the client, show the delete icon with gray color -->
-                <button class="mt-1" disabled>  <!-- Disabled button -->
+                <button class="mt-1 p-2 rounded" disabled>  <!-- Disabled button -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
