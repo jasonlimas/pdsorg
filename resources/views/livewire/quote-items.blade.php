@@ -144,6 +144,7 @@
         <p class="px-2 text-bold">TAX (%)</p>
         <div>
             <input
+            min="1"
             type="number"
             class="shadow appearance-none border rounded p-1 text-gray-700 leading-none focus:outline-none focus:shadow-outline text-right
             @error('tax') border-red-500 @enderror"

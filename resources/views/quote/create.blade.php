@@ -131,6 +131,7 @@
                                 <div>
                                     <label for="numberNumber" class="sr-only">Number</label>
                                     <input
+                                    min="1"
                                     class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                     @error('numberNumber') border-red-500 @enderror"
                                     type="number"

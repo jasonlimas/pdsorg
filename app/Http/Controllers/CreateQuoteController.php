@@ -22,7 +22,7 @@ class CreateQuoteController extends Controller
             'numberDivision' => 'required',
             'numberSales' => 'required',
             'numberMonth' => 'required',
-            'numberNumber' => 'required',
+            'numberNumber' => 'required|integer|min:0',
 
             // Quote date
             'date' => 'required',
@@ -32,7 +32,7 @@ class CreateQuoteController extends Controller
             'receiver' => 'required',
 
             // Tax
-            'tax' => 'required',
+            'tax' => 'required|integer|min:0|max:100',
 
             // Items and Terms & Conditions are validated separately
         ];
@@ -42,9 +42,9 @@ class CreateQuoteController extends Controller
 
         // Validate items
         foreach ($request->items as $item) {
-            if (in_array(null, $item, true)) {
+            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['price'] < 0) {
                 $error = \Illuminate\Validation\ValidationException::withMessages([
-                    'items' => ['One or more values are missing'],
+                    'items' => ['One or more values are not valid'],
                 ]);
 
                 throw $error;
