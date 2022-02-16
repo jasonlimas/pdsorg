@@ -4,7 +4,7 @@
     <div class="flex justify-center">
         <div class="w-8/12">
             <!-- Main header -->
-            <div class="p-6 text-gray-200">
+            <div class="p-6 text-gray-700 ">
                 <h1 class="text-4xl font-semibold mb-1">Profiles</h1>
                 <p>Manage profiles here</p>
             </div>
@@ -16,7 +16,7 @@
             @endif
 
             <!-- Your Details (Currently logged in user's details) -->
-            <div class="bg-gray-100 p-6 rounded-lg mb-3">
+            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <h2 class="text-2xl font-medium">Your Details</h2>
                 <p class="text-gray-600 mb-5">
                     Your details. Will be shown in the generated quotes as part of sender
@@ -25,7 +25,7 @@
                 <form action="{{ route('profiles.update', auth()->user()) }}" method="POST">
                     @csrf
                     <!-- Name -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
                                 Your Name
@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- Email -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="email">
                                 Your Work Email
@@ -112,7 +112,7 @@
             </div>
 
             <!-- Organization Details -->
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Header -->
                 <h2 class="text-2xl font-medium">Your Organization Details</h2>
                 <p class="text-gray-600 mb-5">
@@ -159,7 +159,7 @@
             </div>
 
             <!-- Client Profiles -->
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Client profiles header -->
                 <h2 class="text-2xl font-medium">Client Profiles</h2>
                 <p class="text-gray-600 mb-5">

@@ -4,7 +4,7 @@
     <div class="flex justify-center">
         <div class="w-8/12">
             <!-- Main Header -->
-            <div class="p-6 text-gray-200">
+            <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Quotes</h1>
                 <!-- If user is not logged in, tell the user -->
                 @guest
@@ -32,7 +32,7 @@
 
             @auth
                 <!-- Sorting -->
-                <div class="bg-gray-100 p-6 rounded-lg mb-3">
+                <div class="bg-gray-100 p-6 rounded-lg mb-1 shadow-lg">
                     <div class="flex justify-end">
                         <div>
                             <a href="{{ route('quotes.create') }}" class="bg-blue-500 hover:bg-blue-700 p-2 rounded-lg text-white text-center">Create Quote</a>
@@ -41,7 +41,7 @@
                 </div>
             @endauth
 
-            <div class="bg-gray-100 p-6 rounded-lg mb-3">
+            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-md">
                 <!-- If user is not logged in, tell the user -->
                 @guest
                     <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 underline" href="{{ route('login') }}">login</a> to view quotes.</h2>

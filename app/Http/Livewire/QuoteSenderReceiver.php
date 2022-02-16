@@ -18,8 +18,8 @@ class QuoteSenderReceiver extends Component
     public function mount()
     {
         // Get senders and clients from the database
-        $this->senders = Sender::all();
-        $this->clients = Client::all();
+        $this->senders = Sender::latest()->get();
+        $this->clients = Client::latest()->get();
     }
 
     public function render()

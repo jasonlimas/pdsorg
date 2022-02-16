@@ -4,7 +4,7 @@
     <div class="flex justify-center">
         <div class="w-8/12">
             <!-- Header -->
-            <div class="p-6 text-gray-200">
+            <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Edit a Sender Organization Details</h1>
                 <p>Change details for organisation: <b>{{ $sender->name }}</p>
             </div>
@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Sender Organization Details header -->
                 <h2 class="text-2xl font-medium mb-5">Sender Organization Details</h2>
 

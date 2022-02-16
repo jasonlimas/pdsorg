@@ -4,7 +4,7 @@
     <div class="flex justify-center">
         <div class="w-8/12">
             <!-- Main Header -->
-            <div class="p-6 text-gray-200">
+            <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Create a Quote</h1>
                 <!-- If user is not logged in, tell the user -->
                 @guest
@@ -31,7 +31,7 @@
             @endif
 
             <!-- Create Quote Form. Only logged in user can see the form -->
-            <div class="bg-gray-100 p-6 rounded-lg mb-3">
+            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- If user is not logged in, tell the user -->
                 @guest
                     <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 underline" href="{{ route('login') }}">login</a> to access the form.</h2>
