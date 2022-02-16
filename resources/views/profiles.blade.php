@@ -143,7 +143,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $senders->appends(['clients' => $clients->currentPage()])->links() }}
+                        {{ $senders->appends(['clients' => $clients->currentPage(), 'terms' => $terms->currentPage()])->links() }}
                     </div>
                 </div>
 
@@ -192,7 +192,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $clients->appends(['senders' => $senders->currentPage()])->links() }}
+                        {{ $clients->appends(['senders' => $senders->currentPage(), 'terms' => $terms->currentpage()])->links() }}
                     </div>
                 </div>
 
@@ -239,7 +239,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{-- {{ $terms->appends(['clients' => $clients->currentPage()])->links() }} --}}
+                        {{ $terms->appends(['clients' => $clients->currentPage(), 'senders' => $senders->currentPage()])->links() }}
                     </div>
                 </div>
 

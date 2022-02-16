@@ -7,10 +7,15 @@ use Livewire\Component;
 class ProfileTermsConditions extends Component
 {
     public $termsConditions = [''];
+    public $term; // This variable is used to store the terms passed from edit view
 
     public function mount()
     {
-        //
+        // If $term is not null, assign all values from null to $termsConditions
+        // This should only run when the user is pressing the edit button from /profiles page
+        if (!is_null($this->term)) {
+            $this->termsConditions = $this->term->terms_conditions;
+        }
     }
 
     public function render()

@@ -21,7 +21,7 @@
                 <h2 class="text-2xl font-medium mb-5">Client Details</h2>
 
                 <!-- Client details form -->
-                <form action="{{ route('profiles.client.update', $client) }}" method="POST">
+                <form action="{{ route('profiles.client.show', $client) }}" method="POST">
                     @csrf
                     <!-- Name -->
                     <div class="flex flex-wrap mb-4">

@@ -21,7 +21,7 @@
                 <h2 class="text-2xl font-medium mb-5">Sender Organization Details</h2>
 
                 <!-- Sender Organization Details form -->
-                <form action="{{ route('profiles.sender.update', $sender) }}" method="POST">
+                <form action="{{ route('profiles.sender.show', $sender) }}" method="POST">
                     @csrf
                     <!-- Name -->
                     <div class="flex flex-wrap mb-4">
