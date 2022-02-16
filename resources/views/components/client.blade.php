@@ -10,6 +10,9 @@
     <!-- Client Email -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->email }}</td>
 
+    <!-- Client Phone -->
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->phone }}</td>
+
     <!-- Edit Icon -->
     <td class="p-3">
         <form action="{{ route('profiles.client.show', $client) }}" method="GET">

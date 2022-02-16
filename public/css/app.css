@@ -442,6 +442,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .relative {
   position: relative;
 }
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -542,6 +546,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mt-10 {
+  margin-top: 2.5rem;
+}
 .inline-block {
   display: inline-block;
 }
@@ -637,6 +644,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-screen {
   width: 100vw;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-3\/12 {
+  width: 25%;
+}
+.w-9\/12 {
+  width: 75%;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -889,6 +905,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;

@@ -7,6 +7,7 @@ use App\Http\Controllers\CreateQuoteController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SenderController;
+use App\Http\Controllers\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,9 @@ Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name
 Route::post('/profiles/client/create', [ClientController::class, 'store']);
 Route::post('/profiles/client/{client}', [ClientController::class, 'update'])->name('profiles.client.update');
 Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
+
+// Terms & Conditions
+Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');

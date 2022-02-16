@@ -172,11 +172,12 @@
                         <!-- Table Headers -->
                         <thead class="bg-gray-50 border-b-2 border-gray-300">
                             <tr>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">ID</th>
-                                <th class="p-3 text-sm tracking-wide text-left">Name</th>
-                                <th class="p-3 text-sm tracking-wide text-left">Email</th>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">Edit</th>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">Delete</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
+                                <th class="w-3/12 p-3 text-sm tracking-wide text-left">Name</th>
+                                <th class="w-3/12 p-3 text-sm tracking-wide text-left">Email</th>
+                                <th class="p-3/12 p-3 text-sm tracking-wide text-left">Phone</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
                             </tr>
                         </thead>
 
@@ -202,6 +203,53 @@
                         type="button"
                         href="{{ route('profiles.client.create') }}">
                         Add Client
+                    </a>
+                </div>
+            </div>
+
+            <!-- Terms & Conditions Presets -->
+            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
+                <!-- Terms & Conditions Presets header -->
+                <h2 class="text-2xl font-medium">Terms & Conditions Presets</h2>
+                <p class="text-gray-600 mb-5">
+                    List of Terms & Conditions presets. Click Add Preset button to add a new one
+                </p>
+
+                <!-- Table -->
+                <div class="overflow-auto rounded-lg shadow mb-4">
+                    <table class="w-full">
+                        <!-- Table Headers -->
+                        <thead class="bg-gray-50 border-b-2 border-gray-300">
+                            <tr>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
+                                <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Table Body -->
+                        <tbody class="divide-y divide-gray-100">
+                            <!-- Add a new row for every Terms & Conditions preset stored in the database -->
+                            {{-- @foreach ($terms as $term)
+                                <x-term :term="$term" />
+                            @endforeach --}}
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination links -->
+                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                        {{-- {{ $terms->appends(['clients' => $clients->currentPage()])->links() }} --}}
+                    </div>
+                </div>
+
+                <!-- Add Preset button -->
+                <div class="flex justify-end">
+                    <a
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button"
+                        href="{{ route('profiles.terms.create') }}">
+                        Add Preset
                     </a>
                 </div>
             </div>

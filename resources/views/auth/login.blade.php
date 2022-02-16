@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="w-4/12 bg-white p-6 rounded-lg">
+        <div class="w-3/12 bg-white p-6 rounded-lg mt-10">
             <!-- Login title -->
             <h1 class="text-4xl font-medium text-center mb-5">Login</h1>
 
@@ -52,10 +52,10 @@
                     </div>
                 </div>
 
-                <!-- Submit button -->
-                <div>
+                <!-- Login button -->
+                <div class="flex justify-center">
                     <button type="submit" class="shadow bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
-                    font-medium w-full">Login</button>
+                    font-medium w-2/3"> Sign in </button>
                 </div>
             </form>
         </div>
