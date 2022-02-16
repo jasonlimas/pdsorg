@@ -46,7 +46,7 @@
 
                 <!-- Remember me checkbox -->
                 <div class="mb-4">
-                    <div class="flex items-center">
+                    <div class="flex items-center justify-center">
                         <input type="checkbox" name="remember" id="remember" class="mr-2">
                         <label for="remember">Remember me</label>
                     </div>
@@ -54,7 +54,7 @@
 
                 <!-- Submit button -->
                 <div>
-                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
+                    <button type="submit" class="shadow bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
                     font-medium w-full">Login</button>
                 </div>
             </form>

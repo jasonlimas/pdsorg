@@ -11,50 +11,43 @@
     @livewireStyles
 </head>
 <body class="bg-slate-200">
-    <!-- Header -->
-    <nav class="py-2 px-3 bg-sky-500 flex justify-between mb-4">
-        <!-- Left header -->
-        <ul class="flex items-center text-black">
-            <li>
-                <a href="/" class="px-3 py-1 rounded-tl rounded-bl hover:bg-sky-600 font-semibold">Home</a>
-            </li>
-            <li>
-                <a href="{{ route('quotes') }}" class="px-3 py-1 hover:bg-sky-600 font-semibold">Quotation List</a>
-            </li>
-            <li>
-                <a href="{{ route('quotes.create') }}" class="px-3 py-1 hover:bg-sky-600 font-semibold">Create Quotation</a>
-            </li>
-            <li>
-                <a href="{{ route('profiles') }}" class="px-3 py-1 rounded-tr rounded-br hover:bg-sky-600 font-semibold">Profiles</a>
-            </li>
-        </ul>
+    <!-- Header section -->
+    <div class="relative bg-white mb-4 shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center border-gray-100 py-4 md:justify-start md:space-x-10">
+                <div class="flex justify-start lg:w-0 lg:flex-1">
+                    <a href="/">
+                        <span class="sr-only">XDC Indonesia</span>
+                        <img class="h-12 w-auto" src="https://xdc-indonesia.com/wp-content/uploads/2020/10/logo.png" alt="">
+                    </a>
+                </div>
+                <nav class="md:flex space-x-10">
 
-        <!-- Right header -->
-        <ul class="flex items-center text-black">
-            <!-- If the user is not logged in, show Login button -->
-            @guest
-                <li>
-                    <form action="{{ route('login') }}" method="GET" class="mr-2 inline">
-                        @csrf
-                        <button type="submit" class="shadow font-semibold rounded py-1 px-4 text-white bg-green-500 hover:bg-emerald-600">Login</button>
-                    </form>
-                </li>
-            @endguest
+                    <a href="{{ route('quotes') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Quote List </a>
+                    <a href="{{ route('quotes.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Create Quote </a>
+                    <a href="{{ route('profiles') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Profiles </a>
 
-            <!-- If the user is logged in, show Logout button -->
-            @auth
-                <li>
-                    <a class="px-5 py-1 font-semibold">Logged in as: {{ auth()->user()->name }}</a>
-                </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST" class="mr-2 inline">
-                        @csrf
-                        <button type="submit" class="shadow font-semibold rounded py-1 px-4 text-white bg-red-500 hover:bg-red-700">Logout</button>
-                    </form>
-                </li>
-            @endauth
-        </ul>
-    </nav>
+                </nav>
+
+                <div class="md:flex items-center justify-end md:flex-1 lg:w-0">
+                    @guest
+                        <form action="{{ route('login') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign in </button>
+                        </form>
+                    @endguest
+
+                    @auth
+                        <a class="text-gray-500 font-semibold">{{ auth()->user()->name }}</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700"> Sign out </button>
+                        </form>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Display section -->
     @yield('content')
