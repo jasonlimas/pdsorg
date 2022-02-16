@@ -4,7 +4,7 @@
 <div class="flex justify-center">
     <div class="w-8/12">
         <!-- Header -->
-        <div class="p-6 text-gray-200">
+        <div class="p-6 text-gray-700">
             <h1 class="text-4xl font-semibold mb-1">Add a New Client</h1>
             <p>Store a new client to the database</p>
         </div>

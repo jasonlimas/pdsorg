@@ -231,9 +231,9 @@
                         <!-- Table Body -->
                         <tbody class="divide-y divide-gray-100">
                             <!-- Add a new row for every Terms & Conditions preset stored in the database -->
-                            {{-- @foreach ($terms as $term)
+                            @foreach ($terms as $term)
                                 <x-term :term="$term" />
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
 

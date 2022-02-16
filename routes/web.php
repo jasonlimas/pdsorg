@@ -57,6 +57,7 @@ Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])
 
 // Terms & Conditions
 Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
+Route::post('/profiles/terms/create', [TermsConditionsController::class, 'store']);
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
