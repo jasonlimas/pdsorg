@@ -25,6 +25,7 @@ class QuoteController extends Controller
         ]);
     }
 
+    // Create a new quote PDF file based on the data saved in the database. Called when clicking the download quote button
     public function download(Quotation $quote)
     {
         $quoteNumber = [
@@ -71,9 +72,18 @@ class QuoteController extends Controller
         PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
     }
 
+    // Update a quote from the database. Called when clicking the edit quote button
+    public function update(Request $request, Quotation $quote)
+    {
+        // Check permission first
+        $this->authorize('edit', Quotation::class);
+    }
+
+    // Delete a quote from the database. Called when clicking the delete quote button
     public function destroy(Quotation $quote)
     {
-        $quote->delete();
+        $this->authorize('delete', Quotation::class); // Check permission first
+        $quote->delete();           // Delete the quote
 
         // Redirect back with success message
         return back()->with('status', 'Quote deleted successfully');

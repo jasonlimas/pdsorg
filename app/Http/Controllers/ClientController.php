@@ -52,6 +52,9 @@ class ClientController extends Controller
     // Update a client in the database. Called when clicking the edit client button
     public function update(Request $request, Client $client)
     {
+        // Check permission first
+        $this->authorize('edit', Client::class);
+
         // Validation
         $this->validate($request, [
             'name' => 'required',
@@ -75,8 +78,8 @@ class ClientController extends Controller
     // Delete a client from the database. Called when clicking the delete icon
     public function destroy(Client $client)
     {
-        $this->authorize('delete', $client);    // Make sure the user is authorized to delete the client
-        $client->delete();                      // Delete the client
+        $this->authorize('delete', Client::class);      // Make sure the user is authorized to delete the client
+        $client->delete();                              // Delete the client
 
         // Redirect back with success message
         return back()->with('status', 'Client deleted successfully');

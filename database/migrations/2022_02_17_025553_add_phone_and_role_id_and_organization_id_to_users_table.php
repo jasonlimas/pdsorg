@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPhoneToUsersTable extends Migration
+class AddPhoneAndRoleIdAndOrganizationIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,6 +14,8 @@ class AddPhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('role_id')->default('2');
+            $table->foreignId('sender_id');
             $table->string('phone');
         });
     }
@@ -26,7 +28,7 @@ class AddPhoneToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+            $table->dropColumn(['role_id', 'sender_id', 'phone']);
         });
     }
 }

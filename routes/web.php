@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ClientController;
@@ -10,16 +11,15 @@ use App\Http\Controllers\SenderController;
 use App\Http\Controllers\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Middleware group
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'accessrole',
+    'as' => 'admin'
+], function () {
+    // Admin page
+    Route::get('/', [AdminController::class, 'index']);
+});
 
 // Home
 Route::get('/', function () {

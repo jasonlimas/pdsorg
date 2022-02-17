@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="w-3/12 bg-white p-6 rounded-lg mt-10">
+        <div class="w-3/12 bg-gray-100 p-6 rounded-lg mt-10 shadow-lg">
             <!-- Login title -->
             <h1 class="text-4xl font-medium text-center mb-5">Login</h1>
 
@@ -13,17 +13,18 @@
                 </div>
             @endif
 
-            <!-- Form for username box, password box, remember me checkbox, login button -->
+            <!-- Form for Email box, password box, remember me checkbox, login button -->
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <!-- Username textbox -->
+                <!-- Email textbox -->
                 <div class="mb-4">
-                    <label for="username" class="sr-only">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Your username"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('username') border-red-500 @enderror" value="{{ old('username') }}">
+                    <label for="email" class="mx-2">Email</label>
+                    <input type="email" name="email" placeholder="Your email"
+                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror"
+                    value="{{ old('email') }}">
 
-                    <!-- Display error message if there is an error -->
-                    @error('username')
+                    <!-- Display error messagPe if there is an error -->
+                    @error('email')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
@@ -32,9 +33,10 @@
 
                 <!-- Password textbox -->
                 <div class="mb-4">
-                    <label for="password" class="sr-only">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror" value="">
+                    <label for="password" class="mx-2">Password</label>
+                    <input type="password" name="password" placeholder="Enter your password"
+                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror"
+                    value="">
 
                     <!-- Display error message if there is an error -->
                     @error('password')

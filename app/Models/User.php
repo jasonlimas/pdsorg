@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'sender_id',
         'phone',
     ];
 
@@ -51,5 +53,10 @@ class User extends Authenticatable
     public function quotes()
     {
         return $this->hasMany(Quotation::class);
+    }
+
+    public function roles()
+    {
+        return $this->hasOne(Role::class);
     }
 }

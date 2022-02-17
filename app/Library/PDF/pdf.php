@@ -449,8 +449,8 @@ class PDF {
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
         $mpdf->WriteCell(0, $cellHeight, 'Best Regards,', $border, 2);
         $mpdf->SetFont('', '');
-        $mpdf->WriteCell(0, $cellHeight, 'PT. XDC Indonesia', $border, 2);
         $mpdf->WriteCell(0, $cellHeight, $data['name'], $border, 2);
+        $mpdf->WriteCell(0, $cellHeight, 'ORG NAME HERE', $border, 2);
 
         // Email
         $mpdf->WriteCell(0, $cellHeight, $data['email'], $border, 2);

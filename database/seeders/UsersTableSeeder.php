@@ -17,21 +17,31 @@ class UsersTableSeeder extends Seeder
         // Admin
         DB::table('users')->insert([
             'name' => 'ADMIN',
-            'username' => 'ADMIN',
-            'email' => 'admin@pdsorg.com',
+            'email' => 'admin@mail.com',
             'password' => bcrypt('AdminPdsOrg!'),
-            'role' => 'admin',
-            'phone' => '0412345678',
+            'role_id' => 1,
+            'phone' => '040000000',
+            'sender_id' => 0,
         ]);
 
-        // User
+        // Team Leader
         DB::table('users')->insert([
-            'name' => 'USER',
-            'username' => 'USER',
-            'email' => 'user@mail.com',
-            'password' => bcrypt('UserPdsOrg!'),
-            'role' => 'sales',
-            'phone' => '0412345678',
+            'name' => 'LEADER',
+            'email' => 'leader@mail.com',
+            'password' => bcrypt('LeaderPdsOrg!'),
+            'role_id' => 2,
+            'sender_id' => 0,
+            'phone' => '0411111111',
+        ]);
+
+        // Sales Person
+        DB::table('users')->insert([
+            'name' => 'SALES',
+            'email' => 'sales@mail.com',
+            'password' => bcrypt('SalesPdsOrg!'),
+            'role_id' => 3,
+            'sender_id' => 0,
+            'phone' => '0422222222',
         ]);
     }
 }
