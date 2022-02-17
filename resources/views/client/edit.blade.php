@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
+            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Client details header -->
                 <h2 class="text-2xl font-medium mb-5">Client Details</h2>
 
@@ -36,7 +36,6 @@
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('name') border-red-500 @enderror"
                                 name="name"
-                                id="name"
                                 type="text"
                                 placeholder="Client Name"
                                 value="{{ $client->name }}">
@@ -130,7 +129,8 @@
                     <!-- Buttons -->
                     <div class="flex justify-end">
                         <!-- Cancel button -->
-                        <a href="{{ route('profiles') }}"
+                        <a
+                            href="#"
                             class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>

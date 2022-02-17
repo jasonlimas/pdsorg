@@ -1,0 +1,253 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="flex justify-center">
+        <div class="w-8/12">
+            <!-- Header -->
+            <div class="p-6 text-gray-700">
+                <h1 class="text-4xl font-semibold mb-1">Add New User</h1>
+                <p>Create and configure a new account for a new user</p>
+            </div>
+
+            <!-- Form section -->
+            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
+                <form action="#">
+                    @csrf
+                    <!-- Full name -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="name">
+                                Full Name
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('name') border-red-500 @enderror"
+                                name="name"
+                                type="text"
+                                placeholder="John Doe"
+                                value="{{ old('name') }}">
+
+                            @error('name')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Name abbreviation -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="name_abbreviation">
+                                Name Abbreviation/Initials
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('name_abbreviation') border-red-500 @enderror"
+                                name="name_abbreviation"
+                                type="text"
+                                placeholder="JD"
+                                value="{{ old('name_abbreviation') }}">
+
+                            @error('name_abbreviation')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="email">
+                                Email
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('email') border-red-500 @enderror"
+                                name="email"
+                                type="email"
+                                placeholder="email@xdc-indonesia.com"
+                                value="{{ old('email') }}">
+
+                            @error('name')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex flex-wrap">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="phone">
+                                Phone
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('phone') border-red-500 @enderror"
+                                name="phone"
+                                type="text"
+                                placeholder="08XXXXXXXXX"
+                                value="{{ old('phone') }}">
+
+                            @error('phone')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER -->
+                    <div class="flex justify-center"><div class="w-4/5 my-6 border-b-2 border-slate-300-50"></div></div>
+
+                    <!-- Password -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="password">
+                                Password
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('password') border-red-500 @enderror"
+                                name="password"
+                                type="password"
+                                placeholder="Password">
+
+                            @error('password')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Confirm password -->
+                    <div class="flex flex-wrap">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="password_confirmation">
+                                Confirm Password
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                required
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('password_confirmation') border-red-500 @enderror"
+                                name="password_confirmation"
+                                type="password"
+                                placeholder="Confirm password">
+
+                            @error('password_confirmation')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER -->
+                    <div class="flex justify-center"><div class="w-4/5 my-6 border-b-2 border-slate-300-50"></div></div>
+
+                    <!-- Role -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="role">
+                                Role
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <select
+                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('role') border-red-500 @enderror"
+                                name="role">
+                                <option value="">-- Select a role --</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Organization -->
+                    <div class="flex flex-wrap mb-4">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="organization">
+                                Organization
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <select
+                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('organization') border-red-500 @enderror"
+                                name="organization">
+                                <option value="">-- Select an organization --</option>
+                                @foreach ($organizations as $organization)
+                                    <option value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Division -->
+                    <div class="flex flex-wrap">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="division">
+                                Division
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <select
+                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                @error('division') border-red-500 @enderror"
+                                name="division">
+                                <option value="">-- Select a division --</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER -->
+                    <div class="flex justify-center"><div class="w-4/5 my-6"></div></div>
+
+                    <!-- Buttons -->
+                    <div class="flex justify-end">
+                        <!-- Cancel button -->
+                        <a
+                            href="#"
+                            class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
+                            Cancel
+                        </a>
+                        <!-- Create User button -->
+                        <button
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 w-1/6 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Create User
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+@endsection
