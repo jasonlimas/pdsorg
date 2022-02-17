@@ -102,7 +102,7 @@
                     <!-- Save button -->
                     <div class="flex justify-end">
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                             type="submit">
                             Save Info
                         </button>
@@ -135,7 +135,7 @@
                 <!-- Add Details button -->
                 <div class="flex justify-end">
                     <a
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
                         href="{{ route('profiles.sender.create') }}">
                         Add Details
@@ -184,7 +184,7 @@
                 <!-- Add new client button -->
                 <div class="flex justify-end">
                     <a
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
                         href="{{ route('profiles.client.create') }}">
                         Add Client
@@ -231,7 +231,7 @@
                 <!-- Add Preset button -->
                 <div class="flex justify-end">
                     <a
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
                         href="{{ route('profiles.terms.create') }}">
                         Add Preset

@@ -16,8 +16,9 @@ class RolesPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || !auth()->user()->role_id == 0) {
-            abort(403);
+        // If logged in user's role_id is 1, which is admin, then allow access
+        if (!auth()->check() || auth()->user()->role_id !== 1) {
+            abort(403, 'Sorry, you are not authorized to access this page.');
         }
 
         return $next($request);

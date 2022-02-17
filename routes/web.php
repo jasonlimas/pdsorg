@@ -17,7 +17,7 @@ Route::group([
     'middleware' => 'accessrole',
     'as' => 'admin'
 ], function () {
-    // Admin page
+    // Admin Panel
     Route::get('/', [AdminController::class, 'index']);
 });
 
@@ -68,5 +68,3 @@ Route::post('/login', [LoginController::class, 'store']);
 
 // Logout
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
-
-// Add user?

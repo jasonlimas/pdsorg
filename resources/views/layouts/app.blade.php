@@ -23,9 +23,13 @@
                 </div>
                 <nav class="md:flex space-x-10">
 
+                    <!-- Links -->
                     <a href="{{ route('quotes') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Quote List </a>
                     <a href="{{ route('quotes.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Create Quote </a>
                     <a href="{{ route('profiles') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Profiles </a>
+                    @admin
+                        <a href="{{ route('admin') }}" class="text-base font-medium text-rose-500 hover:text-rose-900"> Admin Panel </a>
+                    @endadmin
 
                 </nav>
 
@@ -49,7 +53,7 @@
         </div>
     </div>
 
-    <!-- Display section -->
+    <!-- Content section -->
     @yield('content')
 
     @livewireScripts
