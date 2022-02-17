@@ -30,8 +30,6 @@ class ProfilesController extends Controller
     {
         // Validation
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
             'phone' => 'required|numeric',
         ]);
 
@@ -39,8 +37,6 @@ class ProfilesController extends Controller
 
         // Update
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
             'phone' => $request->phone,
         ]);
 

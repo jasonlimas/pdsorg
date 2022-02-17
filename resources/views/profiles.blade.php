@@ -6,7 +6,7 @@
             <!-- Main header -->
             <div class="p-6 text-gray-700 ">
                 <h1 class="text-4xl font-semibold mb-1">Profiles</h1>
-                <p>Manage profiles here</p>
+                <p>Manage your details, organization, and your client here</p>
             </div>
             <!-- Session Messages -->
             @if (session('status'))
@@ -19,7 +19,8 @@
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <h2 class="text-2xl font-medium">Your Details</h2>
                 <p class="text-gray-600 mb-5">
-                    Your details. Will be shown in the generated quotes as part of sender
+                    Your details. Will be shown in the generated quotes as part of sender. <br>
+                    Please contact your administrator if it is displaying incorrect name or email.
                 </p>
 
                 <form action="{{ route('profiles.update', auth()->user()) }}" method="POST">
@@ -33,10 +34,10 @@
                         </div>
                         <div class="w-2/3">
                             <input
+                                disabled
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('name') border-red-500 @enderror"
                                 name="name"
-                                id="name"
                                 type="text"
                                 placeholder="Your Name"
                                 value="{{ $user->name }}">
@@ -58,10 +59,10 @@
                         </div>
                         <div class="w-2/3">
                             <input
+                                disabled
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('email') border-red-500 @enderror"
                                 name="email"
-                                id="email"
                                 type="text"
                                 placeholder="Work Email"
                                 value="{{ $user->email }}">
@@ -86,7 +87,6 @@
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('phone') border-red-500 @enderror"
                                 name="phone"
-                                id="phone"
                                 type="text"
                                 placeholder="Work Phone"
                                 value="{{ $user->phone }}">
