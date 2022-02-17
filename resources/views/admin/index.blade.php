@@ -10,9 +10,9 @@
         </div>
         <!-- Success Messages -->
         @if (session('success'))
-        <div class="bg-green-500 p-4 rounded-lg mb-3 text-white text-center">
-            {{ session('success') }}
-        </div>
+            <div class="bg-green-500 p-4 rounded-lg mb-3 text-white text-center">
+                {{ session('success') }}
+            </div>
         @endif
 
     </div>
