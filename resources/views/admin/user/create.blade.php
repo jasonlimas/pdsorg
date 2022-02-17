@@ -11,7 +11,7 @@
 
             <!-- Form section -->
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
-                <form action="#">
+                <form action="{{ route('admin.users.create') }}" method="POST">
                     @csrf
                     <!-- Full name -->
                     <div class="flex flex-wrap mb-4">
@@ -170,60 +170,78 @@
                     <!-- Role -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="role">
+                            <label class="text-md p-3 inline-block align-middle" for="role_id">
                                 Role
                             </label>
                         </div>
                         <div class="w-2/3">
                             <select
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('role') border-red-500 @enderror"
-                                name="role">
+                                @error('role_id') border-red-500 @enderror"
+                                name="role_id">
                                 <option value="">-- Select a role --</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
+                                    <option {{ $role->id == old('role') ? 'selected' : '' }} value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
                                 @endforeach
                             </select>
+
+                            @error('role_id')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Organization -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="organization">
+                            <label class="text-md p-3 inline-block align-middle" for="organization_id">
                                 Organization
                             </label>
                         </div>
                         <div class="w-2/3">
                             <select
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('organization') border-red-500 @enderror"
-                                name="organization">
+                                @error('organization_id') border-red-500 @enderror"
+                                name="organization_id">
                                 <option value="">-- Select an organization --</option>
                                 @foreach ($organizations as $organization)
-                                    <option value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
+                                    <option {{ $organization->id == old('organization') ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
                                 @endforeach
                             </select>
+
+                            @error('organization_id')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Division -->
                     <div class="flex flex-wrap">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="division">
+                            <label class="text-md p-3 inline-block align-middle" for="division_id">
                                 Division
                             </label>
                         </div>
                         <div class="w-2/3">
                             <select
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('division') border-red-500 @enderror"
-                                name="division">
+                                @error('division_id') border-red-500 @enderror"
+                                name="division_id">
                                 <option value="">-- Select a division --</option>
                                 @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
+                                    <option {{ $division->id == old('division') ? 'selected' : '' }} value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
                                 @endforeach
                             </select>
+
+                            @error('division_id')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -246,7 +264,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

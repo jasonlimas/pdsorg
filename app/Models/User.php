@@ -24,6 +24,8 @@ class User extends Authenticatable
         'role_id',
         'sender_id',
         'phone',
+        'division_id',
+        'name_abbreviation'
     ];
 
     /**
@@ -58,5 +60,10 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->hasOne(Role::class);
+    }
+
+    public function divisions()
+    {
+        return $this->hasOne(Division::class);
     }
 }

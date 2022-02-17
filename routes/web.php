@@ -23,6 +23,7 @@ Route::group([
 
     // Add user
     Route::get('/users/create', [RegisterController::class, 'index'])->name('.users.create');
+    Route::post('/users/create', [RegisterController::class, 'store']);
 
 });
 
