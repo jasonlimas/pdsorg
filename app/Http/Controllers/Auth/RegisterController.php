@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Division;
 use App\Models\Role;
 use App\Models\Sender;
@@ -51,6 +52,6 @@ class RegisterController extends Controller
         ]);
 
         // Redirect back to /admin/users page
-        return redirect()->route('admin.users.create')->with('success', 'User ' . $request->name . ' created successfully');
+        return redirect()->route('admin')->with('success', 'User ' . $request->name . ' created successfully');
     }
 }

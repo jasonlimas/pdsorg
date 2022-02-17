@@ -252,7 +252,7 @@
                     <div class="flex justify-end">
                         <!-- Cancel button -->
                         <a
-                            href="#"
+                            href="{{ route('admin.users') }}"
                             class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
                             Cancel
                         </a>
