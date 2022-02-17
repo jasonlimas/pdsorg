@@ -111,41 +111,26 @@
 
             </div>
 
-            <!-- Organization Details -->
+            <!-- Sender Organization Details -->
             <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Header -->
                 <h2 class="text-2xl font-medium">Your Organization Details</h2>
                 <p class="text-gray-600 mb-5">
-                    Your organization. Will be displayed in generated quotes as part of sender
+                    Your organization. Will be displayed in generated quotes as part of sender<br>
+                    Note: only Admin can add/edit/delete this section
                 </p>
 
-                <!-- Table -->
-                <div class="overflow-auto rounded-lg shadow mb-4">
-                    <table class="w-full">
-                        <!-- Table Headers -->
-                        <thead class="bg-gray-50 border-b-2 border-gray-300">
-                            <tr>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">ID</th>
-                                <th class="p-3 text-sm tracking-wide text-left">Name</th>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">Edit</th>
-                                <th class="w-20 p-3 text-sm tracking-wide text-left">Delete</th>
-                            </tr>
-                        </thead>
-
-                        <!-- Table Body -->
-                        <tbody class="divide-y divide-gray-100">
-                            <!-- Add a new row for every sender organization details stored in the database -->
-                            @foreach ($senders as $sender)
-                                <x-sender :sender="$sender" />
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    <!-- Pagination links -->
-                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $senders->appends(['clients' => $clients->currentPage(), 'terms' => $terms->currentPage()])->links() }}
-                    </div>
-                </div>
+                <!-- Disabled Text Boxes -->
+                <input
+                    disabled
+                    class="shadow appearance-none border rounded w-full p-3 mb-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline font-bold"
+                    value="{{ $sender->name }}">
+                <textarea
+                    disabled
+                    style="resize: none"
+                    class="shadow border rounded w-full p-3 mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    cols="30"
+                    rows="5">{{ $sender->address }}</textarea>
 
                 <!-- Add Details button -->
                 <div class="flex justify-end">
@@ -192,7 +177,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $clients->appends(['senders' => $senders->currentPage(), 'terms' => $terms->currentpage()])->links() }}
+                        {{ $clients->appends(['terms' => $terms->currentpage()])->links() }}
                     </div>
                 </div>
 
@@ -239,7 +224,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $terms->appends(['clients' => $clients->currentPage(), 'senders' => $senders->currentPage()])->links() }}
+                        {{ $terms->appends(['clients' => $clients->currentPage()])->links() }}
                     </div>
                 </div>
 

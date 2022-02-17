@@ -1,4 +1,4 @@
-<button disabled class="mt-1 p-2 rounded">
+<button disabled class="p-2 rounded">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
         viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

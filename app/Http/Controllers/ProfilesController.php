@@ -12,14 +12,17 @@ class ProfilesController extends Controller
 {
     public function index()
     {
-        // Get senders, clients, termsConditions from the database
-        $senders = Sender::latest()->paginate(5, ['*'], 'senders');
+        // Get sender organization details based on logged in user
+        $sender = Sender::find(auth()->user()->sender_id);
+        //dd($sender);
+
+        // Get clients and termsConditions from the database
         $clients = Client::latest()->paginate(5, ['*'], 'clients');
         $terms = TermsConditions::latest()->paginate(5, ['*'], 'terms');
 
         return view('profiles', [
             'user' => auth()->user(),
-            'senders' => $senders,
+            'sender' => $sender,
             'clients' => $clients,
             'terms' => $terms,
         ]);
