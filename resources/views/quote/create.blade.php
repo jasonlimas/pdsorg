@@ -34,7 +34,7 @@
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- If user is not logged in, tell the user -->
                 @guest
-                    <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 underline" href="{{ route('login') }}">login</a> to access the form.</h2>
+                    <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 no-underline hover:underline" href="{{ route('login') }}">login</a> to access the form.</h2>
                 @endguest
 
                 <!-- Show the form for logged in user -->

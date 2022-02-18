@@ -49,7 +49,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $users->appends([])->links() }}
+                        {{ $users->appends(['senders' => $senders->currentPage()])->links() }}
                     </div>
                 </div>
 
@@ -73,6 +73,42 @@
                 </p>
 
                 <!-- Table -->
+                <div class="overflow-auto rounded-lg shadow mb-4">
+                    <table>
+                        <!-- Table Headers -->
+                        <thead class="bg-gray-200 border-b-2 border-gray-300">
+                            <tr>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
+                                <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
+                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Table Body -->
+                        <tbody class="">
+                            <!-- Add a new row for every user stored in the database -->
+                             @foreach ($senders as $sender)
+                                <x-sender :sender="$sender" />
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination links -->
+                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                        {{ $senders->appends(['users' => $users->currentPage()])->links() }}
+                    </div>
+                </div>
+
+                <!-- Add new organization button -->
+                <div class="flex justify-end">
+                    <a
+                        class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                        type="button"
+                        href="{{ route('admin.sender.create') }}">
+                        Add Organization
+                    </a>
+                </div>
             </div>
 
             <!-- Client Profiles Section -->
@@ -85,7 +121,7 @@
 
                 <!-- Tell the user to go to profiles page to edit clients -->
                 <h2 class="text-lg font-medium text-center">
-                    Go to <a class="text-blue-600 underline" href="{{ route('profiles') }}">Profiles page</a> to edit or add clients
+                    Go to <a class="text-blue-600 no-underline hover:underline" href="{{ route('profiles') }}">Profiles page</a> to edit or add clients
                 </h2>
             </div>
         </div>

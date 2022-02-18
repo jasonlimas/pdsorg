@@ -9,7 +9,7 @@
 
     <!-- Edit Icon -->
     <td class="p-3">
-        <form action="{{ route('profiles.sender.show', $sender) }}" method="GET">
+        <form action="{{ route('admin.sender.show', $sender) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
@@ -17,7 +17,7 @@
 
     <!-- Delete Icon -->
     <td class="p-3">
-        <form action="{{ route('profiles.sender.destroy', $sender) }}" method="POST">
+        <form action="{{ route('admin.sender.destroy', $sender) }}" method="POST">
             @csrf
             @method('DELETE')
             <x-enabled-delete-icon />

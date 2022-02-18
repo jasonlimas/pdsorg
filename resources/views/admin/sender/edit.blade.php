@@ -16,12 +16,12 @@
                 </div>
             @endif
 
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
                 <!-- Sender Organization Details header -->
                 <h2 class="text-2xl font-medium mb-5">Sender Organization Details</h2>
 
                 <!-- Sender Organization Details form -->
-                <form action="{{ route('profiles.sender.show', $sender) }}" method="POST">
+                <form action="{{ route('admin.sender.show', $sender) }}" method="POST">
                     @csrf
                     <!-- Name -->
                     <div class="flex flex-wrap mb-4">
@@ -76,13 +76,13 @@
                     <!-- Buttons -->
                     <div class="flex justify-end">
                         <!-- Cancel button -->
-                        <a href="{{ route('profiles') }}"
+                        <a href="{{ route('admin') }}"
                             class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
                         <!-- Update button -->
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Update Details
                         </button>

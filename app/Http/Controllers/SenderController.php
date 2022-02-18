@@ -7,16 +7,10 @@ use Illuminate\Http\Request;
 
 class SenderController extends Controller
 {
-    public function __construct()
-    {
-        // Prevent unauthenticated users from accessing the page
-        $this->middleware(['auth'])->only(['index', 'store', 'show', 'destroy']);
-    }
-
     // Create Sender Organization Profile page
     public function index()
     {
-        return view('sender.create');
+        return view('admin.sender.create');
     }
 
     // Store Sender Organization Profile
@@ -35,13 +29,13 @@ class SenderController extends Controller
         ]);
 
         // Redirect back with success message
-        return back()->with('status', 'Sender Organization Profile created successfully');
+        return redirect()->route('admin')->with('success', 'Sender Organization Profile created successfully');
     }
 
     // Show Sender Organization Profile
     public function show(Sender $sender)
     {
-        return view('sender.edit', [
+        return view('admin.sender.edit', [
             'sender' => $sender
         ]);
     }
@@ -62,7 +56,7 @@ class SenderController extends Controller
         ]);
 
         // Redirect back with success message
-        return back()->with('status', 'Sender Organization Profile updated successfully');
+        return redirect()->route('admin')->with('success', 'Sender Organization Profile updated successfully');
     }
 
     // Destroy Sender Organization Profile
@@ -72,6 +66,6 @@ class SenderController extends Controller
         $sender->delete();                      // Delete Sender Organization Profile
 
         // Redirect back with success message
-        return back()->with('status', 'Sender Organization Profile deleted successfully');
+        return back()->with('success', 'Sender Organization Profile deleted successfully');
     }
 }

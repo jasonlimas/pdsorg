@@ -132,15 +132,6 @@
                     cols="30"
                     rows="5">{{ $sender->address }}</textarea>
 
-                <!-- Add Details button -->
-                <div class="flex justify-end">
-                    <a
-                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                        type="button"
-                        href="{{ route('profiles.sender.create') }}">
-                        Add Details
-                    </a>
-                </div>
             </div>
 
             <!-- Client Profiles -->
