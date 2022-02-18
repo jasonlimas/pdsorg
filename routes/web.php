@@ -40,6 +40,7 @@ Route::group([
     // Division
     Route::get('/division/create', [DivisionController::class, 'index'])->name('.division.create');
     Route::post('/division/create', [DivisionController::class, 'store'])->name('.division.create');
+    Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('.division.destroy');
 });
 
 // Home

@@ -31,4 +31,14 @@ class DivisionController extends Controller
         // Redirect back to admin panel with success message
         return redirect()->route('admin')->with('success', 'Division ' . $request->abbreviation . ' created successfully');
     }
+
+    // Function for deleting a division from the database divisions table
+    public function destroy(Division $division)
+    {
+        // Delete division from the database table
+        $division->delete();
+
+        // Redirect back to admin panel with success message
+        return redirect()->route('admin')->with('success', 'Division ' . $division->abbreviation . ' deleted successfully');
+    }
 }

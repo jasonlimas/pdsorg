@@ -20,7 +20,7 @@
 
     <!-- Delete Icon -->
     <td class="p-3">
-        <form action="#" method="POST">
+        <form action="{{ route('admin.division.destroy', $division) }}" method="POST">
             @csrf
             @method('DELETE')
             <x-enabled-delete-icon />
