@@ -31,7 +31,7 @@ class RegisterController extends Controller
         // Validation
         $this->validate($request, [
             'name' => 'required|string|max:120',
-            'name_abbreviation' => 'required|string|max:10',
+            'name_abbreviation' => 'required|string|max:5',
             'email' => 'required|string|email|max:120|unique:users',
             'phone' => 'required|string|max:30',
             'password' => 'required|string|min:8|confirmed',

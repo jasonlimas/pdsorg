@@ -32,7 +32,7 @@ class UserManagementController extends Controller
         // Validation
         $this->validate($request, [
             'name' => 'required|string|max:120',
-            'name_abbreviation' => 'required|string|max:10',
+            'name_abbreviation' => 'required|string|max:5',
             'email' => 'required|string|email|max:120|unique:users,email,' . $user->id,
             'phone' => 'required|string|max:30',
             'new_password' => 'nullable|string|min:8|confirmed',

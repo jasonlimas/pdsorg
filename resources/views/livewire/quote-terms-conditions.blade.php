@@ -11,8 +11,8 @@
             <thead class="bg-gray-50 border-b-1 border-gray-400">
                 <tr>
                     <th class="w-1/12">No.</th>
-                    <th class="w-10/12 pt-1">Terms & Conditions</th>
-                    <th class="w-1">Del.</th>
+                    <th class="w-10/12 pt-1">Description</th>
+                    <th class="w-1"></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
                         <td class="text-center">
                             <form>
                                 @csrf
-                                <button type="button" class="mt-1 hover:bg-gray-300 p-2 rounded" wire:click.prevent="removeTermsCondition({{ $index }})">
+                                <button type="button" class="hover:bg-gray-300 p-2 rounded" wire:click.prevent="removeTermsCondition({{ $index }})">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-red-500" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
