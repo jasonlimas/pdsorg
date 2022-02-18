@@ -11,7 +11,7 @@
 
             <!-- Form section -->
             <div class="bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
-                <form action="{{ route('admin.user.create') }}" method="POST">
+                <form action="{{ route('admin.user.show', $user) }}" method="POST">
                     @csrf
                     <!-- Full name -->
                     <div class="flex flex-wrap mb-4">
@@ -80,7 +80,7 @@
                                 placeholder="email@xdc-indonesia.com"
                                 value="{{ $user->email }}">
 
-                            @error('name')
+                            @error('email')
                                 <div class="text-red-500 mt-2 text-sm">
                                     {{ $message }}
                                 </div>
@@ -148,7 +148,7 @@
                     <div class="flex flex-wrap">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="new_password_confirmation">
-                                Confirm Password
+                                Confirm New Password
                             </label>
                         </div>
                         <div class="w-2/3">
