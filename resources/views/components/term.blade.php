@@ -1,6 +1,6 @@
 @props(['term' => $term])
 
-<tr class="bg-white">
+<tr class="odd:bg-white even:bg-slate-100">
     <!-- Term ID -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $term->id }}</td>
 

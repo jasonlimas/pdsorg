@@ -1,6 +1,6 @@
 @props(['user' => $user])
 
-<tr class="bg-white">
+<tr class="odd:bg-white even:bg-slate-100">
     <!-- User ID -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $user->id }}</td>
 

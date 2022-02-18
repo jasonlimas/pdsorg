@@ -155,7 +155,7 @@
                 <div class="overflow-auto rounded-lg shadow mb-4">
                     <table class="w-full">
                         <!-- Table Headers -->
-                        <thead class="bg-gray-50 border-b-2 border-gray-300">
+                        <thead class="bg-gray-200 border-b-2 border-gray-300">
                             <tr>
                                 <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
                                 <th class="w-3/12 p-3 text-sm tracking-wide text-left">Name</th>
@@ -167,7 +167,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody>
                             <!-- Add a new row for every client stored in the database -->
                             @foreach ($clients as $client)
                                 <x-client :client="$client" />
@@ -204,7 +204,7 @@
                 <div class="overflow-auto rounded-lg shadow mb-4">
                     <table class="w-full">
                         <!-- Table Headers -->
-                        <thead class="bg-gray-50 border-b-2 border-gray-300">
+                        <thead class="bg-gray-200 border-b-2 border-gray-300">
                             <tr>
                                 <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
                                 <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>

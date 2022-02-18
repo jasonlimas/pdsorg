@@ -25,9 +25,9 @@
 
                 <!-- Table -->
                 <div class="overflow-auto rounded-lg shadow mb-4">
-                    <table class="w-full">
+                    <table>
                         <!-- Table Headers -->
-                        <thead class="bg-gray-50 border-b-2 border-gray-300">
+                        <thead class="bg-gray-200 border-b-2 border-gray-300">
                             <tr>
                                 <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
                                 <th class="w-3/12 p-3 text-sm tracking-wide text-left">Name</th>
@@ -39,7 +39,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody class="">
                             <!-- Add a new row for every user stored in the database -->
                             @foreach ($users as $user)
                                 <x-user :user="$user" />
@@ -64,8 +64,15 @@
                 </div>
             </div>
 
-            <!-- Organisation Details Section -->
+            <!-- Organization Details Section -->
             <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
+                <!-- Organization Details header -->
+                <h2 class="text-2xl font-medium">Organization Profiles</h2>
+                <p class="text-gray-600 mb-5">
+                    Manage organization profiles. You can add and edit profiles here.
+                </p>
+
+                <!-- Table -->
             </div>
 
             <!-- Client Profiles Section -->
@@ -76,9 +83,10 @@
                     Manage client details
                 </p>
 
-                <h3 class="text-xl text-center">
-                    Edit or add clients in the Profiles page. Click <a class="text-blue-600 underline" href="{{ route('profiles') }}">HERE</a> to go there
-                </h3>
+                <!-- Tell the user to go to profiles page to edit clients -->
+                <h2 class="text-lg font-medium text-center">
+                    Go to <a class="text-blue-600 underline" href="{{ route('profiles') }}">Profiles page</a> to edit or add clients
+                </h2>
             </div>
         </div>
     </div>
