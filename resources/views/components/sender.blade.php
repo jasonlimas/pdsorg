@@ -1,6 +1,6 @@
 @props(['sender' => $sender])
 
-<tr class="bg-white">
+<tr class="odd:bg-white even:bg-slate-100">
     <!-- Sender ID -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $sender->id }}</td>
 

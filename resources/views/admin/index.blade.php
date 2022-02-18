@@ -39,7 +39,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody class="">
+                        <tbody>
                             <!-- Add a new row for every user stored in the database -->
                             @foreach ($users as $user)
                                 <x-user :user="$user" />
@@ -64,8 +64,9 @@
                 </div>
             </div>
 
-            <!-- Organization Details Section -->
+            <!-- Organization Details & Divisions Section -->
             <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg space-y-4">
+                <!-- Sender Organization -->
                 <div>
                     <!-- Organization Details header -->
                     <h2 class="text-2xl font-medium">Organization Profiles</h2>
@@ -87,7 +88,7 @@
                             </thead>
 
                             <!-- Table Body -->
-                            <tbody class="">
+                            <tbody>
                                 <!-- Add a new row for every sender organization stored in the database -->
                                 @foreach ($senders as $sender)
                                     <x-sender :sender="$sender" />
@@ -111,7 +112,7 @@
                         </a>
                     </div>
                 </div>
-
+                <!-- Division -->
                 <div>
                     <!-- Division Details header -->
                     <h2 class="text-2xl font-medium">Divisions</h2>
@@ -134,7 +135,7 @@
                             </thead>
 
                             <!-- Table Body -->
-                            <tbody class="">
+                            <tbody>
                                 <!-- Add a new row for every division stored in the database -->
                                 @foreach ($divisions as $division)
                                     <x-division :division="$division" />
@@ -146,6 +147,16 @@
                         <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
                             {{ $divisions->appends(['users' => $users->currentPage(), 'senders' => $senders->currentPage()])->links() }}
                         </div>
+                    </div>
+
+                    <!-- Add new division button -->
+                    <div class="flex justify-end">
+                        <a
+                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button"
+                            href="#">
+                            Add Division
+                        </a>
                     </div>
                 </div>
             </div>
