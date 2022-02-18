@@ -885,6 +885,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pt-3 {
   padding-top: 0.75rem;
 }
+.pl-1 {
+  padding-left: 0.25rem;
+}
 .text-left {
   text-align: left;
 }

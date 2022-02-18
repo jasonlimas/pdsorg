@@ -10,12 +10,11 @@ class QuoteItems extends Component
     public $tax = 0;
     public $subTotal = 0;
     public $grandTotal = 0;
-    public $itemTotalPrice = '';
 
     public function mount()
     {
         $this->items = [
-            ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0],
+            ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0, 'formattedTotalPrice' => ''],
         ];
     }
 
@@ -24,7 +23,7 @@ class QuoteItems extends Component
         // Calculate total price for each item (quantity * unitPrice)
         foreach ($this->items as $index => $item) {
             $this->items[$index]['totalPrice'] = intval($item['quantity']) * intval($item['unitPrice']);
-            $this->itemTotalPrice = 'Rp. ' . number_format($this->items[$index]['totalPrice']);
+            $this->items[$index]['formattedTotalPrice'] = 'Rp. ' . number_format($this->items[$index]['totalPrice']);
         }
 
         // Calculate sub total: Sum of all total prices

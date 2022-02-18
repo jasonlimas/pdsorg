@@ -81,7 +81,7 @@
                                             class="shadow appearance-none border rounded w-full px-1 py-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                             name="totalPrice"
                                             placeholder="Total price"
-                                            wire:model="itemTotalPrice">
+                                            wire:model="items.{{ $index }}.formattedTotalPrice">
                                     </div>
                                 </div>
                             </td>

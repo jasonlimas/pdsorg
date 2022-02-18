@@ -8,7 +8,7 @@
     <div class="flex justify-end">
         <label for="preset" class="sr-only">Preset</label>
         <select
-            class="shadow border rounded w-1/4 my-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+            class="shadow border rounded w-1/4 px-2 my-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
             name="preset"
             wire:model="selectedPreset">
             <option value="">-- Select a preset --</option>
