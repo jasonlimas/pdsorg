@@ -49,7 +49,7 @@
 
                     <!-- Pagination links -->
                     <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $users->appends(['senders' => $senders->currentPage()])->links() }}
+                        {{ $users->appends(['senders' => $senders->currentPage(), 'divisions' => $divisions->currentPage()])->links() }}
                     </div>
                 </div>
 
@@ -65,49 +65,88 @@
             </div>
 
             <!-- Organization Details Section -->
-            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
-                <!-- Organization Details header -->
-                <h2 class="text-2xl font-medium">Organization Profiles</h2>
-                <p class="text-gray-600 mb-5">
-                    Manage organization profiles. You can add and edit profiles here.
-                </p>
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg space-y-4">
+                <div>
+                    <!-- Organization Details header -->
+                    <h2 class="text-2xl font-medium">Organization Profiles</h2>
+                    <p class="text-gray-600 mb-5">
+                        Manage organization profiles. You can add and edit profiles here.
+                    </p>
 
-                <!-- Table -->
-                <div class="overflow-auto rounded-lg shadow mb-4">
-                    <table>
-                        <!-- Table Headers -->
-                        <thead class="bg-gray-200 border-b-2 border-gray-300">
-                            <tr>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
-                                <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
-                            </tr>
-                        </thead>
+                    <!-- Table -->
+                    <div class="overflow-auto rounded-lg shadow mb-4">
+                        <table>
+                            <!-- Table Headers -->
+                            <thead class="bg-gray-200 border-b-2 border-gray-300">
+                                <tr>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
+                                    <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                                </tr>
+                            </thead>
 
-                        <!-- Table Body -->
-                        <tbody class="">
-                            <!-- Add a new row for every user stored in the database -->
-                             @foreach ($senders as $sender)
-                                <x-sender :sender="$sender" />
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <!-- Table Body -->
+                            <tbody class="">
+                                <!-- Add a new row for every sender organization stored in the database -->
+                                @foreach ($senders as $sender)
+                                    <x-sender :sender="$sender" />
+                                @endforeach
+                            </tbody>
+                        </table>
 
-                    <!-- Pagination links -->
-                    <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
-                        {{ $senders->appends(['users' => $users->currentPage()])->links() }}
+                        <!-- Pagination links -->
+                        <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                            {{ $senders->appends(['users' => $users->currentPage(), 'divisions' => $divisions->currentPage()])->links() }}
+                        </div>
+                    </div>
+
+                    <!-- Add new organization button -->
+                    <div class="flex justify-end">
+                        <a
+                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button"
+                            href="{{ route('admin.sender.create') }}">
+                            Add Organization
+                        </a>
                     </div>
                 </div>
 
-                <!-- Add new organization button -->
-                <div class="flex justify-end">
-                    <a
-                        class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                        type="button"
-                        href="{{ route('admin.sender.create') }}">
-                        Add Organization
-                    </a>
+                <div>
+                    <!-- Division Details header -->
+                    <h2 class="text-2xl font-medium">Divisions</h2>
+                    <p class="text-gray-600 mb-5">
+                        Manage divisions. You can add and edit divisions here.
+                    </p>
+
+                    <!-- Table -->
+                    <div class="overflow-auto rounded-lg shadow mb-4">
+                        <table>
+                            <!-- Table Headers -->
+                            <thead class="bg-gray-200 border-b-2 border-gray-300">
+                                <tr>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
+                                    <th class="w-3/12 p-3 text-sm tracking-wide text-left">Abbreviation</th>
+                                    <th class="w-6/12 p-3 text-sm tracking-wide text-left">Description</th>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
+                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody class="">
+                                <!-- Add a new row for every division stored in the database -->
+                                @foreach ($divisions as $division)
+                                    <x-division :division="$division" />
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination links -->
+                        <div class="p-2 bg-gray-50 border-t-2 border-gray-100">
+                            {{ $divisions->appends(['users' => $users->currentPage(), 'senders' => $senders->currentPage()])->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
 
