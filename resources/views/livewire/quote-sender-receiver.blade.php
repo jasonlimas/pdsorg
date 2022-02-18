@@ -70,6 +70,6 @@
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             cols="30"
             rows="5"
-            wire:model="clientAddress" ></textarea>
+            wire:model="clientDetails" ></textarea>
     </div>
 </div>

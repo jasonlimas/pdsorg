@@ -2,15 +2,14 @@
     <!-- Quote date texts -->
     <h2 class="text-2xl font-medium">Date</h2>
     <p class="text-gray-600 mb-3">
-        Select the date from the calendar.<br>
-        Note: The date must be a today or a future date.
+        The date must be today or a future date.
     </p>
 
     <div class="mb-4">
         <!-- Date -->
         <label for="date" class="sr-only">Date</label>
         <input
-            class="shadow border rounded p-3 text-gray-700 leading-none
+            class="shadow border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
             @error('date') border-red-500 @enderror"
             type="date"
             name="date">
