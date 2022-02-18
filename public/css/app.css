@@ -794,6 +794,19 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-500\/10 {
   background-color: rgb(99 102 241 / 0.1);
 }
+.bg-indigo-500\/5 {
+  background-color: rgb(99 102 241 / 0.05);
+}
+.bg-indigo-400\/10 {
+  background-color: rgb(129 140 248 / 0.1);
+}
+.bg-indigo-600\/10 {
+  background-color: rgb(79 70 229 / 0.1);
+}
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
 .p-6 {
   padding: 1.5rem;
 }

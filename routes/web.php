@@ -23,10 +23,10 @@ Route::group([
     Route::get('/', [AdminController::class, 'index'])->name('');
 
     // User Management
-    Route::get('/users', [UserManagementController::class, 'index'])->name('.users');
-    Route::get('/users/create', [RegisterController::class, 'index'])->name('.users.create');
-    Route::post('/users/create', [RegisterController::class, 'store'])->name('.users.create');
-    Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('.users.destroy');
+    Route::get('/user/create', [RegisterController::class, 'index'])->name('.user.create');
+    Route::get('/user/{user}', [UserManagementController::class, 'show'])->name('.user.show');
+    Route::post('/user/create', [RegisterController::class, 'store'])->name('.user.create');
+    Route::delete('/user/{user}', [UserManagementController::class, 'destroy'])->name('.user.destroy');
 });
 
 // Home

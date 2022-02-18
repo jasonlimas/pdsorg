@@ -5,8 +5,8 @@
         <div class="w-8/12">
             <!-- Header -->
             <div class="p-6 text-gray-700">
-                <h1 class="text-4xl font-semibold mb-1">Add New User</h1>
-                <p>Create and configure a new account for a new user</p>
+                <h1 class="text-4xl font-semibold mb-1">Edit User</h1>
+                <p>Edit details for user: <a class="font-semibold">{{ $user->name }}</a></p>
             </div>
 
             <!-- Form section -->
@@ -28,7 +28,7 @@
                                 name="name"
                                 type="text"
                                 placeholder="John Doe"
-                                value="{{ old('name') }}">
+                                value="{{ $user->name }}">
 
                             @error('name')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -53,7 +53,7 @@
                                 name="name_abbreviation"
                                 type="text"
                                 placeholder="JD"
-                                value="{{ old('name_abbreviation') }}">
+                                value="{{ $user->name_abbreviation }}">
 
                             @error('name_abbreviation')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -78,7 +78,7 @@
                                 name="email"
                                 type="email"
                                 placeholder="email@xdc-indonesia.com"
-                                value="{{ old('email') }}">
+                                value="{{ $user->email }}">
 
                             @error('name')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -103,7 +103,7 @@
                                 name="phone"
                                 type="text"
                                 placeholder="08XXXXXXXXX"
-                                value="{{ old('phone') }}">
+                                value="{{ $user->phone }}">
 
                             @error('phone')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -116,23 +116,27 @@
                     <!-- DIVIDER -->
                     <div class="flex justify-center"><div class="w-4/5 my-6 border-b-2 border-slate-300-50"></div></div>
 
-                    <!-- Password -->
+                    <!-- Password warning message -->
+                    <p class="text-red-700 font-semibold mb-4 bg-red-100 rounded text-center py-2">
+                        WARNING: Only fill these password input boxes if you wish to change the password. Otherwise, leave them blank.
+                    </p>
+
+                    <!-- New Password -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="password">
-                                Password
+                            <label class="text-md p-3 inline-block align-middle" for="new_password">
+                                New Password
                             </label>
                         </div>
                         <div class="w-2/3">
                             <input
-                                required
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                                @error('password') border-red-500 @enderror"
-                                name="password"
+                                @error('new_password') border-red-500 @enderror"
+                                name="new_password"
                                 type="password"
                                 placeholder="Password">
 
-                            @error('password')
+                            @error('new_password')
                                 <div class="text-red-500 mt-2 text-sm">
                                     {{ $message }}
                                 </div>
@@ -143,20 +147,19 @@
                     <!-- Confirm password -->
                     <div class="flex flex-wrap">
                         <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="password_confirmation">
+                            <label class="text-md p-3 inline-block align-middle" for="new_password_confirmation">
                                 Confirm Password
                             </label>
                         </div>
                         <div class="w-2/3">
                             <input
-                                required
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                                @error('password_confirmation') border-red-500 @enderror"
-                                name="password_confirmation"
+                                @error('new_password_confirmation') border-red-500 @enderror"
+                                name="new_password_confirmation"
                                 type="password"
                                 placeholder="Confirm password">
 
-                            @error('password_confirmation')
+                            @error('new_password_confirmation')
                                 <div class="text-red-500 mt-2 text-sm">
                                     {{ $message }}
                                 </div>
@@ -179,9 +182,8 @@
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                                 @error('role_id') border-red-500 @enderror"
                                 name="role_id">
-                                <option value="">-- Select a role --</option>
                                 @foreach ($roles as $role)
-                                    <option {{ $role->id == old('role') ? 'selected' : '' }} value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
+                                    <option {{ $role->id == $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
                                 @endforeach
                             </select>
 
@@ -205,9 +207,8 @@
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                                 @error('organization_id') border-red-500 @enderror"
                                 name="organization_id">
-                                <option value="">-- Select an organization --</option>
                                 @foreach ($organizations as $organization)
-                                    <option {{ $organization->id == old('organization') ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
+                                    <option {{ $organization->id == $user->organization_id ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
                                 @endforeach
                             </select>
 
@@ -231,9 +232,8 @@
                                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                                 @error('division_id') border-red-500 @enderror"
                                 name="division_id">
-                                <option value="">-- Select a division --</option>
                                 @foreach ($divisions as $division)
-                                    <option {{ $division->id == old('division') ? 'selected' : '' }} value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
+                                    <option {{ $division->id == $user->division_id ? 'selected' : '' }} value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
                                 @endforeach
                             </select>
 
@@ -256,11 +256,11 @@
                             class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
                             Cancel
                         </a>
-                        <!-- Create User button -->
+                        <!-- Update User button -->
                         <button
                             class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 w-1/6 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
-                            Create User
+                            Update User
                         </button>
                     </div>
                 </form>

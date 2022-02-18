@@ -3,14 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Division;
+use App\Models\Role;
+use App\Models\Sender;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller
 {
-    public function index()
+    public function show(User $user)
     {
-        return view('admin.user.index');
+        $roles = Role::all();
+        $organizations = Sender::all();
+        $divisions = Division::all();
+
+        return view('admin.user.edit', [
+            'user' => $user,
+            'roles' => $roles,
+            'organizations' => $organizations,
+            'divisions' => $divisions,
+        ]);
     }
 
     // Update an user in the database. Called when clicking the edit icon

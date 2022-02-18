@@ -16,9 +16,8 @@
             @endif
 
             <!-- Users Section -->
-            <!-- Client Profiles -->
-            <div class=" bg-indigo-500/10 p-6 rounded-lg mb-3 shadow-lg">
-                <!-- Client profiles header -->
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
+                <!-- Users header -->
                 <h2 class="text-2xl font-medium">Registered Users</h2>
                 <p class="text-gray-600 mb-5">
                     Manage registered users here. Click the <a class="font-semibold">Add User</a> button to register a new user
@@ -54,17 +53,16 @@
                     </div>
                 </div>
 
-                <!-- Add new client button -->
+                <!-- Add new user button -->
                 <div class="flex justify-end">
                     <a
                         class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
-                        href="{{ route('admin.users.create') }}">
+                        href="{{ route('admin.user.create') }}">
                         Add User
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

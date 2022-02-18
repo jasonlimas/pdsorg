@@ -15,7 +15,7 @@
 
     <!-- Edit Icon -->
     <td class="p-3">
-        <form action="#" method="GET">
+        <form action="{{ route('admin.user.show', $user) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
@@ -24,7 +24,7 @@
     <!-- Delete Icon -->
     <td class="p-3">
         <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
-        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+        <form action="{{ route('admin.user.destroy', $user) }}" method="POST">
             @csrf
             @method('DELETE')
             <x-enabled-delete-icon />
