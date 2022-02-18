@@ -6,27 +6,8 @@
     </p>
 
     <!-- Quote number input -->
-    <div class="grid grid-cols-5 gap-2 mb-4">
-        <!-- Year -->
-        <div>
-            <label for="numberYear" class="text-sm">Year</label>
-            <input
-                disabled
-                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                @error('numberYear') border-red-500 @enderror"
-                type="number"
-                name="numberYear"
-                placeholder="Year"
-                value="{{ now()->year }}">
-
-            <div class="text-red-500 mt-1 text-xs">
-                @error('numberYear')
-                    {{ $message }}
-                @enderror
-            </div>
-        </div>
-
-        <!-- Division -->
+    <div class="columns-3 gap-2 mb-4">
+        <!-- User's division -->
         <div>
             <label for="numberDivision" class="text-sm">Your division</label>
             <input
@@ -63,25 +44,6 @@
             </div>
         </div>
 
-        <!-- Month -->
-        <div>
-            <label for="numberMonth" class="text-sm">Month</label>
-            <input
-                disabled
-                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                @error('numberMonth') border-red-500 @enderror"
-                type="number"
-                name="numberMonth"
-                placeholder="Month"
-                value="{{ now()->month }}">
-
-            <div class="text-red-500 mt-1 text-xs">
-                @error('numberMonth')
-                    {{ $message }}
-                @enderror
-            </div>
-        </div>
-
         <!-- Number -->
         <div>
             <label for="numberNumber" class="text-sm">Number</label>
@@ -100,32 +62,5 @@
                 @enderror
             </div>
         </div>
-    </div>
-</div>
-
-<div>
-    <!-- Quote date texts -->
-    <h2 class="text-2xl font-medium">Date</h2>
-    <p class="text-gray-600 mb-3">
-        Select the date from the calendar.
-    </p>
-
-    <!-- Quote date input -->
-    <div class="mb-4">
-        <!-- Date -->
-        <label for="date" class="sr-only">Date</label>
-        <input
-        class="shadow appearance-none border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-        @error('date') border-red-500 @enderror"
-        type="date"
-        name="date"
-        id="date"
-        value="{{ old('date') }}">
-
-        @error('date')
-            <div class="text-red-500 mt-1 text-xs">
-                {{ $message }}
-            </div>
-        @enderror
     </div>
 </div>

@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Client;
-use App\Models\Sender;
 use Livewire\Component;
 
 class QuoteTermsConditions extends Component

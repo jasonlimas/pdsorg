@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Division;
 use Livewire\Component;
 
-class QuoteNumberAndDate extends Component
+class QuoteNumber extends Component
 {
     public $divisionAbbreviation = '';
     public $userAbbreviation = '';
@@ -19,6 +19,6 @@ class QuoteNumberAndDate extends Component
 
     public function render()
     {
-        return view('livewire.quote-number-and-date');
+        return view('livewire.quote-number');
     }
 }

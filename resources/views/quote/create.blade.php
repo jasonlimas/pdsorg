@@ -41,8 +41,11 @@
                 @auth
                     <form action="{{ route('quotes.create') }}" method="POST">
                         @csrf
-                        <!-- Quote number and date component -->
-                        @livewire('quote-number-and-date')
+                        <!-- Quote number component -->
+                        @livewire('quote-number')
+
+                        <!-- Quote date component -->
+                        @livewire('quote-date')
 
                         <!-- Sender and receiver component -->
                         @livewire('quote-sender-receiver')

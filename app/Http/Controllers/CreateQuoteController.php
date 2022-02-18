@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Sender;
 use Illuminate\Http\Request;
 use App\Library\PDF\pdf;
+use App\Models\Division;
 
 class CreateQuoteController extends Controller
 {
@@ -19,17 +20,12 @@ class CreateQuoteController extends Controller
         // Input validation
         $this->validate($request, [
             // Quote number
-            'numberYear' => 'required',
-            'numberDivision' => 'required',
-            'numberSales' => 'required',
-            'numberMonth' => 'required',
             'numberNumber' => 'required|integer|min:0',
 
             // Quote date
-            'date' => 'required',
+            'date' => 'required|after:today',
 
-            // Sender & receiver
-            'sender' => 'required|exists:users,sender_id',
+            // Receiver
             'receiver' => 'required|exists:clients,id',
 
             // Tax
@@ -49,18 +45,18 @@ class CreateQuoteController extends Controller
 
         // Variables
         $quoteNumber = [
-            'year' => $request->numberYear,
-            'division' => $request->numberDivision,
-            'sales' => $request->numberSales,
-            'month' => $request->numberMonth,
+            'year' => substr($request->date, 0, 4),
+            'division' => Division::find(auth()->user()->division_id)->abbreviation,
+            'sales' => auth()->user()->name_abbreviation,
+            'month' => substr($request->date, 5, 2),
             'number' => $request->numberNumber,
         ];
 
         $date = $request->date;
 
         $sender = [
-            'name' => Sender::find($request->sender)->name,
-            'addr' => Sender::find($request->sender)->address,
+            'name' => Sender::find(auth()->user()->sender_id)->name,
+            'addr' => Sender::find(auth()->user()->sender_id)->address,
             'phone' => auth()->user()->phone,
             'email' => auth()->user()->email,
         ];
