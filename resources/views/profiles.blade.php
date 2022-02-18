@@ -109,6 +109,9 @@
                     </div>
                 </form>
 
+                <p class="text-red-600 text-sm intalic mt-5 text-center">
+                    To edit name and email, go to the Admin Panel. Only Admin can see this message
+                </p>
             </div>
 
             <!-- Sender Organization Details -->
@@ -132,7 +135,7 @@
                     cols="30"
                     rows="5">{{ $sender->address }}</textarea>
 
-                <!-- Division -->
+                <!-- Division, disabled text box too -->
                 <div class="flex flex-wrap mb-2">
                     <div class="w-1/3 align-middle">
                         <label class="text-md p-3 inline-block align-middle" for="division">
@@ -148,6 +151,10 @@
                             value="{{ $division }}">
                     </div>
                 </div>
+
+                <p class="text-red-600 text-sm intalic mt-5 text-center">
+                    To edit these details, go to the Admin Panel. Only Admin can see this message
+                </p>
 
             </div>
 

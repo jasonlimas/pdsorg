@@ -8,28 +8,25 @@ use Livewire\Component;
 
 class QuoteSenderReceiver extends Component
 {
-    public $senders = [];
-    public $clients = [];
-    public $selectedSender = '';
-    public $selectedClient = '';
+    public $senderId = '';
+    public $senderName = '';
     public $senderAddress = '';
+    public $clients = [];
+    public $selectedClient = '';
     public $clientAddress = '';
 
     public function mount()
     {
         // Get senders and clients from the database
-        $this->senders = Sender::latest()->get();
+        $this->senderId = Sender::find(auth()->user()->sender_id)->id;
+        $this->senderName = Sender::find(auth()->user()->sender_id)->name;
+        $this->senderAddress = Sender::find(auth()->user()->sender_id)->address;
         $this->clients = Client::latest()->get();
     }
 
     public function render()
     {
-        // Update the selected sender address box to display the selected sender's address
-        if ($this->selectedSender != '')
-            $this->senderAddress = Sender::find($this->selectedSender)->address;
-        else $this->senderAddress = '';
-
-        // Do the same for client address
+        // Update the selected client address box to display the selected client's address
         if ($this->selectedClient != '')
             $this->clientAddress = Client::find($this->selectedClient)->address;
         else $this->clientAddress = '';

@@ -2,7 +2,8 @@
     <!-- Quote sender and receiver texts -->
     <h2 class="text-2xl font-medium">Sender and Receiver Details</h2>
     <p class="text-gray-600 mb-3">
-        Your details as the sender, and the client details as the receiver.
+        Your details as the sender, and the client details as the receiver.<br>
+        The "Quote From" details are tied to your account's organization details. Contact an Admin if it's not displaying correct information
     </p>
 
     <!-- Sender and receiver inputs header -->
@@ -16,15 +17,11 @@
         <div>
             <label for="sender" class="sr-only">Sender</label>
             <select
-                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                disabled
+                class="shadow border rounded w-full p-3 text-black leading-tight focus:outline-none focus:shadow-outline
                 @error('sender') border-red-500 @enderror"
-                name="sender"
-                id="sender"
-                wire:model="selectedSender">
-                <option value="">-- Select a sender --</option>
-                @foreach ($senders as $sender)
-                    <option value="{{ $sender->id }}">ID:{{ $sender->id}} - {{ $sender->name }}</option>
-                @endforeach
+                name="sender">
+                <option value="{{ $senderId }}">{{ $senderName }}</option>
             </select>
 
             <div class="text-red-500 mt-1 text-xs">
@@ -65,8 +62,7 @@
             style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             cols="30"
-            rows="5"
-            wire:model="senderAddress" ></textarea>
+            rows="5">{{ $senderAddress }}</textarea>
 
         <!-- Receiver details -->
         <textarea
