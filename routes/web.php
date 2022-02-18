@@ -26,6 +26,7 @@ Route::group([
     Route::get('/users', [UserManagementController::class, 'index'])->name('.users');
     Route::get('/users/create', [RegisterController::class, 'index'])->name('.users.create');
     Route::post('/users/create', [RegisterController::class, 'store'])->name('.users.create');
+    Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('.users.destroy');
 });
 
 // Home

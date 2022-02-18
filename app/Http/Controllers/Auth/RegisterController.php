@@ -25,6 +25,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    // Function to store the new user to the database, after validating the inputs
     public function store(Request $request)
     {
         // Validation
