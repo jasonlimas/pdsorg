@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class QuoteSenderReceiver extends Component
 {
-    public $senderId = '';
+    public $sender = Sender::class;
     public $senderName = '';
     public $senderAddress = '';
     public $clients = [];
@@ -18,9 +18,7 @@ class QuoteSenderReceiver extends Component
     public function mount()
     {
         // Get senders and clients from the database
-        $this->senderId = Sender::find(auth()->user()->sender_id)->id;
-        $this->senderName = Sender::find(auth()->user()->sender_id)->name;
-        $this->senderAddress = Sender::find(auth()->user()->sender_id)->address;
+        $this->sender = Sender::find(auth()->user()->sender_id);
         $this->clients = Client::latest()->get();
     }
 

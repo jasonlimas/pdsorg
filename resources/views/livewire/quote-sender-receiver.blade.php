@@ -17,11 +17,10 @@
         <div>
             <label for="sender" class="sr-only">Sender</label>
             <select
-                disabled
                 class="shadow border rounded w-full p-3 text-black leading-tight focus:outline-none focus:shadow-outline
                 @error('sender') border-red-500 @enderror"
                 name="sender">
-                <option value="{{ $senderId }}">{{ $senderName }}</option>
+                <option value="{{ $sender->id }}">{{ $sender->name }}</option>
             </select>
 
             <div class="text-red-500 mt-1 text-xs">
@@ -62,7 +61,7 @@
             style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             cols="30"
-            rows="5">{{ $senderAddress }}</textarea>
+            rows="5">{{ $sender->address }}</textarea>
 
         <!-- Receiver details -->
         <textarea

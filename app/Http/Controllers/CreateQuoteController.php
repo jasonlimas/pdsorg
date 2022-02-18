@@ -16,7 +16,8 @@ class CreateQuoteController extends Controller
 
     public function store(Request $request)
     {
-        $validateMe = [
+        // Input validation
+        $this->validate($request, [
             // Quote number
             'numberYear' => 'required',
             'numberDivision' => 'required',
@@ -28,17 +29,14 @@ class CreateQuoteController extends Controller
             'date' => 'required',
 
             // Sender & receiver
-            'sender' => 'required',
-            'receiver' => 'required',
+            'sender' => 'required|exists:users,sender_id',
+            'receiver' => 'required|exists:clients,id',
 
             // Tax
             'tax' => 'required|integer|min:0|max:100',
 
             // Items and Terms & Conditions are validated separately
-        ];
-
-        // * Input validation
-        $this->validate($request, $validateMe);
+        ]);
 
         // Validate terms and conditions
         if (in_array(null, $request->termsConditions, true)) {
