@@ -6,7 +6,7 @@
             <!-- Header -->
             <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Edit a Sender Organization Details</h1>
-                <p>Change details for organisation: <b>{{ $sender->name }}</p>
+            <p>Change details for organisation: <a class="font-semibold">{{ $sender->name }}</a></p>
             </div>
 
             <!-- Session Messages -->

@@ -12,7 +12,7 @@
 
     <!-- Edit Icon -->
     <td class="p-3">
-        <form action="#" method="GET">
+        <form action="{{ route('admin.division.show', $division) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
