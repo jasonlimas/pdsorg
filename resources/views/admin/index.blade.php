@@ -63,6 +63,23 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Organisation Details Section -->
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
+            </div>
+
+            <!-- Client Profiles Section -->
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
+                <!-- Client Profiles header -->
+                <h2 class="text-2xl font-medium">Client Profiles</h2>
+                <p class="text-gray-600 mb-5">
+                    Manage client details
+                </p>
+
+                <h3 class="text-xl text-center">
+                    Edit or add clients in the Profiles page. Click <a class="text-blue-600 underline" href="{{ route('profiles') }}">HERE</a> to go there
+                </h3>
+            </div>
         </div>
     </div>
 @endsection
