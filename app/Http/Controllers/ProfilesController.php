@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Division;
 use App\Models\Sender;
 use App\Models\TermsConditions;
 use App\Models\User;
@@ -14,17 +15,20 @@ class ProfilesController extends Controller
     {
         // Get sender organization details based on logged in user
         $sender = Sender::find(auth()->user()->sender_id);
-        //dd($sender);
 
         // Get clients and termsConditions from the database
         $clients = Client::latest()->paginate(5, ['*'], 'clients');
         $terms = TermsConditions::latest()->paginate(5, ['*'], 'terms');
+
+        // Get user's division details
+        $division = Division::find(auth()->user()->division_id)->description;
 
         return view('profiles', [
             'user' => auth()->user(),
             'sender' => $sender,
             'clients' => $clients,
             'terms' => $terms,
+            'division' => $division,
         ]);
     }
 

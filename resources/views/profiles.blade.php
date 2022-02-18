@@ -6,7 +6,7 @@
             <!-- Main header -->
             <div class="p-6 text-gray-700 ">
                 <h1 class="text-4xl font-semibold mb-1">Profiles</h1>
-                <p>Manage your details, organization, and your client here</p>
+                <p>Details about yourself, your organization, clients, and manage terms & conditions presets</p>
             </div>
             <!-- Session Messages -->
             @if (session('status'))
@@ -120,7 +120,7 @@
                     Note: only Admin can add/edit/delete this section
                 </p>
 
-                <!-- Disabled Text Boxes -->
+                <!-- Disabled Text Boxes for Organization Details -->
                 <input
                     disabled
                     class="shadow appearance-none border rounded w-full p-3 mb-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline font-bold"
@@ -132,6 +132,23 @@
                     cols="30"
                     rows="5">{{ $sender->address }}</textarea>
 
+                <!-- Division -->
+                <div class="flex flex-wrap mb-2">
+                    <div class="w-1/3 align-middle">
+                        <label class="text-md p-3 inline-block align-middle" for="division">
+                            Your Division
+                        </label>
+                    </div>
+                    <div class="w-2/3">
+                        <input
+                            disabled
+                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                            name="division"
+                            type="text"
+                            value="{{ $division }}">
+                    </div>
+                </div>
+
             </div>
 
             <!-- Client Profiles -->
@@ -139,7 +156,8 @@
                 <!-- Client profiles header -->
                 <h2 class="text-2xl font-medium">Client Profiles</h2>
                 <p class="text-gray-600 mb-5">
-                    List of clients here, or add a new one by clicking the button below
+                    List of clients here, or add a new one by clicking the button below<br>
+                    Note: only Admin can add/edit/delete this section
                 </p>
 
                 <!-- Table -->
@@ -172,15 +190,17 @@
                     </div>
                 </div>
 
-                <!-- Add new client button -->
-                <div class="flex justify-end">
-                    <a
-                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                        type="button"
-                        href="{{ route('profiles.client.create') }}">
-                        Add Client
-                    </a>
-                </div>
+                <!-- Add new client button, only admin can see the button -->
+                @admin
+                    <div class="flex justify-end">
+                        <a
+                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button"
+                            href="{{ route('profiles.client.create') }}">
+                            Add Client
+                        </a>
+                    </div>
+                @endadmin
             </div>
 
             <!-- Terms & Conditions Presets -->
