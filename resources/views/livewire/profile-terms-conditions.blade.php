@@ -3,7 +3,7 @@
         <thead class="bg-gray-50 border-b-1 border-gray-400">
             <tr>
                 <th class="w-1/12">No.</th>
-                <th class="w-10/12 pt-1">Terms & Conditions</th>
+                <th class="w-10/12 pt-1">Description</th>
                 <th class="w-1">Del.</th>
             </tr>
         </thead>

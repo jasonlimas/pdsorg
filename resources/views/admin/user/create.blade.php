@@ -181,7 +181,7 @@
                                 name="role_id">
                                 <option value="">-- Select a role --</option>
                                 @foreach ($roles as $role)
-                                    <option {{ $role->id == old('role') ? 'selected' : '' }} value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
+                                    <option {{ $role->id == old('role') ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
 

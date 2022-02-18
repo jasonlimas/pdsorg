@@ -183,7 +183,7 @@
                                 @error('role_id') border-red-500 @enderror"
                                 name="role_id">
                                 @foreach ($roles as $role)
-                                    <option {{ $role->id == $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">ID:{{ $role->id}} - {{ $role->name }}</option>
+                                    <option {{ $role->id == $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
 
@@ -208,7 +208,7 @@
                                 @error('organization_id') border-red-500 @enderror"
                                 name="organization_id">
                                 @foreach ($organizations as $organization)
-                                    <option {{ $organization->id == $user->organization_id ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
+                                    <option {{ $organization->id == $user->sender_id ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
                                 @endforeach
                             </select>
 

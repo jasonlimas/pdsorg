@@ -1,9 +1,31 @@
 <div>
     <!-- Terms & Conditions texts -->
     <h2 class="text-2xl font-medium">Terms & Conditions</h2>
-    <p class="text-gray-600 mb-3">
-        Press the "Add Line" button to add a line, and the trash icon on each line to remove the line.
+    <p class="text-gray-600 mb-1">
+        Select from a saved preset, or write them from scratch here.
     </p>
+
+    <div class="flex justify-end">
+        <label for="preset" class="sr-only">Preset</label>
+        <select
+            class="shadow border rounded w-1/4 my-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+            name="preset"
+            wire:model="selectedPreset">
+            <option value="">-- Select a preset --</option>
+            @foreach ($savedPresets as $preset)
+                <option value="{{ $preset->id }}">ID:{{ $preset->id}} - {{ $preset->name }}</option>
+            @endforeach
+        </select>
+
+        <div class="flex">
+            <button
+                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 m-2 rounded"
+                wire:click.prevent="applyPreset"
+                type="button">
+                Apply Preset
+            </button>
+        </div>
+    </div>
 
     <!-- Terms & conditions input -->
     <div class="overflow-auto rounded-lg shadow mb-4">
@@ -27,6 +49,7 @@
                                 <div class="w-full">
                                     <label for="terms" class="sr-only">Terms & Conditions</label>
                                     <input
+                                        required
                                         class="shadow appearance-none border rounded w-full p-2 mx-1 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                         name="termsConditions[{{ $index }}]"
                                         placeholder="Terms & Conditions"

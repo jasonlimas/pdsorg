@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\TermsConditions;
 use Livewire\Component;
 
 class QuoteTermsConditions extends Component
 {
     public $termsConditions = [''];
+    public $savedPresets = TermsConditions::class;
+    public $selectedPreset = '';
 
     public function mount()
     {
-        //
+        $this->savedPresets = TermsConditions::all();
     }
 
     public function render()
@@ -22,6 +25,16 @@ class QuoteTermsConditions extends Component
     public function addTermsCondition()
     {
         $this->termsConditions[] = "";
+    }
+
+    // Apply preset
+    public function applyPreset()
+    {
+        // Only apply preset if the selected preset is not empty
+        if ($this->selectedPreset != '') {
+            $this->termsConditions = [''];
+            $this->termsConditions = TermsConditions::find($this->selectedPreset)->terms_conditions;
+        }
     }
 
     // Function to remove a terms condition line

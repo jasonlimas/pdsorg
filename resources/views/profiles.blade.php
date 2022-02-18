@@ -109,9 +109,11 @@
                     </div>
                 </form>
 
-                <p class="text-red-600 text-sm intalic mt-5 text-center">
-                    To edit name and email, go to the Admin Panel. Only Admin can see this message
-                </p>
+                @admin
+                    <p class="text-red-600 text-sm intalic mt-5 text-center">
+                        To edit name and email, go to the Admin Panel. Only Admin can see this message
+                    </p>
+                @endadmin
             </div>
 
             <!-- Sender Organization Details -->
@@ -152,9 +154,11 @@
                     </div>
                 </div>
 
-                <p class="text-red-600 text-sm intalic mt-5 text-center">
-                    To edit these details, go to the Admin Panel. Only Admin can see this message
-                </p>
+                @admin
+                    <p class="text-red-600 text-sm intalic mt-5 text-center">
+                        To edit these details, go to the Admin Panel. Only Admin can see this message
+                    </p>
+                @endadmin
 
             </div>
 
