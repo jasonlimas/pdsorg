@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -35,6 +36,9 @@ Route::group([
     Route::post('/sender/create', [SenderController::class, 'store'])->name('.sender.create');
     Route::post('/sender/{sender}', [SenderController::class, 'update'])->name('.sender.show');
     Route::delete('/sender/{sender}', [SenderController::class, 'destroy'])->name('.sender.destroy');
+
+    // Division
+    Route::get('/division/create', [DivisionController::class, 'index'])->name('.division.create');
 });
 
 // Home

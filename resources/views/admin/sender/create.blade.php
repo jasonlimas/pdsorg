@@ -5,7 +5,7 @@
         <div class="w-8/12">
             <!-- Header -->
             <div class="p-6 text-gray-700">
-                <h1 class="text-4xl font-semibold mb-1">Add a Sender Details</h1>
+                <h1 class="text-4xl font-semibold mb-1">Add a Sender Organization Details</h1>
                 <p>Store a new sender organization details to the database</p>
             </div>
 
@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <div class=" bg-gray-100 p-6 rounded-lg mb-3">
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3">
                 <!-- Client details header -->
                 <h2 class="text-2xl font-medium mb-5">Sender Organization Details</h2>
 
@@ -73,15 +73,15 @@
                         </div>
                     </div>
 
-                    <!-- Add client button -->
+                    <!-- Add sender button -->
                     <div class="flex justify-end">
                         <!-- Cancel button -->
-                        <a href="{{ route('profiles') }}"
+                        <a href="{{ route('admin') }}"
                             class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Add Details
                         </button>
