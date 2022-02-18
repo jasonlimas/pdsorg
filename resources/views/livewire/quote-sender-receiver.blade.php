@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-medium">Sender and Receiver Details</h2>
     <p class="text-gray-600 mb-3">
         Your details as the sender, and the client details as the receiver.<br>
-        The "Quote From" details are tied to your account's organization details. Contact an Admin if it's not displaying correct information
+        The "Quote From" details are tied to your account's organization details. Check <a href="{{ route('profiles') }}" class="text-blue-600 no-underline hover:underline">profiles page</a> for more details.
     </p>
 
     <!-- Sender and receiver inputs header -->
