@@ -253,12 +253,12 @@
                         <!-- Cancel button -->
                         <a
                             href="{{ route('admin') }}"
-                            class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
+                            class="mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
                             Cancel
                         </a>
                         <!-- Create User button -->
                         <button
-                            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 w-1/6 rounded focus:outline-none focus:shadow-outline"
+                            class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-3 px-4 w-1/6 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Create User
                         </button>

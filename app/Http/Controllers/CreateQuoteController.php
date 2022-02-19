@@ -7,12 +7,28 @@ use App\Models\Sender;
 use Illuminate\Http\Request;
 use App\Library\PDF\pdf;
 use App\Models\Division;
+use App\Models\Quotation;
+use App\Models\User;
 
 class CreateQuoteController extends Controller
 {
     public function index()
     {
         return view('quote.create');
+    }
+
+    // Page that shows buttons to download/create new/view all/email quote. Called when clicking the create quote button, after the quote is stored in the database
+    public function finalize()
+    {
+        $quote = Quotation::find(auth()->user()->quotes()->latest()->first()->id);
+        $sender = Sender::find($quote->sender_id)->name;
+        $client = Client::find($quote->client_id)->name;
+
+        return view('quote.finalize', [
+            'quote' => $quote,
+            'sender' => $sender,
+            'client' => $client,
+        ]);
     }
 
     public function store(Request $request)
@@ -43,31 +59,6 @@ class CreateQuoteController extends Controller
             throw $error;
         }
 
-        // Variables
-        $quoteNumber = [
-            'year' => substr($request->date, 0, 4),
-            'division' => Division::find(auth()->user()->division_id)->abbreviation,
-            'sales' => auth()->user()->name_abbreviation,
-            'month' => substr($request->date, 5, 2),
-            'number' => $request->numberNumber,
-        ];
-
-        $date = $request->date;
-
-        $sender = [
-            'name' => Sender::find(auth()->user()->sender_id)->name,
-            'addr' => Sender::find(auth()->user()->sender_id)->address,
-            'phone' => auth()->user()->phone,
-            'email' => auth()->user()->email,
-        ];
-
-        $recipient = [
-            'name' => Client::find($request->receiver)->name,
-            'addr' => Client::find($request->receiver)->address,
-            'phone' => Client::find($request->receiver)->phone,
-            'email' => Client::find($request->receiver)->email,
-        ];
-
         $items = [];
         $amount = 0;
         foreach ($request->items as $item) {
@@ -89,10 +80,8 @@ class CreateQuoteController extends Controller
             $amount += $item['quantity'] * $item['unitPrice'];
         }
 
-        $tax = $request->tax;
-
         // Calculate amount again, but with tax
-        $amount = $amount + ($amount * $tax / 100);
+        $amount = $amount + ($amount * $request->tax / 100);
 
         $termsConditions = [];
         foreach ($request->termsConditions as $term) {
@@ -101,21 +90,67 @@ class CreateQuoteController extends Controller
 
         // Save to database
         $request->user()->quotes()->create([
-            'div' => $quoteNumber['division'],
-            'sales_person' => $quoteNumber['sales'],
-            'number' => $quoteNumber['number'],
-            'quote_date' => $date,
+            'div' => Division::find(auth()->user()->division_id)->abbreviation,
+            'sales_person' => auth()->user()->name_abbreviation,
+            'number' => $request->numberNumber,
+            'quote_date' => $request->date,
             'sender_id' => $request->sender,
             'client_id' => $request->receiver,
             'items' => $items,
-            'tax' => $tax,
+            'tax' => $request->tax,
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
+            'user_id' => auth()->user()->id,
         ]);
+
+        return redirect()->route('quotes.create.finalize');
+    }
+
+    // Function to download the quote as PDF
+    public function download(Quotation $quote)
+    {
+        $quoteNumber = [
+            'year' => substr($quote->quote_date, 0, 4),
+            'division' => $quote->div,
+            'sales' => $quote->sales_person,
+            'month' => substr($quote->quote_date, 5, 2),
+            'number' => $quote->number,
+        ];
+
+        $date = $quote->quote_date;
+
+        $sender = [
+            'person' => User::find($quote->user_id)->name,
+            'name' => Sender::find($quote->sender_id)->name,
+            'addr' => Sender::find($quote->sender_id)->address,
+            'phone' => User::find($quote->user_id)->phone,
+            'email' => User::find($quote->user_id)->email,
+        ];
+
+        $recipient = [
+            'name' => Client::find($quote->client_id)->name,
+            'addr' => Client::find($quote->client_id)->address,
+            'phone' => Client::find($quote->client_id)->phone,
+            'email' => Client::find($quote->client_id)->email,
+        ];
+
+        $items = [];
+        foreach ($quote->items as $item) {
+            $items[] = [
+                'name' => $item['name'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ];
+        }
+
+        $tax = $quote->tax;
+
+        $termsConditions = [];
+        foreach ($quote->terms_conditions as $term) {
+            $termsConditions[] = $term;
+        }
 
         // Create PDF
         pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
-
-        return back();
     }
 }

@@ -24,11 +24,11 @@
                 <nav class="md:flex space-x-10">
 
                     <!-- Links -->
-                    <a href="{{ route('quotes') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Quote List </a>
-                    <a href="{{ route('quotes.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Create Quote </a>
-                    <a href="{{ route('profiles') }}" class="text-base font-medium text-gray-500 hover:text-gray-900"> Profiles </a>
+                    <a href="{{ route('quotes') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Quote List </a>
+                    <a href="{{ route('quotes.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Create Quote </a>
+                    <a href="{{ route('profiles') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Profiles </a>
                     @admin
-                        <a href="{{ route('admin') }}" class="text-base font-medium text-rose-500 hover:text-rose-900"> Admin Panel </a>
+                        <a href="{{ route('admin') }}" class="text-base font-medium text-rose-500 hover:text-rose-900 transition-colors duration-200"> Admin Panel </a>
                     @endadmin
 
                 </nav>
@@ -37,7 +37,10 @@
                     @guest
                         <form action="{{ route('login') }}" method="GET">
                             @csrf
-                            <button type="submit" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"> Sign in </button>
+                            <button
+                                type="submit"
+                                class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-colors duration-200">
+                                 Sign in </button>
                         </form>
                     @endguest
 
@@ -45,7 +48,10 @@
                         <a class="text-gray-500 font-semibold">{{ auth()->user()->name }}</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700"> Sign out </button>
+                            <button
+                                type="submit"
+                                class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200">
+                                 Sign out </button>
                         </form>
                     @endauth
                 </div>

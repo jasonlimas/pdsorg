@@ -102,7 +102,7 @@
                     <!-- Save button -->
                     <div class="flex justify-end">
                         <button
-                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                             type="submit">
                             Save Info
                         </button>
@@ -205,7 +205,7 @@
                 @admin
                     <div class="flex justify-end">
                         <a
-                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                             type="button"
                             href="{{ route('profiles.client.create') }}">
                             Add Client
@@ -236,7 +236,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody>
                             <!-- Add a new row for every Terms & Conditions preset stored in the database -->
                             @foreach ($terms as $term)
                                 <x-term :term="$term" />
@@ -253,7 +253,7 @@
                 <!-- Add Preset button -->
                 <div class="flex justify-end">
                     <a
-                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                         type="button"
                         href="{{ route('profiles.terms.create') }}">
                         Add Preset

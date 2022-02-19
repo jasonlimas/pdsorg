@@ -39,6 +39,7 @@ class QuoteController extends Controller
         $date = $quote->quote_date;
 
         $sender = [
+            'person' => User::find($quote->user_id)->name,
             'name' => Sender::find($quote->sender_id)->name,
             'addr' => Sender::find($quote->sender_id)->address,
             'phone' => User::find($quote->user_id)->phone,

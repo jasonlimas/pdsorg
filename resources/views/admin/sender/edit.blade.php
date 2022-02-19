@@ -35,7 +35,6 @@
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('name') border-red-500 @enderror"
                                 name="name"
-                                id="name"
                                 type="text"
                                 placeholder="Organization Name"
                                 value="{{ $sender->name }}">
@@ -62,7 +61,6 @@
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline
                                 @error('address') border-red-500 @enderror"
                                 name="address"
-                                id="address"
                                 placeholder="Organization Address">{{ $sender->address }}</textarea>
 
                             @error('address')
@@ -77,12 +75,12 @@
                     <div class="flex justify-end">
                         <!-- Cancel button -->
                         <a href="{{ route('admin') }}"
-                            class="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            class="mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
                         <!-- Update button -->
                         <button
-                            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Update Details
                         </button>
