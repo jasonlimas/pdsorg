@@ -58,8 +58,8 @@ Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quo
 // Create Quotation
 Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
 Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
-Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
 Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
+Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
 
 // Profiles
 Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');

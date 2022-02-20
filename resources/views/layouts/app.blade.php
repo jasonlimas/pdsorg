@@ -8,6 +8,7 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7f8b46f267.js" crossorigin="anonymous"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @livewireStyles
 </head>
 <body class="bg-slate-200">
@@ -24,8 +25,22 @@
                 <nav class="md:flex space-x-10">
 
                     <!-- Links -->
-                    <a href="{{ route('quotes') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Quote List </a>
-                    <a href="{{ route('quotes.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Create Quote </a>
+                    <div class="relative inline-block text-left" x-data="{ isOpen: false }" @mouseleave="isOpen = false">
+                        <a
+                            @mouseover="isOpen = true"
+                            href="{{ route('quotes') }}"
+                            class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200">
+                            Quote
+                            <svg class="-mr-1 ml-0.5 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <!-- Dropdown content -->
+                        <div class="absolute left-0 right-0 w-52 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="isOpen">
+                            <a href="{{ route('quotes') }}" class="rounded-tr-md rounded-tl-md block py-3 px-5 text-base font-medium bg-white text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors duration-200"> Quote List </a>
+                            <a href="{{ route('quotes.create') }}" class="rounded-br-md rounded-bl-md block py-3 px-5 text-base font-medium bg-white text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors duration-200"> Quote Create </a>
+                        </div>
+                    </div>
                     <a href="{{ route('profiles') }}" class="text-base font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"> Profiles </a>
                     @admin
                         <a href="{{ route('admin') }}" class="text-base font-medium text-rose-500 hover:text-rose-900 transition-colors duration-200"> Admin Panel </a>

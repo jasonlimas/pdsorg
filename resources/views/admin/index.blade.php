@@ -56,7 +56,7 @@
                 <!-- Add new user button -->
                 <div class="flex justify-end">
                     <a
-                        class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                        class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
                         href="{{ route('admin.user.create') }}">
                         Add User
@@ -105,7 +105,7 @@
                     <!-- Add new organization button -->
                     <div class="flex justify-end">
                         <a
-                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white transition-colors duration-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                             type="button"
                             href="{{ route('admin.sender.create') }}">
                             Add Organization
@@ -152,7 +152,7 @@
                     <!-- Add new division button -->
                     <div class="flex justify-end">
                         <a
-                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                             type="button"
                             href="{{ route('admin.division.create') }}">
                             Add Division

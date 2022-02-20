@@ -56,8 +56,10 @@
 
                 <!-- Login button -->
                 <div class="flex justify-center">
-                    <button type="submit" class="shadow bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded
-                    font-medium w-2/3"> Sign in </button>
+                    <button
+                        type="submit"
+                        class="shadow bg-green-500 hover:bg-green-700 text-white px-4 py-3 rounded font-medium w-2/3  transition-colors duration-200">
+                         Sign in </button>
                 </div>
             </form>
         </div>
