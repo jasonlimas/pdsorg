@@ -165,7 +165,7 @@
     </div>
 
     <!-- Grand total -->
-    <div class="flex justify-end items-center">
+    <div class="flex justify-end items-center mb-10">
         <label class="sr-only" for="grandTotal">
             Grand total
         </label>

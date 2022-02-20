@@ -54,7 +54,7 @@
     </div>
 
     <!-- Quote sender and receiver details -->
-    <div class="grid grid-cols-2 gap-2 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-10">
         <!-- Sender details -->
         <textarea
             disabled
