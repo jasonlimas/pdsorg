@@ -14,6 +14,54 @@ use App\Http\Controllers\SenderController;
 use App\Http\Controllers\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
 
+// Home
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+// Login
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
+
+// Middleware group, for authenticated users only
+Route::group([
+    'middleware' => 'auth'
+], function () {
+    // Quotation List
+    Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
+    Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
+    Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
+
+    // Create Quotation
+    Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
+    Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
+    Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
+    Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
+
+    // Profiles
+    Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');
+
+    // User Profile
+    Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
+
+    // Client Profiles
+    Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
+    Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
+    Route::post('/profiles/client/create', [ClientController::class, 'store']);
+    Route::post('/profiles/client/{client}', [ClientController::class, 'update']);
+    Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
+
+    // Terms & Conditions
+    Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
+    Route::get('/profiles/terms/{term}', [TermsConditionsController::class, 'show'])->name('profiles.terms.show');
+    Route::post('/profiles/terms/create', [TermsConditionsController::class, 'store']);
+    Route::post('profiles/terms/{term}', [TermsConditionsController::class, 'update']);
+    Route::delete('/profiles/terms/{term}', [TermsConditionsController::class, 'destroy'])->name('profiles.terms.destroy');
+
+    // Logout
+    Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+});
+
 // Middleware group, for admin only
 Route::group([
     'prefix' => 'admin',
@@ -44,46 +92,3 @@ Route::group([
     Route::post('/division/{division}', [DivisionController::class, 'update'])->name('.division.show');
     Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('.division.destroy');
 });
-
-// Home
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-// Quotation List
-Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
-Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
-Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
-
-// Create Quotation
-Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
-Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
-Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
-Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
-
-// Profiles
-Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');
-
-// User Profile
-Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
-
-// Client Profiles
-Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
-Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
-Route::post('/profiles/client/create', [ClientController::class, 'store']);
-Route::post('/profiles/client/{client}', [ClientController::class, 'update']);
-Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
-
-// Terms & Conditions
-Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
-Route::get('/profiles/terms/{term}', [TermsConditionsController::class, 'show'])->name('profiles.terms.show');
-Route::post('/profiles/terms/create', [TermsConditionsController::class, 'store']);
-Route::post('profiles/terms/{term}', [TermsConditionsController::class, 'update']);
-Route::delete('/profiles/terms/{term}', [TermsConditionsController::class, 'destroy'])->name('profiles.terms.destroy');
-
-// Login
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
-
-// Logout
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
