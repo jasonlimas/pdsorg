@@ -6,7 +6,7 @@
     </p>
 
     <!-- Quote number input -->
-    <div class="columns-3 gap-2 mb-10">
+    <div class="columns-3 gap-2">
         <!-- User's division -->
         <div>
             <label for="numberDivision" class="text-sm">Your division</label>

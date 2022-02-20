@@ -5,7 +5,7 @@
         The date must be today or a future date.
     </p>
 
-    <div class="mb-10">
+    <div>
         <!-- Date -->
         <label for="date" class="sr-only">Date</label>
         <input

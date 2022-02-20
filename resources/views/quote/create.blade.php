@@ -44,14 +44,26 @@
                         <!-- Quote number component -->
                         @livewire('quote-number')
 
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
+
                         <!-- Quote date component -->
                         @livewire('quote-date')
+
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
 
                         <!-- Sender and receiver component -->
                         @livewire('quote-sender-receiver')
 
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
+
                         <!-- Quote items component -->
                         @livewire('quote-items')
+
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
 
                         <!-- Terms and conditions component -->
                         @livewire('quote-terms-conditions')
