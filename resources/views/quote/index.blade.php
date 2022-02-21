@@ -14,6 +14,7 @@
                 @salesperson
                     <h1 class="text-4xl font-semibold mb-1">Your Quotes</h1>
                 @endsalesperson
+
                 <!-- If user is not logged in, tell the user -->
                 @guest
                     <p>
@@ -59,12 +60,14 @@
                 @auth
                     <!-- Table -->
                     <div class="overflow-auto rounded-lg shadow mb-4">
-                        <table class="w-full">
+                        <table class="w-full text-sm">
                             <thead class="bg-gray-50 border-b-2 border-gray-300">
                                 <th class="w-1/12 border-r p-1">No.</th>
                                 <th class="w-2/12 border-r p-1">Date</th>
-                                <th class="w-4/12 border-r p-1">Quoted To</th>
+                                <th class="w-2/12 border-r p-1">Quoted To</th>
                                 <th class="w-2/12 border-r p-1">Amount</th>
+                                <th class="w-1/12 border-r p-1">Created by</th>
+                                <th class="w-1/12 border-r p-1">Status</th>
                                 <th class="w-2/12 p-1">Action</th>
                             </thead>
 

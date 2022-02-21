@@ -28,6 +28,7 @@ class QuoteController extends Controller
         foreach ($quotes as $quote) {
             $quote->client = Client::find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
+            $quote->createdBy = User::find($quote['user_id'])->name_abbreviation;
         }
 
         return view('quote.index', [

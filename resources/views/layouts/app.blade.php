@@ -60,7 +60,7 @@
                     @endguest
 
                     @auth
-                        <a class="text-gray-500 font-semibold">{{ auth()->user()->name }}</a>
+                        <p>User: <a class="font-semibold">{{ auth()->user()->name }}</a></p>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button

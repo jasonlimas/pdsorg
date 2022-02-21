@@ -1,10 +1,12 @@
 @props(['quote' => $quote])
 
-<tr class="odd:bg-white even:bg-slate-100 text-gray-700 text-md">
+<tr class="odd:bg-white even:bg-slate-100 text-gray-700">
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->id }}</td>
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->quote_date }}</td>
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->client }}</td>
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->amount }}</td>
+    <td class="p-3 whitespace-nowrap border-r">{{ $quote->createdBy }}</td>
+    <td class="p-3 whitespace-nowrap border-r"></td>
 
     <!-- Action icons -->
     <td class="p-3 flex text-center">
