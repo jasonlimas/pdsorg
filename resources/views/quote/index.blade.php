@@ -57,53 +57,12 @@
                                 <th class="w-2/12 border-r p-1">Date</th>
                                 <th class="w-4/12 border-r p-1">Quoted To</th>
                                 <th class="w-2/12 border-r p-1">Amount</th>
-                                <th class="w-2/12 p-1"></th>
+                                <th class="w-2/12 p-1">Action</th>
                             </thead>
 
-                            <tbody class="divide-y divide-gray-100">
+                            <tbody>
                                 @foreach($quotes as $quote)
-                                    <tr class="bg-white text-gray-700 text-lg">
-                                        <td class="p-3 whitespace-nowrap border-r">{{ $quote->id }}</td>
-                                        <td class="p-3 whitespace-nowrap border-r">{{ $quote->quote_date }}</td>
-                                        <td class="p-3 whitespace-nowrap border-r">{{ $quote->client }}</td>
-                                        <td class="p-3 whitespace-nowrap border-r">{{ $quote->amount }}</td>
-
-                                        <!-- Action icons -->
-                                        <td class="p-3 flex text-center">
-                                            <!-- Download the quote -->
-                                            <form action="{{ route('quotes.download', $quote) }}" method="POST">
-                                                @csrf
-                                                <x-enabled-download-icon />
-                                            </form>
-
-                                            <!-- Make sure that only authorized users can edit quotes -->
-                                            <form action="{{ route('quotes.show', $quote) }}" method="GET">
-                                                @csrf
-                                                @can('edit', $quote)
-                                                    <x-enabled-edit-icon />
-                                                @elsecannot('edit', $quote)
-                                                    <x-disabled-edit-icon />
-                                                @endcan
-                                            </form>
-
-                                            <!-- Make sure that only authorized users can delete quotes -->
-                                            <form action="{{ route('quotes.destroy', $quote) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                @can('delete', $quote)
-                                                    <x-enabled-delete-icon />
-                                                @elsecannot('delete', $quote)
-                                                    <x-disabled-delete-icon />
-                                                @endcan
-                                            </form>
-
-                                            <!-- Duplicate Quote -->
-                                            <form action="#" method="">
-                                                @csrf
-                                                <x-enabled-duplicate-icon />
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <x-quote :quote="$quote" />
                                 @endforeach
                             </tbody>
                         </table>

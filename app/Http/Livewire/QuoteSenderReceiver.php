@@ -15,6 +15,7 @@ class QuoteSenderReceiver extends Component
     public $selectedClient = '';
     public $clientDetails = '';
     public $quote;
+    public $isCopied = false;
 
     public function mount()
     {

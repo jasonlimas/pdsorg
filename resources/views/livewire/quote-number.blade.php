@@ -48,13 +48,14 @@
         <div>
             <label for="numberNumber" class="text-sm">Number</label>
             <input
+                @if ($isCopied) disabled @endif
                 min="1"
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                 @error('numberNumber') border-red-500 @enderror"
                 type="number"
                 name="numberNumber"
                 placeholder="Number"
-                value="{{ $quoteNumber? $quoteNumber : old('numberNumber') }}">
+                value="{{ $quoteNumber + 1 }}">
 
             <div class="text-red-500 mt-1 text-xs">
                 @error('numberNumber')

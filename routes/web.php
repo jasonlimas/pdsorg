@@ -36,8 +36,10 @@ Route::group([
     // Quotation List
     Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
     Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
+    Route::get('/quotes/{quote}/copy', [QuoteController::class, 'duplicate'])->name('quotes.duplicate');
     Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
     Route::post('/quotes/{quote}', [QuoteController::class, 'update']);
+    Route::post('/quotes/{quote}/copy', [QuoteController::class, 'storeDuplicate']);
     Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
 
     // Profiles

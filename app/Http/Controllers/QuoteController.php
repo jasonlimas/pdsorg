@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Quotation;
 use App\Models\Sender;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
@@ -28,6 +29,13 @@ class QuoteController extends Controller
     public function show(Quotation $quote)
     {
         return view('quote.edit', [
+            'quote' => $quote,
+        ]);
+    }
+
+    public function duplicate(Quotation $quote)
+    {
+        return view('quote.copy', [
             'quote' => $quote,
         ]);
     }
@@ -167,5 +175,61 @@ class QuoteController extends Controller
 
         // Redirect back with success message
         return back()->with('success', 'Quote deleted successfully');
+    }
+
+    public function storeDuplicate(Request $request, Quotation $quote)
+    {
+        // Validate input
+        $this->validate($request, [
+            'date' => 'required|after:today',
+            'tax' => 'required|integer|min:0|max:100',
+        ]);
+
+        // Create new quote
+        $items = [];
+        $amount = 0;
+        foreach ($request->items as $item) {
+            $items[] = [
+                'name' => $item['name'],
+                'quantity' => $item['quantity'],
+                'price' => $item['unitPrice'],
+            ];
+
+            // Validate items
+            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['unitPrice'] < 0) {
+                $error = \Illuminate\Validation\ValidationException::withMessages([
+                    'items' => ['One or more values are not valid'],
+                ]);
+
+                throw $error;
+            }
+
+            $amount += $item['quantity'] * $item['unitPrice'];
+        }
+
+        // Calculate amount again, but with tax
+        $amount = $amount + ($amount * $request->tax / 100);
+
+        $termsConditions = [];
+        foreach ($request->termsConditions as $term) {
+            $termsConditions[] = $term;
+        }
+
+        // Save to database
+        $request->user()->quotes()->create([
+            'div' => $quote->div,
+            'sales_person' => $quote->sales_person,
+            'number' => $quote->number + 1,
+            'quote_date' => $request->date,
+            'sender_id' => $quote->sender_id,
+            'client_id' => $quote->client_id,
+            'items' => $items,
+            'tax' => $request->tax,
+            'terms_conditions' => $termsConditions,
+            'amount' => $amount,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->route('quotes')->with('success', 'Quote duplicated successfully');
     }
 }

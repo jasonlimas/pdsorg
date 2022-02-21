@@ -12,6 +12,7 @@ class QuoteNumber extends Component
     public $userAbbreviation = '';
     public $quoteNumber;
     public $quote;
+    public $isCopied = false;
 
     public function mount()
     {
