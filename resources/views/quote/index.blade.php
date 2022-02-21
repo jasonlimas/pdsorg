@@ -5,7 +5,15 @@
         <div class="w-8/12">
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
-                <h1 class="text-4xl font-semibold mb-1">Quotes</h1>
+                @admin
+                    <h1 class="text-4xl font-semibold mb-1">All Created Quotes</h1>
+                @endadmin
+                @teamleader
+                    <h1 class="text-4xl font-semibold mb-1">All Quotes From Your Division</h1>
+                @endteamleader
+                @salesperson
+                    <h1 class="text-4xl font-semibold mb-1">Your Quotes</h1>
+                @endsalesperson
                 <!-- If user is not logged in, tell the user -->
                 @guest
                     <p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\PDF\PDF;
 use App\Models\Client;
+use App\Models\Division;
 use App\Models\Quotation;
 use App\Models\Sender;
 use App\Models\User;
@@ -14,7 +15,15 @@ class QuoteController extends Controller
 {
     public function index()
     {
-        $quotes = Quotation::latest()->paginate(10);
+        // Check currently logged in user's role
+        if (auth()->user()->role_id == 1) {
+            $quotes = Quotation::latest()->paginate(10);
+        } else if (auth()->user()->role_id == 2) {
+            $quotes = Quotation::where('div', Division::find(auth()->user()->division_id)->abbreviation)->latest()->paginate(10);
+        } else {
+            $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(10);
+        }
+
 
         foreach ($quotes as $quote) {
             $quote->client = Client::find($quote['client_id'])->name;
