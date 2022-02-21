@@ -15,13 +15,20 @@ class QuoteController extends Controller
     {
         $quotes = Quotation::latest()->paginate(10);
 
-        foreach($quotes as $quote) {
+        foreach ($quotes as $quote) {
             $quote->client = Client::find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
         }
 
         return view('quote.index', [
             'quotes' => $quotes,
+        ]);
+    }
+
+    public function show(Quotation $quote)
+    {
+        return view('quote.edit', [
+            'quote' => $quote,
         ]);
     }
 
@@ -78,6 +85,78 @@ class QuoteController extends Controller
     {
         // Check permission first
         $this->authorize('edit', Quotation::class);
+
+        // Input validation
+        $this->validate($request, [
+            // Quote number
+            'numberNumber' => 'required|integer|min:0',
+
+            // Quote date
+            'date' => 'required|after:today',
+
+            // Receiver
+            'receiver' => 'required|exists:clients,id',
+
+            // Tax
+            'tax' => 'required|integer|min:0|max:100',
+
+            // Items and Terms & Conditions are validated separately
+        ]);
+
+        // Validate terms and conditions
+        if (in_array(null, $request->termsConditions, true)) {
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'termsConditions' => ['One or more values are missing'],
+            ]);
+
+            throw $error;
+        }
+
+        $items = [];
+        $amount = 0;
+        foreach ($request->items as $item) {
+            $items[] = [
+                'name' => $item['name'],
+                'quantity' => $item['quantity'],
+                'price' => $item['unitPrice'],
+            ];
+
+            // Validate items
+            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['unitPrice'] < 0) {
+                $error = \Illuminate\Validation\ValidationException::withMessages([
+                    'items' => ['One or more values are not valid'],
+                ]);
+
+                throw $error;
+            }
+
+            $amount += $item['quantity'] * $item['unitPrice'];
+        }
+
+        // Calculate amount again, but with tax
+        $amount = $amount + ($amount * $request->tax / 100);
+
+        $termsConditions = [];
+        foreach ($request->termsConditions as $term) {
+            $termsConditions[] = $term;
+        }
+
+        // Update quote
+        $quote->update([
+            'div' => $quote->div,                   // Remains unchanged
+            'sales_person' => $quote->sales_person, // Remains unchanged
+            'number' => $request->numberNumber,
+            'quote_date' => $request->date,
+            'sender_id' => $request->sender,
+            'client_id' => $request->receiver,
+            'items' => $items,
+            'tax' => $request->tax,
+            'terms_conditions' => $termsConditions,
+            'amount' => $amount,
+            'user_id' => $quote->user_id,           // Remains unchanged
+        ]);
+
+        return redirect()->route('quotes')->with('success', 'Quote updated successfully');
     }
 
     // Delete a quote from the database. Called when clicking the delete quote button
@@ -87,6 +166,6 @@ class QuoteController extends Controller
         $quote->delete();           // Delete the quote
 
         // Redirect back with success message
-        return back()->with('status', 'Quote deleted successfully');
+        return back()->with('success', 'Quote deleted successfully');
     }
 }

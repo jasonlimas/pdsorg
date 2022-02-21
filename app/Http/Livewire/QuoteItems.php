@@ -10,12 +10,27 @@ class QuoteItems extends Component
     public $tax = 0;
     public $subTotal = 0;
     public $grandTotal = 0;
+    public $quote;
 
     public function mount()
     {
-        $this->items = [
-            ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0, 'formattedTotalPrice' => ''],
-        ];
+        if ($this->quote) {
+            foreach ($this->quote->items as $item) {
+                $this->items[] = [
+                    'name' => $item['name'],
+                    'quantity' => intval($item['quantity']),
+                    'unitPrice' => intval($item['price']),
+                    'totalPrice' => 0,              // This will be calculated later
+                    'formattedTotalPrice' => '',    // Same for this one
+                ];
+            }
+
+            $this->tax = $this->quote->tax;
+        } else {
+            $this->items = [
+                ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0, 'formattedTotalPrice' => ''],
+            ];
+        }
     }
 
     public function render()

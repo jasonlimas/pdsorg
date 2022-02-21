@@ -54,7 +54,7 @@
                 type="number"
                 name="numberNumber"
                 placeholder="Number"
-                value="{{ old('numberNumber') }}">
+                value="{{ $quoteNumber? $quoteNumber : old('numberNumber') }}">
 
             <div class="text-red-500 mt-1 text-xs">
                 @error('numberNumber')

@@ -27,19 +27,21 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::group([
     'middleware' => 'auth'
 ], function () {
-    // Quotation List
-    Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
-    Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
-    Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
-
     // Create Quotation
     Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
     Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
     Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
     Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
 
+    // Quotation List
+    Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
+    Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
+    Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
+    Route::post('/quotes/{quote}', [QuoteController::class, 'update']);
+    Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
+
     // Profiles
-    Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles')->middleware('auth');
+    Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
 
     // User Profile
     Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
@@ -55,7 +57,7 @@ Route::group([
     Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
     Route::get('/profiles/terms/{term}', [TermsConditionsController::class, 'show'])->name('profiles.terms.show');
     Route::post('/profiles/terms/create', [TermsConditionsController::class, 'store']);
-    Route::post('profiles/terms/{term}', [TermsConditionsController::class, 'update']);
+    Route::post('/profiles/terms/{term}', [TermsConditionsController::class, 'update']);
     Route::delete('/profiles/terms/{term}', [TermsConditionsController::class, 'destroy'])->name('profiles.terms.destroy');
 
     // Logout
@@ -64,31 +66,29 @@ Route::group([
 
 // Middleware group, for admin only
 Route::group([
-    'prefix' => 'admin',
     'middleware' => 'accessrole',
-    'as' => 'admin'
 ], function () {
     // Admin Panel
-    Route::get('/', [AdminController::class, 'index'])->name('');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
     // User Management
-    Route::get('/user/create', [RegisterController::class, 'index'])->name('.user.create');
-    Route::get('/user/{user}', [UserManagementController::class, 'show'])->name('.user.show');
-    Route::post('/user/create', [RegisterController::class, 'store'])->name('.user.create');
-    Route::post('/user/{user}', [UserManagementController::class, 'update'])->name('.user.show');
-    Route::delete('/user/{user}', [UserManagementController::class, 'destroy'])->name('.user.destroy');
+    Route::get('/admin/user/create', [RegisterController::class, 'index'])->name('admin.user.create');
+    Route::get('/admin/user/{user}', [UserManagementController::class, 'show'])->name('admin.user.show');
+    Route::post('/admin/user/create', [RegisterController::class, 'store']);
+    Route::post('/admin/user/{user}', [UserManagementController::class, 'update']);
+    Route::delete('admin/user/{user}', [UserManagementController::class, 'destroy'])->name('admin.user.destroy');
 
     // Sender Organization Profiles
-    Route::get('/sender/create', [SenderController::class, 'index'])->name('.sender.create');
-    Route::get('/sender/{sender}', [SenderController::class, 'show'])->name('.sender.show');
-    Route::post('/sender/create', [SenderController::class, 'store'])->name('.sender.create');
-    Route::post('/sender/{sender}', [SenderController::class, 'update'])->name('.sender.show');
-    Route::delete('/sender/{sender}', [SenderController::class, 'destroy'])->name('.sender.destroy');
+    Route::get('/admin/sender/create', [SenderController::class, 'index'])->name('admin.sender.create');
+    Route::get('/admin/sender/{sender}', [SenderController::class, 'show'])->name('admin.sender.show');
+    Route::post('/admin/sender/create', [SenderController::class, 'store']);
+    Route::post('/admin/sender/{sender}', [SenderController::class, 'update']);
+    Route::delete('/admin/sender/{sender}', [SenderController::class, 'destroy'])->name('admin.sender.destroy');
 
     // Division
-    Route::get('/division/create', [DivisionController::class, 'index'])->name('.division.create');
-    Route::get('/division/{division}', [DivisionController::class, 'show'])->name('.division.show');
-    Route::post('/division/create', [DivisionController::class, 'store'])->name('.division.create');
-    Route::post('/division/{division}', [DivisionController::class, 'update'])->name('.division.show');
-    Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('.division.destroy');
+    Route::get('/admin/division/create', [DivisionController::class, 'index'])->name('admin.division.create');
+    Route::get('/admin/division/{division}', [DivisionController::class, 'show'])->name('admin.division.show');
+    Route::post('/admin/division/create', [DivisionController::class, 'store']);
+    Route::post('/admin/division/{division}', [DivisionController::class, 'update']);
+    Route::delete('/admin/division/{division}', [DivisionController::class, 'destroy'])->name('admin.division.destroy');
 });

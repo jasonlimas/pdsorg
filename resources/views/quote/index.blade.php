@@ -24,9 +24,9 @@
             </div>
 
             <!-- Session Messages -->
-            @if (session('status'))
+            @if (session('success'))
                 <div class="bg-green-500 p-4 rounded-lg mb-3 text-white text-center">
-                    {{ session('status') }}
+                    {{ session('success') }}
                 </div>
             @endif
 
@@ -57,9 +57,7 @@
                                 <th class="w-2/12 border-r p-1">Date</th>
                                 <th class="w-4/12 border-r p-1">Quoted To</th>
                                 <th class="w-2/12 border-r p-1">Amount</th>
-                                <th class="w-1/12 p-1"></th>
-                                <th class="w-1/12 p-1"></th>
-                                <th class="w-1/12"></th>
+                                <th class="w-2/12 p-1"></th>
                             </thead>
 
                             <tbody class="divide-y divide-gray-100">
@@ -70,24 +68,20 @@
                                         <td class="p-3 whitespace-nowrap border-r">{{ $quote->client }}</td>
                                         <td class="p-3 whitespace-nowrap border-r">{{ $quote->amount }}</td>
 
-                                        <!-- Download button -->
-                                        <td class="p-3 text-center">
-                                            <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
+                                        <!-- Action icons -->
+                                        <td class="p-3 flex text-center">
+                                            <!-- Download the quote -->
                                             <form action="{{ route('quotes.download', $quote) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="mt-1 hover:bg-gray-300 p-2 rounded">
-                                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                                        <path d="M480 352h-133.5l-45.25 45.25C289.2 409.3 273.1 416 256 416s-33.16-6.656-45.25-18.75L165.5 352H32c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32v-96C512 366.3 497.7 352 480 352zM432 456c-13.2 0-24-10.8-24-24c0-13.2 10.8-24 24-24s24 10.8 24 24C456 445.2 445.2 456 432 456zM233.4 374.6C239.6 380.9 247.8 384 256 384s16.38-3.125 22.62-9.375l128-128c12.49-12.5 12.49-32.75 0-45.25c-12.5-12.5-32.76-12.5-45.25 0L288 274.8V32c0-17.67-14.33-32-32-32C238.3 0 224 14.33 224 32v242.8L150.6 201.4c-12.49-12.5-32.75-12.5-45.25 0c-12.49 12.5-12.49 32.75 0 45.25L233.4 374.6z"/>
+                                                <button type="submit" class="hover:bg-gray-300 p-2 rounded">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
                                             </form>
-                                        </td>
 
-                                        <!-- Edit button -->
-                                        <td class="p-3 text-center">
-                                            <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
-                                            <form action="#" method="">
+                                            <!-- Make sure that only authorized users can edit quotes -->
+                                            <form action="{{ route('quotes.show', $quote) }}" method="GET">
                                                 @csrf
                                                 @can('edit', $quote)
                                                     <x-enabled-edit-icon />
@@ -95,11 +89,8 @@
                                                     <x-disabled-edit-icon />
                                                 @endcan
                                             </form>
-                                        </td>
 
-                                        <!-- Delete button -->
-                                        <td class="p-3 text-center">
-                                            <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
+                                            <!-- Make sure that only authorized users can delete quotes -->
                                             <form action="{{ route('quotes.destroy', $quote) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

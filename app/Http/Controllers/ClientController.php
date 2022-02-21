@@ -46,7 +46,7 @@ class ClientController extends Controller
         ]);
 
         // Redirect back with success message
-        return back()->with('status', 'Client created successfully');
+        return redirect()->route('profiles')->with('status', 'Client created successfully');
     }
 
     // Update a client in the database. Called when clicking the edit client button
@@ -72,7 +72,7 @@ class ClientController extends Controller
         ]);
 
         // Redirect back with success message
-        return back()->with('status', 'Client updated successfully');
+        return redirect()->route('profiles')->with('status', 'Client updated successfully');
     }
 
     // Delete a client from the database. Called when clicking the delete icon

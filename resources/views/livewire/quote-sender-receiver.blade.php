@@ -7,13 +7,12 @@
     </p>
 
     <div class="flex justify-end">
-            <button
-                class="bg-indigo-500 hover:bg-indigo-700 w-32 text-white font-bold py-2 px-4 m-2 rounded"
-                wire:click.prevent=""
-                type="button">
-                Add Client
-            </button>
-        </div>
+        <a
+            class="bg-indigo-500 hover:bg-indigo-700 w-32 text-white text-center font-bold py-2 px-4 m-2 rounded"
+            href="{{ route('profiles.client.create') }}">
+            Add Client
+        </a>
+    </div>
 
     <!-- Sender and receiver inputs header -->
     <div class="grid grid-cols-2 gap-2 mb-1">

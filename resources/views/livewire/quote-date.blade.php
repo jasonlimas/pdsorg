@@ -12,7 +12,8 @@
             class="shadow border rounded p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
             @error('date') border-red-500 @enderror"
             type="date"
-            name="date">
+            name="date"
+            wire:model="savedDate">
 
         @error('date')
             <div class="text-red-500 mt-1 text-xs">

@@ -200,17 +200,15 @@
                     </div>
                 </div>
 
-                <!-- Add new client button, only admin can see the button -->
-                @admin
-                    <div class="flex justify-end">
-                        <a
-                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
-                            type="button"
-                            href="{{ route('profiles.client.create') }}">
-                            Add Client
-                        </a>
-                    </div>
-                @endadmin
+                <!-- Add new client button -->
+                <div class="flex justify-end">
+                    <a
+                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
+                        type="button"
+                        href="{{ route('profiles.client.create') }}">
+                        Add Client
+                    </a>
+                </div>
             </div>
 
             <!-- Terms & Conditions Presets -->

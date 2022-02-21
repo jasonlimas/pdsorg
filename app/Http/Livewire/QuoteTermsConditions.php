@@ -7,13 +7,22 @@ use Livewire\Component;
 
 class QuoteTermsConditions extends Component
 {
-    public $termsConditions = [''];
+    public $termsConditions = [];
     public $savedPresets = TermsConditions::class;
     public $selectedPreset = '';
+    public $quote;
 
     public function mount()
     {
+        // Get all saved presets
         $this->savedPresets = TermsConditions::all();
+
+        // Get all saved terms & conditions (will only be executed on edit quote)
+        if ($this->quote) {
+            $this->termsConditions = $this->quote->terms_conditions;
+        } else {
+            $this->termsConditions = [''];
+        }
     }
 
     public function render()

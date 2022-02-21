@@ -8,7 +8,7 @@
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $term->name }}</td>
 
     <!-- Actions Icon -->
-    <td class="p-3">
+    <td class="p-3 flex">
         <form action="{{ route('profiles.terms.show', $term) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
