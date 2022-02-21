@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::if('admin', function () {
-            if (auth()->check()) return auth()->user()->role_id === 1;
+            if (auth()->check()) return auth()->user()->role_id == 1;
         });
     }
 }

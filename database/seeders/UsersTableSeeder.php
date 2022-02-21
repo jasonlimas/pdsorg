@@ -22,7 +22,8 @@ class UsersTableSeeder extends Seeder
             'role_id' => 1,
             'phone' => '040000000',
             'sender_id' => 1,
-            'division_id' => 1
+            'division_id' => 1,
+            'name_abbreviation' => 'ADM'
         ]);
 
         // Team Leader
@@ -33,7 +34,8 @@ class UsersTableSeeder extends Seeder
             'role_id' => 2,
             'sender_id' => 1,
             'phone' => '0411111111',
-            'division_id' => 1
+            'division_id' => 1,
+            'name_abbreviation' => 'LDR'
         ]);
 
         // Sales Person
@@ -44,7 +46,8 @@ class UsersTableSeeder extends Seeder
             'role_id' => 3,
             'sender_id' => 1,
             'phone' => '0422222222',
-            'division_id' => 1
+            'division_id' => 1,
+            'name_abbreviation' => 'SAL'
         ]);
     }
 }
