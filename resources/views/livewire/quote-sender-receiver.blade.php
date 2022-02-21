@@ -6,6 +6,15 @@
         The "Quote From" details are tied to your account's organization details. Check <a href="{{ route('profiles') }}" class="text-blue-600 no-underline hover:underline">profiles page</a> for more details.
     </p>
 
+    <div class="flex justify-end">
+            <button
+                class="bg-indigo-500 hover:bg-indigo-700 w-32 text-white font-bold py-2 px-4 m-2 rounded"
+                wire:click.prevent=""
+                type="button">
+                Add Client
+            </button>
+        </div>
+
     <!-- Sender and receiver inputs header -->
     <div class="grid grid-cols-2 gap-2 mb-1">
         <h2 class="text-xl font-bold bg-gray-200 rounded px-2 py-1">Quote From</h2>
