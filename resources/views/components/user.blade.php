@@ -13,17 +13,14 @@
     <!-- User Phone -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $user->phone }}</td>
 
-    <!-- Edit Icon -->
-    <td class="p-3">
+    <!-- Action Icons -->
+    <td class="p-3 flex">
+        <!-- Edit Icon -->
         <form action="{{ route('admin.user.show', $user) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
-    </td>
-
-    <!-- Delete Icon -->
-    <td class="p-3">
-        <!-- Make sure that only authorized users can delete clients (either admin or client creator) -->
+        <!-- Delete Icon -->
         <form action="{{ route('admin.user.destroy', $user) }}" method="POST">
             @csrf
             @method('DELETE')

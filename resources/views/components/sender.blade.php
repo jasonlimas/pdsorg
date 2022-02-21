@@ -7,16 +7,14 @@
     <!-- Sender Name -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $sender->name }}</td>
 
-    <!-- Edit Icon -->
-    <td class="p-3">
+    <!-- Action Icons -->
+    <td class="p-3 flex">
+        <!-- Edit Icon -->
         <form action="{{ route('admin.sender.show', $sender) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
-    </td>
-
-    <!-- Delete Icon -->
-    <td class="p-3">
+        <!-- Delete icon -->
         <form action="{{ route('admin.sender.destroy', $sender) }}" method="POST">
             @csrf
             @method('DELETE')

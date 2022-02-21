@@ -10,16 +10,14 @@
     <!-- Division Description -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $division->description }}</td>
 
-    <!-- Edit Icon -->
-    <td class="p-3">
+    <!-- Action Icons -->
+    <td class="p-3 flex">
+        <!-- Edit Icon -->
         <form action="{{ route('admin.division.show', $division) }}" method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
-    </td>
-
-    <!-- Delete Icon -->
-    <td class="p-3">
+        <!-- Delete Icon -->
         <form action="{{ route('admin.division.destroy', $division) }}" method="POST">
             @csrf
             @method('DELETE')

@@ -33,8 +33,7 @@
                                 <th class="w-3/12 p-3 text-sm tracking-wide text-left">Name</th>
                                 <th class="w-3/12 p-3 text-sm tracking-wide text-left">Email</th>
                                 <th class="p-3/12 p-3 text-sm tracking-wide text-left">Phone</th>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                                <th class="w-2/12 p-3 text-sm tracking-wide text-left">Action</th>
                             </tr>
                         </thead>
 
@@ -82,8 +81,7 @@
                                 <tr>
                                     <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
                                     <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
-                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
-                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                                    <th class="w-2/12 p-3 text-sm tracking-wide text-left">Action</th>
                                 </tr>
                             </thead>
 
@@ -112,6 +110,7 @@
                         </a>
                     </div>
                 </div>
+
                 <!-- Division -->
                 <div>
                     <!-- Division Details header -->
@@ -129,8 +128,7 @@
                                     <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
                                     <th class="w-3/12 p-3 text-sm tracking-wide text-left">Abbreviation</th>
                                     <th class="w-6/12 p-3 text-sm tracking-wide text-left">Description</th>
-                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Edit</th>
-                                    <th class="w-1/12 p-3 text-sm tracking-wide text-left">Delete</th>
+                                    <th class="w-2/12 p-3 text-sm tracking-wide text-left">Action</th>
                                 </tr>
                             </thead>
 
