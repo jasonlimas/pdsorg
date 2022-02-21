@@ -21,7 +21,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('AdminPdsOrg!'),
             'role_id' => 1,
             'phone' => '040000000',
-            'sender_id' => 0,
+            'sender_id' => 1,
+            'division_id' => 1
         ]);
 
         // Team Leader
@@ -30,8 +31,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'leader@mail.com',
             'password' => bcrypt('LeaderPdsOrg!'),
             'role_id' => 2,
-            'sender_id' => 0,
+            'sender_id' => 1,
             'phone' => '0411111111',
+            'division_id' => 1
         ]);
 
         // Sales Person
@@ -40,8 +42,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'sales@mail.com',
             'password' => bcrypt('SalesPdsOrg!'),
             'role_id' => 3,
-            'sender_id' => 0,
+            'sender_id' => 1,
             'phone' => '0422222222',
+            'division_id' => 1
         ]);
     }
 }
