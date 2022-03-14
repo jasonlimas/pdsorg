@@ -13,6 +13,7 @@ class QuoteNumber extends Component
     public $quoteNumber;
     public $quote;
     public $isCopied = false;
+    public $isManual = false;
 
     public function mount()
     {

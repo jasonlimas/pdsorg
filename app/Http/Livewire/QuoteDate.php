@@ -8,6 +8,7 @@ class QuoteDate extends Component
 {
     public $quote;
     public $savedDate;
+    public $isManual = false;
 
     public function mount()
     {

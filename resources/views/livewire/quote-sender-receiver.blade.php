@@ -3,7 +3,16 @@
     <h2 class="text-2xl font-medium">Sender and Receiver Details</h2>
     <p class="text-gray-600 mb-3">
         Your details as the sender, and the client details as the receiver.<br>
-        <a class="text-red-400">This is a copied quote. You cannot change the "Quote To" section on copied quote.</a>
+        @if ($isCopied)
+            <a class="text-red-400">This is a copied quote. You cannot change the "Quote To" section on copied
+                quote.</a>
+        @elseif ($isManual)
+            Freely pick the "Quote From" and "Quote To" details.
+        @else
+            The "Quote From" details are tied to your account's organization details. Check
+            <a class="text-blue-500 hover:underline" href="{{ route('profiles') }}"> profiles page</a> for more
+            details.
+        @endif
     </p>
 
     <!-- Sender and receiver inputs header -->
@@ -16,12 +25,18 @@
         <!-- Sender input -->
         <div>
             <label for="sender" class="sr-only">Sender</label>
-            <select
-                @if ($isCopied) disabled @endif
+            <select @if ($isCopied) disabled @endif required
                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 @error('sender') border-red-500 @enderror"
-                name="sender">
-                <option value="{{ $sender->id }}">{{ $sender->name }}</option>
+                name="sender" wire:model="selectedSender">
+                @if ($isManual)
+                    <option value="">-- Select a client --</option>
+                    @foreach ($senders as $sender)
+                        <option value="{{ $sender->id }}">ID:{{ $sender->id }} - {{ $sender->name }}</option>
+                    @endforeach
+                @else
+                    <option value="{{ $senders->id }}">{{ $senders->name }}</option>
+                @endif
             </select>
 
             <div class="text-red-500 mt-1 text-xs">
@@ -34,16 +49,13 @@
         <!-- Receiver input -->
         <div>
             <label for="receiver" class="sr-only">Quote To</label>
-            <select
-                @if ($isCopied) disabled @endif
+            <select @if ($isCopied) disabled @endif required
                 class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 @error('receiver') border-red-500 @enderror"
-                name="receiver"
-                id="receiver"
-                wire:model="selectedClient">
+                name="receiver" wire:model="selectedClient">
                 <option value="">-- Select a client --</option>
                 @foreach ($clients as $client)
-                    <option value="{{ $client->id }}">ID:{{ $client->id}} - {{ $client->name }}</option>
+                    <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }}</option>
                 @endforeach
             </select>
 
@@ -58,20 +70,14 @@
     <!-- Quote sender and receiver details -->
     <div class="grid grid-cols-2 gap-2">
         <!-- Sender details -->
-        <textarea
-            disabled
-            style="resize: none"
+        <textarea disabled style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            cols="30"
-            rows="5">{{ $sender->address }}</textarea>
+            cols="30" rows="5"
+            @if ($isManual) wire:model="senderDetails" @else wire:model="senderAddress" @endif></textarea>
 
         <!-- Receiver details -->
-        <textarea
-            disabled
-            style="resize: none"
+        <textarea disabled style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            cols="30"
-            rows="5"
-            wire:model="clientDetails" ></textarea>
+            cols="30" rows="5" wire:model="clientDetails"></textarea>
     </div>
 </div>

@@ -11,7 +11,8 @@
 
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-md">
                 @guest
-                    <h2 class="text-center text-xl">You are not logged in. Please log in to continue.</h2>
+                    <h2 class="text-center text-xl">You are not logged in. Please <a href="{{ route('login') }}"
+                            class="text-blue-500 hover:underline">log in</a> to continue.</h2>
                 @endguest
 
                 @auth

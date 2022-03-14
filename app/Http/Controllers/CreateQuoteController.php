@@ -153,4 +153,15 @@ class CreateQuoteController extends Controller
         // Create PDF
         pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
     }
+
+    // Admin only section
+    public function indexManual()
+    {
+        return view('quote.create-manual');
+    }
+
+    public function storeManual(Request $request)
+    {
+        dd($request);
+    }
 }

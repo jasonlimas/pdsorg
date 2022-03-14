@@ -6,13 +6,13 @@
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
                 @admin
-                    <h1 class="text-4xl font-semibold mb-1">All Created Quotes</h1>
+                <h1 class="text-4xl font-semibold mb-1">All Created Quotes</h1>
                 @endadmin
                 @teamleader
-                    <h1 class="text-4xl font-semibold mb-1">All Quotes From Your Division</h1>
+                <h1 class="text-4xl font-semibold mb-1">All Quotes From Your Division</h1>
                 @endteamleader
                 @salesperson
-                    <h1 class="text-4xl font-semibold mb-1">Your Quotes</h1>
+                <h1 class="text-4xl font-semibold mb-1">Your Quotes</h1>
                 @endsalesperson
 
                 <!-- If user is not logged in, tell the user -->
@@ -39,21 +39,63 @@
                 </div>
             @endif
 
+            <!-- Sorting -->
             @auth
-                <!-- Sorting -->
-                <div class="bg-gray-100 p-6 rounded-lg mb-1 shadow-lg">
-                    <div class="flex justify-end">
-                        <div>
-                            <a href="{{ route('quotes.create') }}" class="bg-blue-500 hover:bg-blue-700 p-2 rounded-lg text-white text-center">Create Quote</a>
+                <form action="#" method="">
+                    @csrf
+                    <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
+                        <!-- Date -->
+                        <div class="w-1/3 pl-5 pt-2">
+                            <label for="startDate">Start date</label>
+                            <input
+                                class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
+                                @error('startDate') border-red-500 @enderror"
+                                type="date" name="startDate" value="{{ old('startDate') }}">
+                        </div>
+
+                        <div class="w-1/3 pt-2">
+                            <label for="endDate">End date</label>
+                            <input
+                                class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
+                                @error('startDate') border-red-500 @enderror"
+                                type="date" name="endDate" value="{{ old('endDate') }}">
+                        </div>
+
+                        <div class="w-1/3 pr-2 py-2">
+                            <label for="client" class="">Quote to</label>
+                            <select
+                                class="shadow border rounded w-full p-1 text-gray-700 focus:outline-none focus:shadow-outline"
+                                name="client">
+                                <option value="">-- Select client --</option>
+                            </select>
                         </div>
                     </div>
-                </div>
+
+                    <div class="rounded-lg mb-3 space-x-2 flex justify-end">
+                        @admin
+                        <a href="{{ route('admin.quote.create') }}"
+                            class="bg-red-600 hover:bg-red-800 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center">
+                            Create (Manual)
+                        </a>
+                        @endadmin
+                        <a href="{{ route('quotes.create') }}"
+                            class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center">
+                            Create Quote
+                        </a>
+                        <button
+                            class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
+                            type="submit">
+                            Filter
+                        </button>
+                    </div>
+                </form>
             @endauth
 
-            <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-md">
+            <div class="bg-gray-100 rounded-lg mb-3 shadow-md">
                 <!-- If user is not logged in, tell the user -->
                 @guest
-                    <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 underline" href="{{ route('login') }}">login</a> to view quotes.</h2>
+                    <h2 class="text-xl font-medium text-center">Please <a class="text-blue-500 underline"
+                            href="{{ route('login') }}">login</a> to view quotes.</h2>
                 @endguest
 
                 <!-- If the user is logged in -->
@@ -72,7 +114,7 @@
                             </thead>
 
                             <tbody>
-                                @foreach($quotes as $quote)
+                                @foreach ($quotes as $quote)
                                     <x-quote :quote="$quote" />
                                 @endforeach
                             </tbody>

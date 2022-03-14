@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Library\PDF\PDF;
+use App\Mail\QuoteSent;
 use App\Models\Client;
 use App\Models\Division;
 use App\Models\Quotation;
 use App\Models\Sender;
 use App\Models\User;
-use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class QuoteController extends Controller
 {
@@ -33,6 +35,28 @@ class QuoteController extends Controller
 
         return view('quote.index', [
             'quotes' => $quotes,
+        ]);
+    }
+
+    public function query(Request $request)
+    {
+        // Validate date
+        $this->validate($request, [
+            'startDate' => 'required|date',
+            'endDate' => 'required|date|before_or_equal:startDate',
+        ]);
+        dd($request);
+
+        $start = Carbon::parse($request->startDate);
+        $end = Carbon::parse($request->endDate);
+
+        $getAllResult = Quotation::whereDate('quote_date', '<=', $end->format('m-d-y'))
+            ->whereDate('quote_date', '>=', $start->format('m-d-y'))
+            ->get();
+
+        dd($getAllResult);
+        return view('quote.index', [
+            'quotes' => $getAllResult,
         ]);
     }
 
@@ -241,5 +265,14 @@ class QuoteController extends Controller
         ]);
 
         return redirect()->route('quotes')->with('success', 'Quote duplicated successfully');
+    }
+
+    public function sendEmail(Quotation $quote)
+    {
+        $user = auth()->user();
+
+        Mail::to('jasonandrea14@gmail.com')->send(new QuoteSent());
+
+        return back()->with('success', 'Email sent successfully');
     }
 }

@@ -9,14 +9,13 @@
     <div class="columns-3 gap-2">
         <!-- User's division -->
         <div>
-            <label for="numberDivision" class="text-sm">Your division</label>
-            <input
-                disabled
+            <label for="numberDivision" class="text-sm">Sender person's division</label>
+            <input @if (!$isManual) disabled @endif required
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                 @error('numberDivision') border-red-500 @enderror"
-                type="text"
-                name="numberDivision"
-                value="{{ $divisionAbbreviation }}">
+                type="text" name="numberDivision" placeholder="Division"
+                @if ($isManual) value="{{ old('numberDivision') }}"
+                @else value="{{ $divisionAbbreviation }}" @endif>
 
             <div class="text-red-500 mt-1 text-xs">
                 @error('numberDivision')
@@ -27,15 +26,13 @@
 
         <!-- User's name abbreviation -->
         <div>
-            <label for="numberSales" class="text-sm">Your name</label>
-            <input
-                disabled
+            <label for="numberSales" class="text-sm">Sender person's name</label>
+            <input @if (!$isManual) disabled @endif required
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                 @error('numberSales') border-red-500 @enderror"
-                type="text"
-                name="numberSales"
-                placeholder="Sales"
-                value="{{ $userAbbreviation }}">
+                type="text" name="numberSales" placeholder="Sales Person"
+                @if ($isManual) value="{{ old('numberSales') }}"
+                @else value="{{ $userAbbreviation }}" @endif>
 
             <div class="text-red-500 mt-1 text-xs">
                 @error('numberSales')
@@ -46,16 +43,11 @@
 
         <!-- Number -->
         <div>
-            <label for="numberNumber" class="text-sm">Number</label>
-            <input
-                @if ($isCopied) disabled @endif
-                min="1"
+            <label for="numberNumber" class="text-sm">Quote number</label>
+            <input @if ($isCopied) disabled @endif min="1" required
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                 @error('numberNumber') border-red-500 @enderror"
-                type="number"
-                name="numberNumber"
-                placeholder="Number"
-                value="{{ $quoteNumber + 1 }}">
+                type="number" name="numberNumber" placeholder="Number" value="{{ old('numberNumber') }}">
 
             <div class="text-red-500 mt-1 text-xs">
                 @error('numberNumber')
