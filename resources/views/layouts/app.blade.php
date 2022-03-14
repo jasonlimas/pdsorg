@@ -7,6 +7,7 @@
     <title>Paradisestore.org</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/7f8b46f267.js" crossorigin="anonymous"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     @livewireStyles
@@ -78,5 +79,7 @@
     @yield('content')
 
     @livewireScripts
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    @yield('scripts')
 </body>
 </html>

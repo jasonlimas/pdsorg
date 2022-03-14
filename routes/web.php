@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SenderController;
 use App\Http\Controllers\TermsConditionsController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -33,6 +34,7 @@ Route::group([
     Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
     Route::get('/quotes/create/done/{quote}/mail', [QuoteController::class, 'sendEmail'])->name('quotes.create.email');
     Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
+    Route::post('/upload', [UploadController::class, 'store']);
 
     // Quotation List
     Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
