@@ -39,7 +39,7 @@
 
                 <!-- Show the form for logged in user -->
                 @auth
-                    <form action="{{ route('quotes.create') }}" method="POST">
+                    <form action="{{ route('quotes.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Quote number component -->
                         @livewire('quote-number')
@@ -89,5 +89,19 @@
                 @endauth
             </div>
         </div>
+        @section('scripts')
+            <script>
+                const inputElement = document.querySelector('input[id="attachment"]');
+                const pond = FilePond.create(inputElement);
+                FilePond.setOptions({
+                    server: {
+                        url: '/upload',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    }
+                });
+            </script>
+        @endsection
     </div>
 @endsection

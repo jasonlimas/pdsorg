@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 
 class UploadController extends Controller
 {

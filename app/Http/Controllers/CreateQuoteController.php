@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Library\PDF\pdf;
 use App\Models\Division;
 use App\Models\Quotation;
+use App\Models\TemporaryFile;
 use App\Models\User;
 
 class CreateQuoteController extends Controller
@@ -89,7 +90,7 @@ class CreateQuoteController extends Controller
         }
 
         // Save to database
-        $request->user()->quotes()->create([
+        $newQuote = $request->user()->quotes()->create([
             'div' => Division::find(auth()->user()->division_id)->abbreviation,
             'sales_person' => auth()->user()->name_abbreviation,
             'number' => $request->numberNumber,
@@ -102,6 +103,15 @@ class CreateQuoteController extends Controller
             'amount' => $amount,
             'user_id' => auth()->user()->id,
         ]);
+
+        // Store temporary file in the database
+        $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
+        $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
+        if ($temporaryFile) {
+            $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))->toMediaCollection('attachments');
+            rmdir(storage_path('app/attachments/tmp/' . $attachmentRequest));
+            $temporaryFile->delete();
+        }
 
         return redirect()->route('quotes.create.finalize');
     }
