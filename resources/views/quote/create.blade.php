@@ -89,19 +89,5 @@
                 @endauth
             </div>
         </div>
-        @section('scripts')
-            <script>
-                const inputElement = document.querySelector('input[id="attachment"]');
-                const pond = FilePond.create(inputElement);
-                FilePond.setOptions({
-                    server: {
-                        url: '/upload',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    }
-                });
-            </script>
-        @endsection
     </div>
 @endsection
