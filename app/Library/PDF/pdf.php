@@ -2,7 +2,7 @@
 namespace App\Library\PDF;
 
 class PDF {
-    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions) {
+    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
 
@@ -78,6 +78,11 @@ class PDF {
         // *===================================== *
         $mpdf->SetXY(135, $mpdf->y + 2);
         PDF::writeBestRegards($mpdf, $sender, $border);
+
+        // *===================================== *
+        // * Attachment
+        // *===================================== *
+        PDF::addAttachment($mpdf, $attachmentPath);
 
         // *===================================== *
         // * Output PDF
@@ -552,15 +557,17 @@ class PDF {
     private static function addAttachment($mpdf, $file) {
         // Select the source file to be added as attachment
         // SetSourceFile() returns the number of pages of the source file
-        $template = $mpdf->setSourceFile($file);
+        if ($file) {
+            $template = $mpdf->setSourceFile($file);
 
-        // Import the selected source file above
-        for ($i = 0; $i < $template; $i++) {
-            $fileId = $mpdf->importPage($i+1);
-            $mpdf->SetPageTemplate($fileId);
+            // Import the selected source file above
+            for ($i = 0; $i < $template; $i++) {
+                $fileId = $mpdf->importPage($i + 1);
+                $mpdf->SetPageTemplate($fileId);
 
-            if ($i < $template) {
-                $mpdf->AddPage();
+                if ($i < $template) {
+                    $mpdf->AddPage();
+                }
             }
         }
     }

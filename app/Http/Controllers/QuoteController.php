@@ -118,8 +118,15 @@ class QuoteController extends Controller
             $termsConditions[] = $term;
         }
 
+        // Attachment
+        $attachment = $quote->getMedia('attachments');
+        $attachmentPath = null;
+        if (!$attachment->isEmpty()) {
+            $attachmentPath = $attachment[0]->getPath();
+        }
+
         // Create PDF
-        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
+        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

@@ -160,8 +160,15 @@ class CreateQuoteController extends Controller
             $termsConditions[] = $term;
         }
 
+        // Attachment
+        $attachment = $quote->getMedia('attachments');
+        $attachmentPath = null;
+        if (!$attachment->isEmpty()) {
+            $attachmentPath = $attachment[0]->getPath();
+        }
+
         // Create PDF
-        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions);
+        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath);
     }
 
     // Admin only section
