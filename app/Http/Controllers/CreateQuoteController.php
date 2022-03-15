@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Library\PDF\pdf;
 use App\Models\Division;
 use App\Models\Quotation;
+use App\Models\QuoteCounter;
 use App\Models\TemporaryFile;
 use App\Models\User;
 
@@ -37,7 +38,7 @@ class CreateQuoteController extends Controller
         // Input validation
         $this->validate($request, [
             // Quote number
-            'numberNumber' => 'required|integer|min:0',
+            'numberNumber' => 'integer|min:0',  // No longer required because number should be generated automatically
 
             // Quote date
             'date' => 'required|after:today',
@@ -50,6 +51,21 @@ class CreateQuoteController extends Controller
 
             // Items and Terms & Conditions are validated separately
         ]);
+
+        // Generate quote number
+        $year = substr($request->date, 0, 4);   // Get the year from the input date
+        $counter = QuoteCounter::where('year', $year)->first();
+        if ($counter) {
+            $counter->count++;
+            $counter->save();
+        } else {
+            $counter = new QuoteCounter();
+            $counter->year = $year;
+            $counter->count = 1;
+            $counter->save();
+        }
+
+        $number = $counter->count;
 
         // Validate terms and conditions
         if (in_array(null, $request->termsConditions, true)) {
@@ -93,7 +109,7 @@ class CreateQuoteController extends Controller
         $newQuote = $request->user()->quotes()->create([
             'div' => Division::find(auth()->user()->division_id)->abbreviation,
             'sales_person' => auth()->user()->name_abbreviation,
-            'number' => $request->numberNumber,
+            'number' => $number,
             'quote_date' => $request->date,
             'sender_id' => $request->sender,
             'client_id' => $request->receiver,

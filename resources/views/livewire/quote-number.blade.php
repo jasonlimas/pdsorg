@@ -6,7 +6,7 @@
     </p>
 
     <!-- Quote number input -->
-    <div class="columns-3 gap-2">
+    <div class="columns-2 gap-2">
         <!-- User's division -->
         <div>
             <label for="numberDivision" class="text-sm">Sender person's division</label>
@@ -41,10 +41,10 @@
             </div>
         </div>
 
-        <!-- Number -->
-        <div>
+        <!-- Number (DISABLED BECAUSE IT'S GENERATED AUTOMATICALLY) -->
+        {{-- <div>
             <label for="numberNumber" class="text-sm">Quote number</label>
-            <input @if ($isCopied) disabled @endif min="1" required
+            <input disabled min="1"
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                 @error('numberNumber') border-red-500 @enderror"
                 type="number" name="numberNumber" placeholder="Number" value="{{ old('numberNumber') }}">
@@ -54,6 +54,6 @@
                     {{ $message }}
                 @enderror
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>

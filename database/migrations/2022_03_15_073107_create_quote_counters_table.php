@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuoteCounterTable extends Migration
+class CreateQuoteCountersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateQuoteCounterTable extends Migration
      */
     public function up()
     {
-        Schema::create('quote_counter', function (Blueprint $table) {
+        Schema::create('quote_counters', function (Blueprint $table) {
             $table->id();
             $table->integer('year')->unsigned();
             $table->integer('count')->unsigned();
@@ -28,6 +28,6 @@ class CreateQuoteCounterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quote_counter');
+        Schema::dropIfExists('quote_counters');
     }
 }
