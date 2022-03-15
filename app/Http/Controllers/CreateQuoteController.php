@@ -55,17 +55,17 @@ class CreateQuoteController extends Controller
         // Generate quote number
         $year = substr($request->date, 0, 4);   // Get the year from the input date
         $counter = QuoteCounter::where('year', $year)->first();
-        if ($counter) {
+        if ($counter) { // If the counter for the year exists, increment the counter
             $counter->count++;
             $counter->save();
-        } else {
+        } else {    // If the counter for the year does not exist, create a new counter starting at 1
             $counter = new QuoteCounter();
             $counter->year = $year;
             $counter->count = 1;
             $counter->save();
         }
 
-        $number = $counter->count;
+        $number = $counter->count;  // Make the counter to be the quote number
 
         // Validate terms and conditions
         if (in_array(null, $request->termsConditions, true)) {
