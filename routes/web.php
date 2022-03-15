@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
+// Quote download for unauthenticated users (Clicking download in email)
+Route::get('/quote/download/{quote}', [QuoteController::class, 'download'])->name('quote.download');
+
 // Middleware group, for authenticated users only
 Route::group([
     'middleware' => 'auth'
@@ -44,8 +47,6 @@ Route::group([
     Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
     Route::post('/quotes/{quote}', [QuoteController::class, 'update']);
     Route::post('/quotes/{quote}/copy', [QuoteController::class, 'storeDuplicate']);
-
-
     Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('quotes.destroy');
 
     // Profiles

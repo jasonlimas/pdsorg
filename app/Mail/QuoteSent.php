@@ -13,14 +13,16 @@ class QuoteSent extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $downloadLink;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($downloadLink)
     {
-        //
+        $this->downloadLink = $downloadLink;
     }
 
     /**

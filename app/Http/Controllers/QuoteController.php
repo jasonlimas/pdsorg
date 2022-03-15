@@ -278,7 +278,7 @@ class QuoteController extends Controller
     {
         $user = auth()->user();
 
-        Mail::to('jasonandrea14@gmail.com')->send(new QuoteSent());
+        Mail::to('jasonandrea14@gmail.com')->send(new QuoteSent(route('quote.download', $quote)));
 
         return back()->with('success', 'Email sent successfully');
     }

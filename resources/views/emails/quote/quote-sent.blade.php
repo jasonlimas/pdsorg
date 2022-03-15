@@ -1,10 +1,10 @@
 @component('mail::message')
 # Paradisestore.id just sent you a quote!
 
-Please refer to the attachment for the quote.
+Click the button below to view the quote.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => $downloadLink])
+View Quote
 @endcomponent
 
 Thanks,<br>
