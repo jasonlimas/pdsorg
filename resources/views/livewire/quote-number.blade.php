@@ -6,7 +6,7 @@
     </p>
 
     <!-- Quote number input -->
-    <div class="columns-2 gap-2">
+    <div class="@if ($isManual) columns-3 @else columns-2 @endif gap-2">
         <!-- User's division -->
         <div>
             <label for="numberDivision" class="text-sm">Sender person's division</label>
@@ -41,19 +41,21 @@
             </div>
         </div>
 
-        <!-- Number (DISABLED BECAUSE IT'S GENERATED AUTOMATICALLY) -->
-        {{-- <div>
-            <label for="numberNumber" class="text-sm">Quote number</label>
-            <input disabled min="1"
-                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                @error('numberNumber') border-red-500 @enderror"
-                type="number" name="numberNumber" placeholder="Number" value="{{ old('numberNumber') }}">
+        <!-- Number -->
+        @if ($isManual)
+            <div>
+                <label for="numberNumber" class="text-sm">Quote number</label>
+                <input min="1" required
+                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                    @error('numberNumber') border-red-500 @enderror"
+                    type="number" name="numberNumber" placeholder="Number" value="{{ old('numberNumber') }}">
 
-            <div class="text-red-500 mt-1 text-xs">
-                @error('numberNumber')
-                    {{ $message }}
-                @enderror
+                <div class="text-red-500 mt-1 text-xs">
+                    @error('numberNumber')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
-        </div> --}}
+        @endif
     </div>
 </div>
