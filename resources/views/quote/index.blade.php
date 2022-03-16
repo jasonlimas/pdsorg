@@ -41,7 +41,7 @@
 
             <!-- Sorting -->
             @auth
-                <form action="{{ route('quotes.filter') }}" method="POST">
+                <form action="{{ route('quotes.filter', $quotes) }}" method="POST">
                     @csrf
                     <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
                         <!-- Date -->
@@ -51,7 +51,7 @@
                                 class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
                                 @error('startDate') border-red-500 @enderror"
                                 type="date" name="startDate" value="{{ old('startDate') }}">
-                        </div>
+                       </div>
 
                         <div class="w-1/3 pt-2">
                             <label for="endDate">End date</label>

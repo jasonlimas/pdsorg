@@ -44,23 +44,59 @@ class QuoteController extends Controller
 
     public function query(Request $request)
     {
-        // Validate date
-        $this->validate($request, [
-            'startDate' => 'required|date',
-            'endDate' => 'required|date|before_or_equal:startDate',
-        ]);
-        dd($request);
+        // // Validate date
+        // $this->validate($request, [
+        //     'startDate' => 'required|date',
+        //     'endDate' => 'required|date|before_or_equal:startDate',
+        // ]);
 
-        $start = Carbon::parse($request->startDate);
-        $end = Carbon::parse($request->endDate);
+        // $start = Carbon::parse($request->startDate);
+        // $end = Carbon::parse($request->endDate);
 
-        $getAllResult = Quotation::whereDate('quote_date', '<=', $end->format('m-d-y'))
-            ->whereDate('quote_date', '>=', $start->format('m-d-y'))
-            ->get();
+        // $getAllResult = Quotation::whereDate('quote_date', '<=', $end->format('m-d-y'))
+        //     ->whereDate('quote_date', '>=', $start->format('m-d-y'))
+        //     ->get();
 
-        dd($getAllResult);
+        // dd($getAllResult);
+
+        if ($request->client) { // If client is specified. ($request->client is referring to client ID)
+            // Check currently logged in user's role
+            if (auth()->user()->role_id == 1) {
+                $quotes = Quotation::where('client_id', $request->client)
+                    ->latest()->paginate(10);
+            } else if (auth()->user()->role_id == 2) {
+                $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
+                    ->where('client_id', $request->client)
+                    ->latest()->paginate(10);
+            } else {
+                $quotes = Quotation::where('user_id', auth()->user()->id)
+                    ->where('client_id', $request->client)
+                    ->latest()->paginate(10);
+            }
+        }
+        else {
+            // Check currently logged in user's role
+            if (auth()->user()->role_id == 1) {
+                $quotes = Quotation::latest()->paginate(10);
+            } else if (auth()->user()->role_id == 2) {
+                $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)->latest()->paginate(10);
+            } else {
+                $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(10);
+            }
+        }
+
+        foreach ($quotes as $quote) {
+            $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
+            $quote->amount = 'Rp ' . number_format($quote['amount']);
+            $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
+        }
+
+        // Get all clients for quote filtering purposes
+        $clients = Client::latest()->get();
+
         return view('quote.index', [
-            'quotes' => $getAllResult,
+            'quotes' => $quotes,
+            'clients' => $clients,
         ]);
     }
 
