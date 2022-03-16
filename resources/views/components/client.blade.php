@@ -5,13 +5,13 @@
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->id }}</td>
 
     <!-- Client Name -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->name }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $client->name }}</td>
 
     <!-- Client Email -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->email }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $client->email }}</td>
 
     <!-- Client Phone -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $client->phone }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $client->phone }}</td>
 
     <!-- Action Icons -->
     <td class="p-3 flex">
