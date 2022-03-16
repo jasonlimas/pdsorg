@@ -133,6 +133,7 @@ class QuoteController extends Controller
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
+            $quote->status = QuoteStatus::find($quote['status_id'])->name;
         }
 
         // Get all clients for quote filtering purposes
@@ -391,6 +392,6 @@ class QuoteController extends Controller
             'status_id' => 2,
         ]);
 
-        return back()->with('success', 'Email sent successfully');
+        return redirect()->route('quotes')->with('success', 'Email sent successfully');
     }
 }
