@@ -14,14 +14,14 @@ class ProfilesController extends Controller
     public function index()
     {
         // Get sender organization details based on logged in user
-        $sender = Sender::find(auth()->user()->sender_id);
+        $sender = Sender::withTrashed()->find(auth()->user()->sender_id);
 
         // Get clients and termsConditions from the database
         $clients = Client::latest()->paginate(5, ['*'], 'clients');
         $terms = TermsConditions::latest()->paginate(5, ['*'], 'terms');
 
         // Get user's division details
-        $division = Division::find(auth()->user()->division_id)->description;
+        $division = Division::withTrashed()->find(auth()->user()->division_id)->description;
 
         return view('profiles', [
             'user' => auth()->user(),

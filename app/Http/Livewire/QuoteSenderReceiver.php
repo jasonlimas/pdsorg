@@ -25,7 +25,7 @@ class QuoteSenderReceiver extends Component
         if ($this->isManual) {
             $this->senders = Sender::latest()->get();
         } else {
-            $this->senders = Sender::find(auth()->user()->sender_id);
+            $this->senders = Sender::withTrashed()->find(auth()->user()->sender_id);
             $this->senderAddress = $this->senders->address;
         }
 
