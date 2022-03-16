@@ -38,7 +38,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody>
+                        <tbody class="divide-y divide-gray-200">
                             <!-- Add a new row for every user stored in the database -->
                             @foreach ($users as $user)
                                 <x-user :user="$user" />
@@ -87,7 +87,7 @@
                             </thead>
 
                             <!-- Table Body -->
-                            <tbody>
+                            <tbody class="divide-y divide-gray-200">
                                 <!-- Add a new row for every sender organization stored in the database -->
                                 @foreach ($senders as $sender)
                                     <x-sender :sender="$sender" />
@@ -134,7 +134,7 @@
                             </thead>
 
                             <!-- Table Body -->
-                            <tbody>
+                            <tbody class="divide-y divide-gray-200">
                                 <!-- Add a new row for every division stored in the database -->
                                 @foreach ($divisions as $division)
                                     <x-division :division="$division" />

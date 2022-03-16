@@ -186,7 +186,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody>
+                        <tbody class="divide-y divide-gray-200">
                             <!-- Add a new row for every client stored in the database -->
                             @foreach ($clients as $client)
                                 <x-client :client="$client" />
@@ -233,7 +233,7 @@
                         </thead>
 
                         <!-- Table Body -->
-                        <tbody>
+                        <tbody class="divide-y divide-gray-200">
                             <!-- Add a new row for every Terms & Conditions preset stored in the database -->
                             @foreach ($terms as $term)
                                 <x-term :term="$term" />

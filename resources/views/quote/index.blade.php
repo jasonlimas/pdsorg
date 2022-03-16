@@ -146,8 +146,8 @@
                                     <th class="w-52 p-2 text-left">Quoted To</th>
                                     <th class="w-32 p-2 text-left">Amount</th>
                                     <th class="w-20 p-2 text-left">Sender</th>
-                                    <th class="w-24 p-2 text-left">Status</th>
-                                    <th class="w-48 p-2 text-left">Action</th>
+                                    <th class="w-20 p-2 text-left">Status</th>
+                                    <th class="w-40 p-2 text-left"></th>
                                 </tr>
                             </thead>
 
