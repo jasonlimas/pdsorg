@@ -30,7 +30,7 @@
                 @error('sender') border-red-500 @enderror"
                 name="sender" wire:model="selectedSender">
                 @if ($isManual)
-                    <option value="">-- Select a client --</option>
+                    <option value="">-- Select a sender --</option>
                     @foreach ($senders as $sender)
                         <option value="{{ $sender->id }}">ID:{{ $sender->id }} - {{ $sender->name }}</option>
                     @endforeach

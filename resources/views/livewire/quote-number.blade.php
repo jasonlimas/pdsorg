@@ -2,7 +2,9 @@
     <!-- Quote number texts -->
     <h2 class="text-2xl font-medium">Quote Number</h2>
     <p class="text-gray-600 mb-3">
-        Number that will be used to identify the quote.
+        Quote identification.
+        @if (!$isManual) Number is automatically generated. You don't have to enter it.<br>
+        Sender person's division and name fields are filled based on your information. If they are wrong, please contact your administrator. @endif
     </p>
 
     <!-- Quote number input -->

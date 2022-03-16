@@ -117,7 +117,7 @@
                             <button
                                 class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
                                 type="submit">
-                                Filter
+                                Apply Filter
                             </button>
                         @endif
                     </div>
