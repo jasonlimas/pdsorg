@@ -381,9 +381,10 @@ class QuoteController extends Controller
 
     public function sendEmail(Quotation $quote)
     {
-        $user = auth()->user();
+        // Get client's email
+        $clientEmail = Client::withTrashed()->find($quote->client_id)->email;
 
-        Mail::to('jasonandrea14@gmail.com')->send(new QuoteSent(route('quote.download', $quote)));
+        Mail::to($clientEmail)->send(new QuoteSent(route('quote.download', $quote)));
 
         // Change quote status to "Sent"
         $quote->update([

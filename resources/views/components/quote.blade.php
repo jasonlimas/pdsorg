@@ -54,7 +54,7 @@
         </form>
 
         <!-- Email Quote -->
-        <form action="#" method="">
+        <form action="{{ route('quotes.email', $quote) }}" method="GET">
             @csrf
             <x-enabled-email-icon />
         </form>

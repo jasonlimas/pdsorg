@@ -35,7 +35,7 @@ Route::group([
     Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
     Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
     Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
-    Route::get('/quotes/create/done/{quote}/mail', [QuoteController::class, 'sendEmail'])->name('quotes.create.email');
+    Route::get('/quotes/create/done/{quote}/email', [QuoteController::class, 'sendEmail'])->name('quotes.create.email');
     Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
     Route::post('/upload', [UploadController::class, 'store']);
 
@@ -43,6 +43,7 @@ Route::group([
     Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
     Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
     Route::get('/quotes/{quote}/copy', [QuoteController::class, 'duplicate'])->name('quotes.duplicate');
+    Route::get('/quotes/{quote}/email', [QuoteController::class, 'sendEmail'])->name('quotes.email');
     Route::post('/quotes/filter', [QuoteController::class, 'query'])->name('quotes.filter');
     Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
     Route::post('/quotes/{quote}', [QuoteController::class, 'update']);
