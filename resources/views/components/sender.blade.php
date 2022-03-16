@@ -5,7 +5,7 @@
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $sender->id }}</td>
 
     <!-- Sender Name -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $sender->name }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $sender->name }}</td>
 
     <!-- Action Icons -->
     <td class="p-3 flex">

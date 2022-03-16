@@ -8,7 +8,7 @@
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $division->abbreviation }}</td>
 
     <!-- Division Description -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $division->description }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $division->description }}</td>
 
     <!-- Action Icons -->
     <td class="p-3 flex">
