@@ -42,14 +42,14 @@ class QuoteSenderReceiver extends Component
     {
         // Update the selected client address box to display the selected client's address
         if ($this->selectedClient != '') {
-            $this->clientDetails = Client::find($this->selectedClient)->address . ' - ' .
-                Client::find($this->selectedClient)->email . ' - ' .
-                Client::find($this->selectedClient)->phone;
+            $this->clientDetails = Client::withTrashed()->find($this->selectedClient)->address . ' - ' .
+                Client::withTrashed()->find($this->selectedClient)->email . ' - ' .
+                Client::withTrashed()->find($this->selectedClient)->phone;
         } else $this->clientDetails = '';
 
         // Same but for the sender
         if ($this->selectedSender != '') {
-            $this->senderDetails = Sender::find($this->selectedSender)->address;
+            $this->senderDetails = Sender::withTrashed()->find($this->selectedSender)->address;
         } else $this->senderDetails = '';
 
         return view('livewire.quote-sender-receiver');
