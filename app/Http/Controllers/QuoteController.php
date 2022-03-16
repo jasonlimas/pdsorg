@@ -58,8 +58,55 @@ class QuoteController extends Controller
         //     ->get();
 
         // dd($getAllResult);
+        if ($request->startDate && $request->endDate) {
+            // Validate date
+            $this->validate($request, [
+                'startDate' => 'date',
+                'endDate' => 'date|after_or_equal:startDate',
+            ]);
 
-        if ($request->client) { // If client is specified. ($request->client is referring to client ID)
+            $start = Carbon::parse($request->startDate);
+            $end = Carbon::parse($request->endDate);
+
+            if ($request->client) {
+                // Check currently logged in user's role
+                if (auth()->user()->role_id == 1) {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->where('client_id', $request->client)
+                        ->latest()->paginate(10);
+                } else if (auth()->user()->role_id == 2) {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
+                        ->where('client_id', $request->client)
+                        ->latest()->paginate(10);
+                } else {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->where('user_id', auth()->user()->id)
+                        ->where('client_id', $request->client)
+                        ->latest()->paginate(10);
+                }
+            } else {
+                // Check currently logged in user's role
+                if (auth()->user()->role_id == 1) {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->latest()->paginate(10);
+                } else if (auth()->user()->role_id == 2) {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
+                        ->latest()->paginate(10);
+                } else {
+                    $quotes = Quotation::whereDate('quote_date', '<=', $end)
+                        ->whereDate('quote_date', '>=', $start)
+                        ->where('user_id', auth()->user()->id)
+                        ->latest()->paginate(10);
+                }
+            }
+        } else if ($request->client) {  // Get all quotes quoted to the selected client
             // Check currently logged in user's role
             if (auth()->user()->role_id == 1) {
                 $quotes = Quotation::where('client_id', $request->client)
@@ -73,8 +120,7 @@ class QuoteController extends Controller
                     ->where('client_id', $request->client)
                     ->latest()->paginate(10);
             }
-        }
-        else {
+        } else {    // Get all quotes
             // Check currently logged in user's role
             if (auth()->user()->role_id == 1) {
                 $quotes = Quotation::latest()->paginate(10);
@@ -85,6 +131,9 @@ class QuoteController extends Controller
             }
         }
 
+        // Build quote query result (get name, amount, created by)
+        // Because after fetching the result, a quote object only has ID for client name and created by. We need to fetch the details about those IDs
+        // The amount needs to be formatted too, for better viewing experience
         foreach ($quotes as $quote) {
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
@@ -97,6 +146,7 @@ class QuoteController extends Controller
         return view('quote.index', [
             'quotes' => $quotes,
             'clients' => $clients,
+            'filter' => true,
         ]);
     }
 

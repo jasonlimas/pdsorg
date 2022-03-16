@@ -39,7 +39,7 @@
                 </div>
             @endif
 
-            <!-- Sorting -->
+            <!-- Sorting/Filtering -->
             @auth
                 <form action="{{ route('quotes.filter', $quotes) }}" method="POST">
                     @csrf
@@ -51,14 +51,26 @@
                                 class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
                                 @error('startDate') border-red-500 @enderror"
                                 type="date" name="startDate" value="{{ old('startDate') }}">
+
+                            @error('startDate')
+                                <div class="text-red-500 mt-1 text-xs">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                        </div>
 
                         <div class="w-1/3 pt-2">
                             <label for="endDate">End date</label>
                             <input
                                 class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
-                                @error('startDate') border-red-500 @enderror"
+                                @error('endDate') border-red-500 @enderror"
                                 type="date" name="endDate" value="{{ old('endDate') }}">
+
+                            @error('endDate')
+                                <div class="text-red-500 mt-1 text-xs">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="w-1/3 pr-2 py-2">
@@ -74,6 +86,7 @@
                         </div>
                     </div>
 
+                    <!-- Buttons -->
                     <div class="rounded-lg mb-3 space-x-2 flex justify-end">
                         @admin
                         <a href="{{ route('admin.quote.create') }}"
@@ -85,11 +98,19 @@
                             class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center">
                             Create Quote
                         </a>
-                        <button
-                            class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
-                            type="submit">
-                            Filter
-                        </button>
+                        @if ($filter)
+                            <button
+                                class="bg-orange-600 hover:bg-orange-800 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
+                                type="submit">
+                                Clear Filter
+                            </button>
+                        @else
+                            <button
+                                class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
+                                type="submit">
+                                Filter
+                            </button>
+                        @endif
                     </div>
                 </form>
             @endauth
