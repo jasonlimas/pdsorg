@@ -23,7 +23,7 @@ class QuoteNumber extends Component
             $this->userAbbreviation = $this->quote->sales_person;
             $this->quoteNumber = $this->quote->number;
         } else {
-            $this->divisionAbbreviation = Division::find(auth()->user()->division_id)->abbreviation;
+            $this->divisionAbbreviation = Division::withTrashed()->find(auth()->user()->division_id)->abbreviation;
             $this->userAbbreviation = auth()->user()->name_abbreviation;
         }
     }

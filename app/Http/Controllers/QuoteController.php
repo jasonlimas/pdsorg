@@ -33,8 +33,12 @@ class QuoteController extends Controller
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
         }
 
+        // Get all clients for quote filtering purposes
+        $clients = Client::latest()->get();
+
         return view('quote.index', [
             'quotes' => $quotes,
+            'clients' => $clients,
         ]);
     }
 

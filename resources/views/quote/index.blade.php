@@ -41,7 +41,7 @@
 
             <!-- Sorting -->
             @auth
-                <form action="#" method="">
+                <form action="{{ route('quotes.filter') }}" method="POST">
                     @csrf
                     <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
                         <!-- Date -->
@@ -67,6 +67,9 @@
                                 class="shadow border rounded w-full p-1 text-gray-700 focus:outline-none focus:shadow-outline"
                                 name="client">
                                 <option value="">-- Select client --</option>
+                                @foreach ($clients as $client)
+                                    <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
