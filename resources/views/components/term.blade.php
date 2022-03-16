@@ -5,7 +5,7 @@
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $term->id }}</td>
 
     <!-- Term Name -->
-    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $term->name }}</td>
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $term->name }}</td>
 
     <!-- Actions Icon -->
     <td class="p-3 flex">

@@ -775,6 +775,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .overflow-x-scroll {
   overflow-x: scroll;
 }
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
 .whitespace-nowrap {
   white-space: nowrap;
 }

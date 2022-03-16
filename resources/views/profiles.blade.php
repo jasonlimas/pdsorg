@@ -225,9 +225,9 @@
                         <!-- Table Headers -->
                         <thead class="bg-gray-200 border-b-2 border-gray-300">
                             <tr>
-                                <th class="w-1/12 p-3 text-sm tracking-wide text-left">ID</th>
-                                <th class="w-9/12 p-3 text-sm tracking-wide text-left">Name</th>
-                                <th class="w-2/12 p-3 text-sm tracking-wide text-left">Action</th>
+                                <th class="w-10 p-3 text-sm tracking-wide text-left">ID</th>
+                                <th class="p-3 text-sm tracking-wide text-left">Name</th>
+                                <th class="w-20 p-3 text-sm tracking-wide text-left">Action</th>
                             </tr>
                         </thead>
 
