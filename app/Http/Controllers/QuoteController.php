@@ -39,6 +39,7 @@ class QuoteController extends Controller
         return view('quote.index', [
             'quotes' => $quotes,
             'clients' => $clients,
+            'filter' => false,
         ]);
     }
 
@@ -147,6 +148,9 @@ class QuoteController extends Controller
             'quotes' => $quotes,
             'clients' => $clients,
             'filter' => true,
+            'startDate' => $request->startDate ? $request->startDate : 'any start date',
+            'endDate' => $request->endDate ? $request->endDate : 'any end date',
+            'client' => Client::find($request->client) ? Client::find($request->client)->name : 'any client',
         ]);
     }
 

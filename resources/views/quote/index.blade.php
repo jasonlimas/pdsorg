@@ -43,48 +43,58 @@
             @auth
                 <form action="{{ route('quotes.filter', $quotes) }}" method="POST">
                     @csrf
-                    <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
-                        <!-- Date -->
-                        <div class="w-1/3 pl-5 pt-2">
-                            <label for="startDate">Start date</label>
-                            <input
-                                class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
-                                @error('startDate') border-red-500 @enderror"
-                                type="date" name="startDate" value="{{ old('startDate') }}">
+                    @if ($filter)
+                        <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
+                            <p class="px-5 py-2">
+                                Showing quotes with filter settings:<br>
+                                From <b>{{ $startDate }}</b> to <b>{{ $endDate }}</b><br>
+                                Quoted to <b>{{ $client }}</b><br>
+                            </p>
+                        </div>
+                    @else
+                        <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">
+                            <!-- Date -->
+                            <div class="w-1/3 pl-5 pt-2">
+                                <label for="startDate">Start date</label>
+                                <input
+                                    class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
+                                    @error('startDate') border-red-500 @enderror"
+                                    type="date" name="startDate" value="{{ old('startDate') }}">
 
-                            @error('startDate')
-                                <div class="text-red-500 mt-1 text-xs">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                       </div>
-
-                        <div class="w-1/3 pt-2">
-                            <label for="endDate">End date</label>
-                            <input
-                                class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
-                                @error('endDate') border-red-500 @enderror"
-                                type="date" name="endDate" value="{{ old('endDate') }}">
-
-                            @error('endDate')
-                                <div class="text-red-500 mt-1 text-xs">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                @error('startDate')
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
 
-                        <div class="w-1/3 pr-2 py-2">
-                            <label for="client" class="">Quote to</label>
-                            <select
-                                class="shadow border rounded w-full p-1 text-gray-700 focus:outline-none focus:shadow-outline"
-                                name="client">
-                                <option value="">-- Select client --</option>
-                                @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="w-1/3 pt-2">
+                                <label for="endDate">End date</label>
+                                <input
+                                    class="p-1 rounded shadow focus:outline-none text-gray-700 border w-full
+                                    @error('endDate') border-red-500 @enderror"
+                                    type="date" name="endDate" value="{{ old('endDate') }}">
+
+                                @error('endDate')
+                                    <div class="text-red-500 mt-1 text-xs">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="w-1/3 pr-2 py-2">
+                                <label for="client" class="">Quote to</label>
+                                <select
+                                    class="shadow border rounded w-full p-1 text-gray-700 focus:outline-none focus:shadow-outline"
+                                    name="client">
+                                    <option value="">-- Select client --</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
                     <!-- Buttons -->
                     <div class="rounded-lg mb-3 space-x-2 flex justify-end">
@@ -99,11 +109,10 @@
                             Create Quote
                         </a>
                         @if ($filter)
-                            <button
-                                class="bg-orange-600 hover:bg-orange-800 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
-                                type="submit">
+                            <a href="{{ route('quotes') }}"
+                                class="bg-orange-600 hover:bg-orange-800 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center">
                                 Clear Filter
-                            </button>
+                            </a>
                         @else
                             <button
                                 class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-1/6 px-4 py-2 rounded text-white text-center"
