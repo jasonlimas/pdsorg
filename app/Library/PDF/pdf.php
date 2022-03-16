@@ -95,11 +95,11 @@ class PDF {
         // * Output PDF
         // *===================================== *
         $outputName = PDF::buildQuoteNumber($quoteNumber, '-');
-        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'I');
+        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'D');
 
-        // return response()->streamDownload(
-        //     fn() => 'export_protocol.pdf'
-        // );
+        return response()->streamDownload(
+            fn() => 'export_protocol.pdf'
+        );
     }
 
     /**
