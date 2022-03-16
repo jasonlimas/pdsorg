@@ -20,12 +20,18 @@ class SenderController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'address' => 'required|max:255',
+            'bankInstitution' => 'required|max:255',
+            'bankAccountName' => 'required|max:255',
+            'bankAccountNumber' => 'required|max:255',
         ]);
 
         // Create Sender Organization Profile
         Sender::create([
             'name' => $request->name,
             'address' => $request->address,
+            'bank_institution' => $request->bankInstitution,
+            'bank_account_name' => $request->bankAccountName,
+            'bank_account_number' => $request->bankAccountNumber,
         ]);
 
         // Redirect back with success message
