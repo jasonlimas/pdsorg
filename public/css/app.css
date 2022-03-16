@@ -672,6 +672,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-40 {
   width: 10rem;
 }
+.w-64 {
+  width: 16rem;
+}
+.w-72 {
+  width: 18rem;
+}
+.w-80 {
+  width: 20rem;
+}
+.w-96 {
+  width: 24rem;
+}
 .max-w-7xl {
   max-width: 80rem;
 }

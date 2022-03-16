@@ -7,6 +7,9 @@
     <!-- Sender Name -->
     <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $sender->name }}</td>
 
+    <!-- Sender Address -->
+    <td class="p-3 text-sm text-gray-700 whitespace-nowrap truncate">{{ $sender->address }}</td>
+
     <!-- Action Icons -->
     <td class="p-3 flex">
         <!-- Edit Icon -->
