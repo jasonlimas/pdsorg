@@ -641,9 +641,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-2\/4 {
   width: 50%;
 }
-.w-12 {
-  width: 3rem;
-}
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -652,9 +649,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .cursor-default {
   cursor: default;
-}
-.cursor-pointer {
-  cursor: pointer;
 }
 .resize {
   resize: both;
@@ -674,9 +668,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.flex-col {
-  flex-direction: column;
 }
 .flex-wrap {
   flex-wrap: wrap;

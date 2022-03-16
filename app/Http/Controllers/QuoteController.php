@@ -28,9 +28,9 @@ class QuoteController extends Controller
 
 
         foreach ($quotes as $quote) {
-            $quote->client = Client::find($quote['client_id'])->name;
+            $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
-            $quote->createdBy = User::find($quote['user_id'])->name_abbreviation;
+            $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
         }
 
         return view('quote.index', [
@@ -87,19 +87,24 @@ class QuoteController extends Controller
 
         $date = $quote->quote_date;
 
+        // Include soft deleted records when looking for sender information
+        $senderPerson = User::withTrashed()->find($quote->user_id);
+        $senderOrg = Sender::withTrashed()->find($quote->sender_id);
         $sender = [
-            'person' => User::find($quote->user_id)->name,
-            'name' => Sender::find($quote->sender_id)->name,
-            'addr' => Sender::find($quote->sender_id)->address,
-            'phone' => User::find($quote->user_id)->phone,
-            'email' => User::find($quote->user_id)->email,
+            'person' => $senderPerson->name,
+            'name' => $senderOrg->name,
+            'addr' => $senderOrg->address,
+            'phone' => $senderPerson->phone,
+            'email' => $senderPerson->email,
         ];
 
+        // Include soft deleted records when looking for client information
+        $recipientObject = Client::withTrashed()->find($quote->client_id);
         $recipient = [
-            'name' => Client::find($quote->client_id)->name,
-            'addr' => Client::find($quote->client_id)->address,
-            'phone' => Client::find($quote->client_id)->phone,
-            'email' => Client::find($quote->client_id)->email,
+            'name' => $recipientObject->name,
+            'addr' => $recipientObject->address,
+            'phone' => $recipientObject->phone,
+            'email' => $recipientObject->email,
         ];
 
         $items = [];
