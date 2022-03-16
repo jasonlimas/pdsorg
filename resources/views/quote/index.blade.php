@@ -140,16 +140,18 @@
                     <div class="overflow-auto rounded-lg shadow mb-4">
                         <table class="w-full text-sm">
                             <thead class="bg-gray-50 border-b-2 border-gray-300">
-                                <th class="w-1/12 border-r p-1">No.</th>
-                                <th class="w-2/12 border-r p-1">Date</th>
-                                <th class="w-2/12 border-r p-1">Quoted To</th>
-                                <th class="w-2/12 border-r p-1">Amount</th>
-                                <th class="w-1/12 border-r p-1">Created by</th>
-                                <th class="w-1/12 border-r p-1">Status</th>
-                                <th class="w-2/12 p-1">Action</th>
+                                <tr>
+                                    <th class="w-14 p-2 text-left">No.</th>
+                                    <th class="w-24 p-2 text-left">Date</th>
+                                    <th class="w-52 p-2 text-left">Quoted To</th>
+                                    <th class="w-32 p-2 text-left">Amount</th>
+                                    <th class="w-20 p-2 text-left">Sender</th>
+                                    <th class="w-24 p-2 text-left">Status</th>
+                                    <th class="w-48 p-2 text-left">Action</th>
+                                </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="divide-y divide-gray-200">
                                 @foreach ($quotes as $quote)
                                     <x-quote :quote="$quote" />
                                 @endforeach

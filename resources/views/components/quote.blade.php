@@ -1,19 +1,25 @@
 @props(['quote' => $quote])
 
 <tr class="odd:bg-white even:bg-slate-100 text-gray-700">
-    <td class="p-3 whitespace-nowrap border-r">{{ $quote->id }}</td>
-    <td class="p-3 whitespace-nowrap border-r">{{ $quote->quote_date }}</td>
-    <td class="p-3 whitespace-nowrap border-r">{{ $quote->client }}</td>
-    <td class="p-3 whitespace-nowrap border-r">{{ $quote->amount }}</td>
-    <td class="p-3 whitespace-nowrap border-r">{{ $quote->createdBy }}</td>
+    <td class="p-3 whitespace-nowrap">{{ $quote->id }}</td>
+    <td class="p-3 whitespace-nowrap">{{ $quote->quote_date }}</td>
+    <td class="p-3 whitespace-nowrap">{{ $quote->client }}</td>
+    <td class="p-3 whitespace-nowrap">{{ $quote->amount }}</td>
+    <td class="p-3 whitespace-nowrap">{{ $quote->createdBy }}</td>
 
     <!-- Status -->
-    <td class="p-3 whitespace-nowrap border-r text-center">
-        STATUS
+    <td class="p-3 whitespace-nowrap">
+        @if ($quote->status_id == 1)
+            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+        @elseif ($quote->status_id == 2)
+            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+        @elseif ($quote->status_id == 3)
+            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+        @endif
     </td>
 
     <!-- Action icons -->
-    <td class="p-3 flex text-center">
+    <td class="p-3 whitespace-nowrap flex text-center">
         <!-- Download the quote -->
         <form action="{{ route('quotes.download', $quote) }}" method="POST">
             @csrf
@@ -45,6 +51,12 @@
         <form action="{{ route('quotes.duplicate', $quote) }}" method="GET">
             @csrf
             <x-enabled-duplicate-icon />
+        </form>
+
+        <!-- Email Quote -->
+        <form action="#" method="">
+            @csrf
+            <x-enabled-email-icon />
         </form>
     </td>
 </tr>

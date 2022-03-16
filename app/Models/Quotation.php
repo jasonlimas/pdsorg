@@ -47,4 +47,9 @@ class Quotation extends Model implements HasMedia
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function status()
+    {
+        return $this->hasOne(QuoteStatus::class);
+    }
 }

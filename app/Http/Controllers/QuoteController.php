@@ -7,6 +7,7 @@ use App\Mail\QuoteSent;
 use App\Models\Client;
 use App\Models\Division;
 use App\Models\Quotation;
+use App\Models\QuoteStatus;
 use App\Models\Sender;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,6 +31,7 @@ class QuoteController extends Controller
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
+            $quote->status = QuoteStatus::find($quote['status_id'])->name;
         }
 
         // Get all clients for quote filtering purposes
@@ -382,6 +384,11 @@ class QuoteController extends Controller
         $user = auth()->user();
 
         Mail::to('jasonandrea14@gmail.com')->send(new QuoteSent(route('quote.download', $quote)));
+
+        // Change quote status to "Sent"
+        $quote->update([
+            'status_id' => 2,
+        ]);
 
         return back()->with('success', 'Email sent successfully');
     }
