@@ -25,6 +25,7 @@ class Quotation extends Model implements HasMedia
         'tax',
         'terms_conditions',
         'amount',
+        'status_id',
     ];
 
     protected $casts = [

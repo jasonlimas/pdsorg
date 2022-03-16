@@ -118,6 +118,7 @@ class CreateQuoteController extends Controller
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => auth()->user()->id,
+            'status_id' => 1, // Default status. 1 is "Not sent"
         ]);
 
         // Store temporary file in the database

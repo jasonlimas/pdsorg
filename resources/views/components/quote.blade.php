@@ -6,7 +6,11 @@
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->client }}</td>
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->amount }}</td>
     <td class="p-3 whitespace-nowrap border-r">{{ $quote->createdBy }}</td>
-    <td class="p-3 whitespace-nowrap border-r"></td>
+
+    <!-- Status -->
+    <td class="p-3 whitespace-nowrap border-r text-center">
+        STATUS
+    </td>
 
     <!-- Action icons -->
     <td class="p-3 flex text-center">

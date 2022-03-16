@@ -26,7 +26,6 @@ class QuoteController extends Controller
             $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(10);
         }
 
-
         foreach ($quotes as $quote) {
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
             $quote->amount = 'Rp ' . number_format($quote['amount']);
@@ -305,6 +304,7 @@ class QuoteController extends Controller
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => $quote->user_id,           // Remains unchanged
+            'status_id' => $quote->status_id,       // Remains unchanged
         ]);
 
         return redirect()->route('quotes')->with('success', 'Quote updated successfully');
@@ -371,6 +371,7 @@ class QuoteController extends Controller
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => auth()->user()->id,
+            'status_id' => 1, // Status 1 = "Not sent"
         ]);
 
         return redirect()->route('quotes')->with('success', 'Quote duplicated successfully');
