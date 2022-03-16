@@ -91,7 +91,7 @@
                                 name="bankInstitution"
                                 type="text"
                                 placeholder="Institution Name"
-                                value="">
+                                value="{{ old('bankInstitution') }}">
 
                                 @error('bankInstitution')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -115,7 +115,7 @@
                                 name="bankAccountName"
                                 type="text"
                                 placeholder="Account Name"
-                                value="">
+                                value="{{ old('bankAccountName') }}">
 
                                 @error('bankAccountName')
                                 <div class="text-red-500 mt-2 text-sm">
@@ -139,7 +139,7 @@
                                 name="bankAccountNumber"
                                 type="text"
                                 placeholder="Account Number"
-                                value="">
+                                value="{{ old('bankAccountNumber') }}">
 
                                 @error('bankAccountNumber')
                                 <div class="text-red-500 mt-2 text-sm">

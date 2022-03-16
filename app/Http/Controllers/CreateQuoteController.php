@@ -135,6 +135,7 @@ class CreateQuoteController extends Controller
     // Function to download the quote as PDF
     public function download(Quotation $quote)
     {
+        // Number
         $quoteNumber = [
             'year' => substr($quote->quote_date, 0, 4),
             'division' => $quote->div,
@@ -143,23 +144,30 @@ class CreateQuoteController extends Controller
             'number' => $quote->number,
         ];
 
+        // Date
         $date = $quote->quote_date;
 
+        // Sender data
+        $senderPerson = User::find($quote->user_id);
+        $senderOrg = Sender::find($quote->sender_id);
         $sender = [
-            'person' => User::find($quote->user_id)->name,
-            'name' => Sender::find($quote->sender_id)->name,
-            'addr' => Sender::find($quote->sender_id)->address,
-            'phone' => User::find($quote->user_id)->phone,
-            'email' => User::find($quote->user_id)->email,
+            'person' => $senderPerson->name,
+            'name' => $senderOrg->name,
+            'addr' => $senderOrg->address,
+            'phone' => $senderPerson->phone,
+            'email' => $senderPerson->email,
         ];
 
+        // Client data
+        $recipientObject = Client::find($quote->client_id);
         $recipient = [
-            'name' => Client::find($quote->client_id)->name,
-            'addr' => Client::find($quote->client_id)->address,
-            'phone' => Client::find($quote->client_id)->phone,
-            'email' => Client::find($quote->client_id)->email,
+            'name' => $recipientObject->name,
+            'addr' => $recipientObject->address,
+            'phone' => $recipientObject->phone,
+            'email' => $recipientObject->email,
         ];
 
+        // Items
         $items = [];
         foreach ($quote->items as $item) {
             $items[] = [
@@ -169,12 +177,21 @@ class CreateQuoteController extends Controller
             ];
         }
 
+        // Tax
         $tax = $quote->tax;
 
+        // Terms and conditions
         $termsConditions = [];
         foreach ($quote->terms_conditions as $term) {
             $termsConditions[] = $term;
         }
+
+        // Bank details
+        $bank = [
+            'bank_institution' => $senderOrg->bank_institution,
+            'bank_account_name' => $senderOrg->bank_account_name,
+            'bank_account_number' => $senderOrg->bank_account_number,
+        ];
 
         // Attachment
         $attachment = $quote->getMedia('attachments');
@@ -184,7 +201,7 @@ class CreateQuoteController extends Controller
         }
 
         // Create PDF
-        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath);
+        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath);
     }
 
     // Admin only section
