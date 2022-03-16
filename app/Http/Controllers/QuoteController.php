@@ -45,22 +45,15 @@ class QuoteController extends Controller
 
     public function query(Request $request)
     {
-        // // Validate date
-        // $this->validate($request, [
-        //     'startDate' => 'required|date',
-        //     'endDate' => 'required|date|before_or_equal:startDate',
-        // ]);
+        // Check if input date is empty or not completed.
+        // Both value for startDate and endDate must be present if one of them is present.
+        $this->validate($request, [
+            'startDate' => 'required_with:endDate',
+            'endDate' => 'required_with:startDate',
+        ]);
 
-        // $start = Carbon::parse($request->startDate);
-        // $end = Carbon::parse($request->endDate);
-
-        // $getAllResult = Quotation::whereDate('quote_date', '<=', $end->format('m-d-y'))
-        //     ->whereDate('quote_date', '>=', $start->format('m-d-y'))
-        //     ->get();
-
-        // dd($getAllResult);
         if ($request->startDate && $request->endDate) {
-            // Validate date
+            // Validate if input date is valid
             $this->validate($request, [
                 'startDate' => 'date',
                 'endDate' => 'date|after_or_equal:startDate',
