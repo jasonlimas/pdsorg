@@ -194,6 +194,7 @@ class QuoteController extends Controller
             'email' => $recipientObject->email,
         ];
 
+        // Items
         $items = [];
         foreach ($quote->items as $item) {
             $items[] = [
@@ -203,12 +204,21 @@ class QuoteController extends Controller
             ];
         }
 
+        // Tax
         $tax = $quote->tax;
 
+        // Terms and conditions
         $termsConditions = [];
         foreach ($quote->terms_conditions as $term) {
             $termsConditions[] = $term;
         }
+
+        // Bank details
+        $bank = [
+            'bank_institution' => $senderOrg->bank_institution,
+            'bank_account_name' =>$senderOrg->bank_account_name,
+            'bank_account_number' => $senderOrg->bank_account_number,
+        ];
 
         // Attachment
         $attachment = $quote->getMedia('attachments');
@@ -218,7 +228,7 @@ class QuoteController extends Controller
         }
 
         // Create PDF
-        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath);
+        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

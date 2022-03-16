@@ -2,7 +2,7 @@
 namespace App\Library\PDF;
 
 class PDF {
-    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $attachmentPath) {
+    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
 
@@ -74,9 +74,16 @@ class PDF {
         PDF::writeTermsConditions($mpdf, $termsConditions, $border);
 
         // *===================================== *
+        // * Transfer to bank details
+        // *===================================== *
+        $tempYPos = $mpdf->y;
+        $mpdf->SetY($mpdf->y + 15);
+        PDF::writeBankDetails($mpdf, $bank);
+
+        // *===================================== *
         // * Best regards field
         // *===================================== *
-        $mpdf->SetXY(135, $mpdf->y + 2);
+        $mpdf->SetXY(135, $tempYPos + 15);
         PDF::writeBestRegards($mpdf, $sender, $border);
 
         // *===================================== *
@@ -88,11 +95,11 @@ class PDF {
         // * Output PDF
         // *===================================== *
         $outputName = PDF::buildQuoteNumber($quoteNumber, '-');
-        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'D');
+        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'I');
 
-        return response()->streamDownload(
-            fn() => 'export_protocol.pdf'
-        );
+        // return response()->streamDownload(
+        //     fn() => 'export_protocol.pdf'
+        // );
     }
 
     /**
@@ -452,7 +459,7 @@ class PDF {
         // Write sender info
         // Name
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
-        $mpdf->WriteCell(0, $cellHeight, 'Best Regards,', $border, 2);
+        $mpdf->WriteCell(0, $cellHeight, 'Hormat kami,', $border, 2);
         $mpdf->SetFont('', '');
         $mpdf->WriteCell(0, $cellHeight, $data['person'], $border, 2);
         $mpdf->WriteCell(0, $cellHeight, $data['name'], $border, 2);
@@ -462,6 +469,35 @@ class PDF {
 
         // Phone
         $mpdf->WriteCell(0, $cellHeight, $data['phone'], $border, 2);
+    }
+
+    /**
+     * Write bank details field
+
+     * This function accepts an array of string. It will
+     * write all strings in the array to the PDF, specifically
+     * about the bank details of the sender.
+     *
+     * @param object $mpdf: MPDF object
+     * @param array $data: Array of strings, containing bank details data
+     *
+     * @return void
+     */
+    private static function writeBankDetails($mpdf, $data) {
+        // Write Cell max height
+        $cellHeight = 5.2;
+
+        // Font family and size
+        $fontFamily = 'Helvetica';
+        $fontSize = 10.5;
+
+        // Write bank details
+        $mpdf->SetFont($fontFamily, 'B', $fontSize);
+        $mpdf->WriteCell(0, $cellHeight, 'Pembayaran melalui transfer bank', 0, 2);
+        $mpdf->SetFont('', '');
+        $mpdf->WriteCell(0, $cellHeight, $data['bank_institution'], 0, 2);
+        $mpdf->WriteCell(0, $cellHeight, 'A/N ' . $data['bank_account_name'], 0, 2);
+        $mpdf->WriteCell(0, $cellHeight, $data['bank_account_number'], 0, 2);
     }
 
     /**
