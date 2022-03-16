@@ -21,7 +21,7 @@ class QuoteController extends Controller
         if (auth()->user()->role_id == 1) {
             $quotes = Quotation::latest()->paginate(10);
         } else if (auth()->user()->role_id == 2) {
-            $quotes = Quotation::where('div', Division::find(auth()->user()->division_id)->abbreviation)->latest()->paginate(10);
+            $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)->latest()->paginate(10);
         } else {
             $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(10);
         }
