@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // Get users from the database users table
+        // Get users, senders, divisions from the database tables
         $users = User::paginate(5, ['*'], 'users');
         $senders = Sender::paginate(5, ['*'], 'senders');
         $divisions = Division::paginate(5, ['*'], 'divisions');
