@@ -23,7 +23,7 @@ class CreateQuoteController extends Controller
     public function finalize()
     {
         $quote = Quotation::find(auth()->user()->quotes()->latest()->first()->id);
-        $sender = Sender::find($quote->sender_id)->name;
+        $sender = Sender::withTrashed()->find($quote->sender_id)->name;
         $client = Client::find($quote->client_id)->name;
 
         return view('quote.finalize', [
@@ -104,7 +104,7 @@ class CreateQuoteController extends Controller
 
         // Save to database
         $newQuote = $request->user()->quotes()->create([
-            'div' => Division::find(auth()->user()->division_id)->abbreviation,
+            'div' => Division::withTrashed()->find(auth()->user()->division_id)->abbreviation,
             'sales_person' => auth()->user()->name_abbreviation,
             'number' => $number,
             'quote_date' => $request->date,
