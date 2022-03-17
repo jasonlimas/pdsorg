@@ -385,11 +385,24 @@ class QuoteController extends Controller
         // Get client's email
         $clientEmail = Client::withTrashed()->find($quote->client_id)->email;
 
-        // CC to creator and division leader
-        $creatorEmail = User::find($quote->user_id)->email;
+        // Array to store emails to be CC'd
+        $emailToCC = [];
 
+        // Quote creator
+        $creator = User::find($quote->user_id)->email;
+        $emailToCC[] = $creator;    // Put creator's email in CC
+
+        // Leaders of the division
+        $leaders = User::where('division_id', User::find($quote->user_id)->division_id)->where('role_id', 2)->get();
+        foreach ($leaders as $leader) { // Put all leaders' emails in CC
+            if ($leader->email != $creator) {
+                $emailToCC[] = $leader->email;
+            }
+        }
+
+        // Send the email to the client and all emails in $emailToCC (Creator and division leader(s))
         Mail::to($clientEmail)
-            ->cc($creatorEmail)
+            ->cc($emailToCC)
             ->send(new QuoteSent(route('quote.download', $quote)));
 
         // Change quote status to "Sent"
