@@ -76,7 +76,7 @@ Route::group([
 
 // Middleware group, for admin only
 Route::group([
-    'middleware' => 'accessrole',
+    'middleware' => 'adminrole',
 ], function () {
     // Admin Panel
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
