@@ -18,7 +18,7 @@ class RegisterController extends Controller
         $organizations = Sender::all();
         $divisions = Division::all();
 
-        return view('admin.user.create', [
+        return view('user.create', [
             'roles' => $roles,
             'organizations' => $organizations,
             'divisions' => $divisions,

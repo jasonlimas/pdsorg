@@ -18,7 +18,7 @@ class UserManagementController extends Controller
         $organizations = Sender::all();
         $divisions = Division::all();
 
-        return view('admin.user.edit', [
+        return view('user.edit', [
             'user' => $user,
             'roles' => $roles,
             'organizations' => $organizations,

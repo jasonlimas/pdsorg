@@ -9,10 +9,13 @@ class LeaderController extends Controller
 {
     public function index()
     {
-        // Get users from the database users table
-        $users = User::paginate(5, ['*'], 'users');
+        // Get current logged in user (Team Leader)
+        $loggedInUser = auth()->user();
 
-        return view('leader.index', [
+        // Get users from the database users table, only users from the same division as the logged in user
+        $users = User::where('division_id', $loggedInUser->division_id)->paginate(5);
+
+        return view('user.leader.index', [
             'users' => $users,
         ]);
     }

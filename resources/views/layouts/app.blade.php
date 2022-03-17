@@ -47,7 +47,7 @@
                         <a href="{{ route('admin') }}" class="text-base font-medium text-rose-500 hover:text-rose-900 transition-colors duration-200"> Admin Panel </a>
                     @endadmin
                     @teamleader
-                        <a href="#" class="text-base font-medium text-rose-500 hover:text-rose-900 transition-colors duration-200"> Leader Panel </a>
+                        <a href="{{ route('leader') }}" class="text-base font-medium text-rose-500 hover:text-rose-900 transition-colors duration-200"> Leader Panel </a>
                     @endteamleader
 
                 </nav>

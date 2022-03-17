@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreateQuoteController;
+use App\Http\Controllers\LeaderController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SenderController;
@@ -105,4 +106,15 @@ Route::group([
     Route::post('/admin/division/create', [DivisionController::class, 'store']);
     Route::post('/admin/division/{division}', [DivisionController::class, 'update']);
     Route::delete('/admin/division/{division}', [DivisionController::class, 'destroy'])->name('admin.division.destroy');
+});
+
+// Middleware group, for leader only
+Route::group([
+    'middleware' => 'leaderrole',
+], function() {
+    // Leader Panel
+    Route::get('/leader', [LeaderController::class, 'index'])->name('leader');
+
+    // User Management
+    Route::get('/leader/user/create', [RegisterController::class, 'index'])->name('leader.user.create');
 });

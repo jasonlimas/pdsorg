@@ -10,7 +10,7 @@ class SenderController extends Controller
     // Create Sender Organization Profile page
     public function index()
     {
-        return view('admin.sender.create');
+        return view('sender.create');
     }
 
     // Store Sender Organization Profile
@@ -41,7 +41,7 @@ class SenderController extends Controller
     // Show Sender Organization Profile
     public function show(Sender $sender)
     {
-        return view('admin.sender.edit', [
+        return view('sender.edit', [
             'sender' => $sender
         ]);
     }

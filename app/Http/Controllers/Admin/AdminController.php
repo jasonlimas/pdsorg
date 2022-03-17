@@ -17,7 +17,7 @@ class AdminController extends Controller
         $senders = Sender::paginate(5, ['*'], 'senders');
         $divisions = Division::paginate(5, ['*'], 'divisions');
 
-        return view('admin.index', [
+        return view('user.admin.index', [
             'users' => $users,
             'senders' => $senders,
             'divisions' => $divisions,

@@ -10,12 +10,12 @@ class DivisionController extends Controller
 {
     public function index()
     {
-        return view('admin.division.create');
+        return view('division.create');
     }
 
     public function show(Division $division)
     {
-        return view('admin.division.edit', [
+        return view('division.edit', [
             'division' => $division,
         ]);
     }
