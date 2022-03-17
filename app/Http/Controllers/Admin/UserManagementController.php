@@ -69,6 +69,6 @@ class UserManagementController extends Controller
         $user->delete();
 
         // Redirect back with success message
-        return back()->with('status', 'User deleted successfully');
+        return back()->with('success', 'User deleted successfully');
     }
 }

@@ -91,7 +91,7 @@ Route::group([
     Route::get('/admin/user/{user}', [UserManagementController::class, 'show'])->name('admin.user.show');
     Route::post('/admin/user/create', [RegisterController::class, 'store']);
     Route::post('/admin/user/{user}', [UserManagementController::class, 'update']);
-    Route::delete('admin/user/{user}', [UserManagementController::class, 'destroy'])->name('admin.user.destroy');
+    Route::delete('/admin/user/{user}', [UserManagementController::class, 'destroy'])->name('admin.user.destroy');
 
     // Sender Organization Profiles
     Route::get('/admin/sender/create', [SenderController::class, 'index'])->name('admin.sender.create');
@@ -118,4 +118,5 @@ Route::group([
     // User Management
     Route::get('/leader/user/create', [RegisterController::class, 'index'])->name('leader.user.create');
     Route::post('/leader/user/create', [RegisterController::class, 'store']);
+    Route::delete('/leader/user/{user}', [UserManagementController::class, 'destroy'])->name('leader.user.destroy');
 });

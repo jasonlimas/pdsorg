@@ -21,7 +21,10 @@
             <x-enabled-edit-icon />
         </form>
         <!-- Delete Icon -->
-        <form action="{{ route('admin.user.destroy', $user) }}" method="POST">
+        <form
+            @admin action="{{ route('admin.user.destroy', $user) }}" @endadmin
+            @teamleader action="{{ route('leader.user.destroy', $user) }}" @endteamleader
+            method="POST">
             @csrf
             @method('DELETE')
             <x-enabled-delete-icon />
