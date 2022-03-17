@@ -37,9 +37,6 @@ class CreateQuoteController extends Controller
     {
         // Input validation
         $this->validate($request, [
-            // Quote number
-            'numberNumber' => 'integer|min:0',  // No longer required because number should be generated automatically
-
             // Quote date
             'date' => 'required|after:today',
 
@@ -213,6 +210,90 @@ class CreateQuoteController extends Controller
 
     public function storeManual(Request $request)
     {
-        dd($request);
+        // Input validation
+        $this->validate($request, [
+            // Quote number
+            'numberDivision' => 'required|string|max:5',
+            'numberSales' => 'required|string|max:5',
+            'numberNumber' => 'required|integer|min:0',
+
+            // Quote date
+            'date' => 'required|date',
+
+            // Sender and Receiver
+            'sender' => 'required|exists:senders,id',
+            'receiver' => 'required|exists:clients,id',
+
+            // Tax
+            'tax' => 'required|integer|min:0|max:100',
+
+            // Items and Terms & Conditions are validated separately
+        ]);
+
+        // Validate terms and conditions
+        if (in_array(null, $request->termsConditions, true)) {
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'termsConditions' => ['One or more values are missing'],
+            ]);
+
+            throw $error;
+        }
+
+        $items = [];
+        $amount = 0;
+        foreach ($request->items as $item) {
+            $items[] = [
+                'name' => $item['name'],
+                'quantity' => $item['quantity'],
+                'price' => $item['unitPrice'],
+            ];
+
+            // Validate items
+            if (in_array(null, $item, true) || $item['quantity'] < 1 || $item['unitPrice'] < 0) {
+                $error = \Illuminate\Validation\ValidationException::withMessages([
+                    'items' => ['One or more values are not valid'],
+                ]);
+
+                throw $error;
+            }
+
+            $amount += $item['quantity'] * $item['unitPrice'];
+        }
+
+        // Calculate amount again, but with tax
+        $amount = $amount + ($amount * $request->tax / 100);
+
+        $termsConditions = [];
+        foreach ($request->termsConditions as $term) {
+            $termsConditions[] = $term;
+        }
+
+        // Save to database
+        $newQuote = $request->user()->quotes()->create([
+            'div' => $request->numberDivision,
+            'sales_person' => $request->numberSales,
+            'number' => $request->numberNumber,
+            'quote_date' => $request->date,
+            'sender_id' => $request->sender,
+            'client_id' => $request->receiver,
+            'items' => $items,
+            'tax' => $request->tax,
+            'terms_conditions' => $termsConditions,
+            'amount' => $amount,
+            'user_id' => auth()->user()->id,
+            'status_id' => 1, // Default status. 1 is "Not sent"
+        ]);
+
+        // Store temporary file in the database
+        $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
+        $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
+        if ($temporaryFile) {
+            $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))->toMediaCollection('attachments');
+            rmdir(storage_path('app/attachments/tmp/' . $attachmentRequest));
+            $temporaryFile->delete();
+        }
+
+        // Redirect to finalize quote page
+        return redirect()->route('quotes.create.finalize');
     }
 }

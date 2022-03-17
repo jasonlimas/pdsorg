@@ -24,7 +24,7 @@
             <!-- Create Quote Form. Only logged in user can see the form -->
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
                 @auth
-                    <form action="{{ route('admin.quote.create') }}" method=" POST">
+                    <form action="{{ route('admin.quote.create') }}" method="POST">
                         @csrf
                         <!-- Quote number component -->
                         @livewire('quote-number', ['isManual' => true])

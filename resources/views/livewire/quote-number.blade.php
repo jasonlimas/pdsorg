@@ -1,11 +1,17 @@
 <div>
     <!-- Quote number texts -->
     <h2 class="text-2xl font-medium">Quote Number</h2>
-    <p class="text-gray-600 mb-3">
+    <p class="text-gray-600">
         Quote identification.
-        @if (!$isManual) Number is automatically generated. You don't have to enter it.<br>
-        Sender person's division and name fields are filled based on your information. If they are wrong, please contact your administrator. @endif
     </p>
+    @if (!$isManual)
+        <p class="text-gray-600 mb-3">
+            Number is automatically generated. You don't have to enter it.<br>
+            Sender person's division and name fields are filled based on your information. If they are wrong, please contact your administrator.
+        </p>
+    @endif
+
+
 
     <!-- Quote number input -->
     <div class="@if ($isManual) columns-3 @else columns-2 @endif gap-2">
@@ -60,4 +66,8 @@
             </div>
         @endif
     </div>
+
+    <p class="text-red-600 text-sm mb-3">
+        Note: creating a quote manually doesn't count towards the auto increasing quote number.
+    </p>
 </div>
