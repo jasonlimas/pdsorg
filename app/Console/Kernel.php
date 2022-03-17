@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
                     ]);
                 }
             }
-        })->daily();
+        })->daily()->timezone('Asia/Jakarta');
 
         // Delete temporary files (attachments) and clear temporary_files table in database
         $schedule->call(function() {
@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
 
                 $entry->delete();   // Delete entry in database
             }
-        })->weekly();
+        })->weekly()->timezone('Asia/Jakarta');
     }
 
     /**
