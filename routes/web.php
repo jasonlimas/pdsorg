@@ -15,11 +15,6 @@ use App\Http\Controllers\TermsConditionsController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
-// Home
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -31,6 +26,11 @@ Route::get('/quote/download/{quote}', [QuoteController::class, 'download'])->nam
 Route::group([
     'middleware' => 'auth'
 ], function () {
+    // Home
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+
     // Create Quotation
     Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
     Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');

@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
             $quotes = Quotation::all();
 
             foreach ($quotes as $quote) {
-                // If quote is 1 month old, mark it as expired
+                // If quote is 30 days old, mark it as expired
                 if (strtotime($quote->quote_date) < strtotime('-30 days')) {
                     $quote->update([
                         'status_id' => '3' // 3 is expired
