@@ -117,4 +117,5 @@ Route::group([
 
     // User Management
     Route::get('/leader/user/create', [RegisterController::class, 'index'])->name('leader.user.create');
+    Route::post('/leader/user/create', [RegisterController::class, 'store']);
 });

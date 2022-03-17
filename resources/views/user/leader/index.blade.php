@@ -59,7 +59,7 @@
                     <a
                         class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
                         type="button"
-                        href="#">
+                        href="{{ route('leader.user.create') }}">
                         Add User
                     </a>
                 </div>
