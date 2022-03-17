@@ -117,6 +117,8 @@ Route::group([
 
     // User Management
     Route::get('/leader/user/create', [RegisterController::class, 'index'])->name('leader.user.create');
+    Route::get('/leader/user/{user}', [UserManagementController::class, 'show'])->name('leader.user.show');
     Route::post('/leader/user/create', [RegisterController::class, 'store']);
+    Route::post('/leader/user/{user}', [UserManagementController::class, 'update']);
     Route::delete('/leader/user/{user}', [UserManagementController::class, 'destroy'])->name('leader.user.destroy');
 });

@@ -11,7 +11,10 @@
 
             <!-- Form section -->
             <div class="bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
-                <form action="{{ route('admin.user.show', $user) }}" method="POST">
+                <form
+                    @admin action="{{ route('admin.user.show', $user) }}" @endadmin
+                    @teamleader action="{{ route('leader.user.show', $user) }}" @endteamleader
+                    method="POST">
                     @csrf
                     <!-- Full name -->
                     <div class="flex flex-wrap mb-4">
@@ -167,83 +170,85 @@
                         </div>
                     </div>
 
-                    <!-- DIVIDER -->
-                    <div class="flex justify-center"><div class="w-4/5 my-6 border-b-2 border-slate-300-50"></div></div>
+                    @admin
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-6 border-b-2 border-slate-300-50"></div></div>
 
-                    <!-- Role -->
-                    <div class="flex flex-wrap mb-4">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="role_id">
-                                Role
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <select
-                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('role_id') border-red-500 @enderror"
-                                name="role_id">
-                                @foreach ($roles as $role)
-                                    <option {{ $role->id == $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
+                        <!-- Role -->
+                        <div class="flex flex-wrap mb-4">
+                            <div class="w-1/3 align-middle">
+                                <label class="text-md p-3 inline-block align-middle" for="role_id">
+                                    Role
+                                </label>
+                            </div>
+                            <div class="w-2/3">
+                                <select
+                                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                    @error('role_id') border-red-500 @enderror"
+                                    name="role_id">
+                                    @foreach ($roles as $role)
+                                        <option {{ $role->id == $user->role_id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
 
-                            @error('role_id')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                @error('role_id')
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Organization -->
-                    <div class="flex flex-wrap mb-4">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="organization_id">
-                                Organization
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <select
-                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('organization_id') border-red-500 @enderror"
-                                name="organization_id">
-                                @foreach ($organizations as $organization)
-                                    <option {{ $organization->id == $user->sender_id ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
-                                @endforeach
-                            </select>
+                        <!-- Organization -->
+                        <div class="flex flex-wrap mb-4">
+                            <div class="w-1/3 align-middle">
+                                <label class="text-md p-3 inline-block align-middle" for="organization_id">
+                                    Organization
+                                </label>
+                            </div>
+                            <div class="w-2/3">
+                                <select
+                                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                    @error('organization_id') border-red-500 @enderror"
+                                    name="organization_id">
+                                    @foreach ($organizations as $organization)
+                                        <option {{ $organization->id == $user->sender_id ? 'selected' : '' }} value="{{ $organization->id }}">ID:{{ $organization->id}} - {{ $organization->name }}</option>
+                                    @endforeach
+                                </select>
 
-                            @error('organization_id')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                @error('organization_id')
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Division -->
-                    <div class="flex flex-wrap">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="division_id">
-                                Division
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <select
-                                class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                @error('division_id') border-red-500 @enderror"
-                                name="division_id">
-                                @foreach ($divisions as $division)
-                                    <option {{ $division->id == $user->division_id ? 'selected' : '' }} value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
-                                @endforeach
-                            </select>
+                        <!-- Division -->
+                        <div class="flex flex-wrap">
+                            <div class="w-1/3 align-middle">
+                                <label class="text-md p-3 inline-block align-middle" for="division_id">
+                                    Division
+                                </label>
+                            </div>
+                            <div class="w-2/3">
+                                <select
+                                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                                    @error('division_id') border-red-500 @enderror"
+                                    name="division_id">
+                                    @foreach ($divisions as $division)
+                                        <option {{ $division->id == $user->division_id ? 'selected' : '' }} value="{{ $division->id }}">ID:{{ $division->id}} - {{ $division->abbreviation }} ({{ $division->description }})</option>
+                                    @endforeach
+                                </select>
 
-                            @error('division_id')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                @error('division_id')
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
+                    @endadmin
 
                     <!-- DIVIDER -->
                     <div class="flex justify-center"><div class="w-4/5 my-6"></div></div>
@@ -252,7 +257,8 @@
                     <div class="flex justify-end">
                         <!-- Cancel button -->
                         <a
-                            href="{{ route('admin') }}"
+                            @admin href="{{ route('admin') }}" @endadmin
+                            @teamleader href="{{ route('leader') }}" @endteamleader
                             class="mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline text-center">
                             Cancel
                         </a>

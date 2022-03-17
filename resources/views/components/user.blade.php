@@ -16,7 +16,10 @@
     <!-- Action Icons -->
     <td class="p-3 flex">
         <!-- Edit Icon -->
-        <form action="{{ route('admin.user.show', $user) }}" method="GET">
+        <form
+            @admin action="{{ route('admin.user.show', $user) }}" @endadmin
+            @teamleader action="{{ route('leader.user.show', $user) }}" @endteamleader
+            method="GET">
             @csrf
             <x-enabled-edit-icon />
         </form>
