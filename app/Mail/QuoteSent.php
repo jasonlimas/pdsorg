@@ -32,6 +32,6 @@ class QuoteSent extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.quote.quote-sent')->subject('You received a quote from ' . Sender::find(auth()->user()->sender_id)->name);
+        return $this->markdown('emails.quote.quote-sent')->subject('You received a quote from ' . Sender::withTrashed()->find(auth()->user()->sender_id)->name);
     }
 }

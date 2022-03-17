@@ -23,7 +23,7 @@ Route::post('/login', [LoginController::class, 'store']);
 // Quote download for unauthenticated users (Clicking download in email)
 Route::get('/quote/download/{quote}', [QuoteController::class, 'download'])->name('quote.download');
 
-// Middleware group, for authenticated users only
+// Middleware group, for authenticated users only (any role)
 Route::group([
     'middleware' => 'auth'
 ], function () {

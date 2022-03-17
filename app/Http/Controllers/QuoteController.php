@@ -385,7 +385,12 @@ class QuoteController extends Controller
         // Get client's email
         $clientEmail = Client::withTrashed()->find($quote->client_id)->email;
 
-        Mail::to($clientEmail)->send(new QuoteSent(route('quote.download', $quote)));
+        // CC to creator and division leader
+        $creatorEmail = User::find($quote->user_id)->email;
+
+        Mail::to($clientEmail)
+            ->cc($creatorEmail)
+            ->send(new QuoteSent(route('quote.download', $quote)));
 
         // Change quote status to "Sent"
         $quote->update([
