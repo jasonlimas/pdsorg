@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Quotation;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +16,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function() {
+            $quotes = Quotation::all();
+
+            foreach ($quotes as $quote) {
+                // If quote is 1 month old, mark it as expired
+                if (strtotime($quote->quote_date) < strtotime('-30 days')) {
+                    $quote->update([
+                        'status_id' => '3' // 3 is expired
+                    ]);
+                }
+            }
+        })->daily();
     }
 
     /**

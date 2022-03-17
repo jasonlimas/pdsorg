@@ -377,7 +377,7 @@ class QuoteController extends Controller
             'status_id' => 1, // Status 1 = "Not sent"
         ]);
 
-        return redirect()->route('quotes')->with('success', 'Quote duplicated successfully');
+        return redirect()->route('quotes.create.finalize')->with('success', 'Quote duplicated successfully');
     }
 
     public function sendEmail(Quotation $quote)

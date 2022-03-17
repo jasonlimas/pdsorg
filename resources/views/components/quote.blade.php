@@ -14,7 +14,7 @@
         @elseif ($quote->status_id == 2)
             <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
         @elseif ($quote->status_id == 3)
-            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
         @endif
     </td>
 
