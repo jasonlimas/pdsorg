@@ -9,6 +9,7 @@ use App\Models\Division;
 use App\Models\Quotation;
 use App\Models\QuoteStatus;
 use App\Models\Sender;
+use App\Models\TemporaryFile;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
