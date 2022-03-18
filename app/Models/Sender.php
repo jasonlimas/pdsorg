@@ -18,6 +18,10 @@ class Sender extends Model
         'bank_account_number',
     ];
 
+    protected $casts = [
+        'bank_info' => 'array',
+    ];
+
     public function quotes()
     {
         return $this->hasMany(Quotation::class);
