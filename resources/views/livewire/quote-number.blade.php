@@ -14,7 +14,7 @@
 
 
     <!-- Quote number input -->
-    <div class="@if ($isManual) columns-3 @else columns-2 @endif gap-2">
+    @if ($isManual) <div class="columns-3 gap-2"> @else <div class="columns-2 gap-2"> @endif
         <!-- User's division -->
         <div>
             <label for="numberDivision" class="text-sm">Sender person's division</label>

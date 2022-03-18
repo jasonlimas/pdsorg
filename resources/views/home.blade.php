@@ -23,7 +23,7 @@
                         <form action="{{ route('quotes') }}" method="GET">
                             @csrf
                             <button
-                                class="bg-indigo-500 hover:bg-indigo-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
+                                class="bg-blue-500 hover:bg-blue-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
                                 type="submit">
                                 View All Quotes
                             </button>
@@ -32,7 +32,7 @@
                         <form action="{{ route('quotes.create') }}" method="GET">
                             @csrf
                             <button
-                                class="bg-indigo-500 hover:bg-indigo-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
+                                class="bg-blue-500 hover:bg-blue-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
                                 type="submit">
                                 Create New Quote
                             </button>
@@ -41,7 +41,7 @@
                         <form action="{{ route('profiles') }}" method="GET">
                             @csrf
                             <button
-                                class="bg-indigo-500 hover:bg-indigo-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
+                                class="bg-blue-500 hover:bg-blue-700 w-48 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
                                 type="submit">
                                 Profiles
                             </button>
