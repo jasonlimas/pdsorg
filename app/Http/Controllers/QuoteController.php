@@ -383,14 +383,14 @@ class QuoteController extends Controller
     public function sendEmail(Quotation $quote)
     {
         // Get client's email
-        $clientEmail = Client::withTrashed()->find($quote->client_id)->email;
+        $client = Client::withTrashed()->find($quote->client_id)->only(['name', 'email']);
 
         // Array to store emails to be CC'd
         $emailToCC = [];
 
         // Quote creator
-        $creator = User::find($quote->user_id)->email;
-        $emailToCC[] = $creator;    // Put creator's email in CC
+        $creator = User::find($quote->user_id)->only(['name', 'email', 'phone', 'sender_id']);
+        $emailToCC[] = $creator['email'];    // Put creator's email in CC
 
         // Leaders of the division
         $leaders = User::where('division_id', User::find($quote->user_id)->division_id)->where('role_id', 2)->get();
@@ -401,9 +401,9 @@ class QuoteController extends Controller
         }
 
         // Send the email to the client and all emails in $emailToCC (Creator and division leader(s))
-        Mail::to($clientEmail)
+        Mail::to($client['email'])
             ->cc($emailToCC)
-            ->send(new QuoteSent(route('quote.download', $quote)));
+            ->send(new QuoteSent($client['name'], $quote, route('quote.download', $quote), $creator));
 
         // Change quote status to "Sent"
         $quote->update([

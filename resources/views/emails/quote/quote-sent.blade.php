@@ -1,12 +1,27 @@
 @component('mail::message')
-# Paradisestore.id just sent you a quote!
+# You received a quote from {{ $senderOrg }}!
 
-Click the button below to view the quote.
+Hi {{ $recipient }}
 
-@component('mail::button', ['url' => $downloadLink])
+Thank you for contacting us. {{ $senderOrg }} sent you a quote for the item(s) below:
+
+@foreach ($quote->items as $item)
+- {{ $item['name'] }}
+@endforeach
+
+Click the button below for more details about the quote.
+@component('mail::button', ['url' => $downloadLink, 'color' => 'primary'])
 View Quote
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+@component('mail::panel')
+Please do not reply here as we are not monitoring this email.
+For any enquiries, please contact:<br>
+**{{ $contact['name'] }}**<br>
+**{{ $contact['email'] }}**<br>
+**{{ $contact['phone'] }}**
+@endcomponent
+
+Thanks and best regards,<br>
+{{ $senderOrg }}
 @endcomponent
