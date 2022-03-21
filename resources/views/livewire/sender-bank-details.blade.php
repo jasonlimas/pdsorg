@@ -74,7 +74,7 @@
         </tbody>
     </table>
 
-    @error('termsConditions')
+    @error('banksError')
         <div class="text-red-500 mt-1 text-sm ml-2">
             {{ $message }}
         </div>

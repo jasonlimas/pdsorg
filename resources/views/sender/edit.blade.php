@@ -75,7 +75,7 @@
                     <h2 class="text-2xl font-medium mb-5">Bank Account Details</h2>
 
                     <!-- Input component -->
-                    @livewire('sender-bank-details')
+                    @livewire('sender-bank-details', ['sender' => $sender])
 
                     {{-- <!-- Banking Institution -->
                     <div class="flex flex-wrap mb-4">

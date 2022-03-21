@@ -7,12 +7,17 @@ use Livewire\Component;
 class SenderBankDetails extends Component
 {
     public $banks = [[]];
+    public $sender; // Variable that is only used when editing a sender profile
 
     public function mount()
     {
-        $this->banks = [
-            ['institution' => '', 'accountName' => '', 'accountNumber' => ''],
-        ];
+        if (!is_null($this->sender)) {
+            $this->banks = $this->sender->bank_info;
+        } else {
+            $this->banks = [
+                ['institution' => '', 'accountName' => '', 'accountNumber' => ''],
+            ];
+        }
     }
 
     public function render()
