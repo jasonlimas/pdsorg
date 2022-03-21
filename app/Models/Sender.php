@@ -13,9 +13,7 @@ class Sender extends Model
     protected $fillable = [
         'name',
         'address',
-        'bank_institution',
-        'bank_account_name',
-        'bank_account_number',
+        'bank_info',
     ];
 
     protected $casts = [

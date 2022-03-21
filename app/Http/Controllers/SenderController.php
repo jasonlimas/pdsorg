@@ -37,8 +37,6 @@ class SenderController extends Controller
             $banks[] = $bank;
         }
 
-        dd($request->banks);
-
         // Create Sender Organization Profile
         Sender::create([
             'name' => $request->name,
