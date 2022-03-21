@@ -185,11 +185,10 @@ class CreateQuoteController extends Controller
         }
 
         // Bank details
-        $bank = [
-            'bank_institution' => $senderOrg->bank_institution,
-            'bank_account_name' => $senderOrg->bank_account_name,
-            'bank_account_number' => $senderOrg->bank_account_number,
-        ];
+        $banks = [];
+        foreach ($senderOrg->bank_info as $bank) {
+            $banks[] = $bank;
+        }
 
         // Attachment
         $attachment = $quote->getMedia('attachments');
@@ -199,7 +198,7 @@ class CreateQuoteController extends Controller
         }
 
         // Create PDF
-        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath);
+        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
     }
 
     // Admin only section

@@ -26,7 +26,9 @@ class AddStatusIdToQuotesTable extends Migration
     public function down()
     {
         Schema::table('quotes', function (Blueprint $table) {
-            //
+            $table->dropColumn([
+                'status_id',
+            ]);
         });
     }
 }

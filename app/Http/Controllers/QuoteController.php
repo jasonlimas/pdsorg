@@ -216,11 +216,10 @@ class QuoteController extends Controller
         }
 
         // Bank details
-        $bank = [
-            'bank_institution' => $senderOrg->bank_institution,
-            'bank_account_name' =>$senderOrg->bank_account_name,
-            'bank_account_number' => $senderOrg->bank_account_number,
-        ];
+        $banks = [];
+        foreach ($senderOrg->bank_info as $bank) {
+            $banks[] = $bank;
+        }
 
         // Attachment
         $attachment = $quote->getMedia('attachments');
@@ -230,7 +229,7 @@ class QuoteController extends Controller
         }
 
         // Create PDF
-        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath);
+        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

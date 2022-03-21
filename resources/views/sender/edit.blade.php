@@ -74,7 +74,10 @@
                     <!-- Sender Organization Bank Details header -->
                     <h2 class="text-2xl font-medium mb-5">Bank Account Details</h2>
 
-                    <!-- Banking Institution -->
+                    <!-- Input component -->
+                    @livewire('sender-bank-details', ['sender' => $sender])
+
+                    {{-- <!-- Banking Institution -->
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
@@ -144,7 +147,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Buttons -->
                     <div class="flex justify-end">
