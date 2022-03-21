@@ -11,7 +11,7 @@ class SenderBankDetails extends Component
 
     public function mount()
     {
-        if (!is_null($this->sender)) {
+        if ($this->sender) {
             $this->banks = $this->sender->bank_info;
         } else {
             $this->banks = [

@@ -2,7 +2,7 @@
 namespace App\Library\PDF;
 
 class PDF {
-    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $bank, $attachmentPath) {
+    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
 
@@ -78,7 +78,7 @@ class PDF {
         // *===================================== *
         $tempYPos = $mpdf->y;
         $mpdf->SetY($mpdf->y + 15);
-        PDF::writeBankDetails($mpdf, $bank);
+        PDF::writeBankDetails($mpdf, $banks);
 
         // *===================================== *
         // * Best regards field
@@ -495,9 +495,12 @@ class PDF {
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
         $mpdf->WriteCell(0, $cellHeight, 'Pembayaran melalui transfer bank', 0, 2);
         $mpdf->SetFont('', '');
-        $mpdf->WriteCell(0, $cellHeight, $data['bank_institution'], 0, 2);
-        $mpdf->WriteCell(0, $cellHeight, 'A/N ' . $data['bank_account_name'], 0, 2);
-        $mpdf->WriteCell(0, $cellHeight, $data['bank_account_number'], 0, 2);
+        foreach ($data as $bank) {
+            $mpdf->WriteCell(0, $cellHeight, $bank['institution'], 0, 2);
+            $mpdf->WriteCell(0, $cellHeight, 'A/N ' . $bank['accountName'], 0, 2);
+            $mpdf->WriteCell(0, $cellHeight, $bank['accountNumber'], 0, 2);
+            $mpdf->WriteCell(0, $cellHeight, '', 0, 2);
+        }
     }
 
     /**

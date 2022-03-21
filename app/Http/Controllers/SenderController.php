@@ -63,18 +63,28 @@ class SenderController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'address' => 'required|max:255',
-            'bankInstitution' => 'required|max:255',
-            'bankAccountName' => 'required|max:255',
-            'bankAccountNumber' => 'required|max:255',
         ]);
+
+        // Validate bank details
+        if (in_array(null, $request->banks, true)) {
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'banksError' => ['One or more values are invalid'],
+            ]);
+
+            throw $error;
+        }
+
+        // Put all inputs into an array
+        $banks = [];
+        foreach ($request->banks as $bank) {
+            $banks[] = $bank;
+        }
 
         // Update Sender Organization Profile
         $sender->update([
             'name' => $request->name,
             'address' => $request->address,
-            'bank_institution' => $request->bankInstitution,
-            'bank_account_name' => $request->bankAccountName,
-            'bank_account_number' => $request->bankAccountNumber,
+            'bank_info' => $banks,
         ]);
 
         // Redirect back with success message
