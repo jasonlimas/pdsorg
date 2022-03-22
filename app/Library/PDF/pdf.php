@@ -7,7 +7,7 @@ class PDF {
         $mpdf = new \Mpdf\Mpdf();
 
         // *===================================== *
-        // * PDF template
+        // * PDF template. Located in the same directory as this file
         // *===================================== *
         $template = $mpdf->setSourceFile(app_path('Library/PDF/template.pdf'));
         $fileId = $mpdf->importPage($template);
