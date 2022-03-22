@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Library\pdf\PDF;
+use App\Library\PDF\pdf;
 use App\Mail\QuoteSent;
 use App\Models\Client;
 use App\Models\Division;
@@ -239,7 +239,7 @@ class QuoteController extends Controller
         }
 
         // Create PDF
-        PDF::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
+        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

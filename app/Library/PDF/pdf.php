@@ -1,7 +1,7 @@
 <?php
-namespace app\Library\pdf;
+namespace App\Library\PDF;
 
-class PDF {
+class pdf {
     public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
