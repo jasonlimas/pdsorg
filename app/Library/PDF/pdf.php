@@ -1,5 +1,5 @@
 <?php
-namespace App\Library\Pdf;
+namespace app\Library\Pdf;
 
 class PDF {
     public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
