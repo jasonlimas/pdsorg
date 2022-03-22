@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sender;
+use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 
 class SenderController extends Controller
@@ -38,11 +39,21 @@ class SenderController extends Controller
         }
 
         // Create Sender Organization Profile
-        Sender::create([
+        $sender = Sender::create([
             'name' => $request->name,
             'address' => $request->address,
             'bank_info' => $banks,
         ]);
+
+        // Deal with logo
+        $attachmentRequest = strtok($request->logo, '<'); // Using strtok() is probably a stupid fix but it works anyway
+        $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
+        if ($temporaryFile) {
+            $sender->addMedia(storage_path('app/image/sender/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))
+                ->toMediaCollection('logo');
+            rmdir(storage_path('app/image/sender/tmp/' . $attachmentRequest));
+            $temporaryFile->delete();
+        }
 
         // Redirect back with success message
         return redirect()->route('admin')->with('success', 'Sender Organization Profile created successfully');

@@ -13,6 +13,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class QuoteController extends Controller
 {
@@ -221,7 +223,15 @@ class QuoteController extends Controller
             $banks[] = $bank;
         }
 
-        // Attachment
+        // Logo path
+        $logo = $senderOrg->getMedia('logo');
+        $logoPath = null;
+        if (!$logo->isEmpty()) {
+            $logoPath = $logo[0]->getPath();
+            Image::load($logoPath)->fit(Manipulations::FIT_MAX, 180, 60)->save();
+        }
+
+        // Attachment path
         $attachment = $quote->getMedia('attachments');
         $attachmentPath = null;
         if (!$attachment->isEmpty()) {
@@ -229,7 +239,7 @@ class QuoteController extends Controller
         }
 
         // Create PDF
-        PDF::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
+        PDF::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

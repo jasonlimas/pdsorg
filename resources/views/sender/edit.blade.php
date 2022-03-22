@@ -24,7 +24,7 @@
                     <h2 class="text-2xl font-medium mb-5">Sender Name and Address</h2>
 
                     <!-- Name -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
                                 Organization Name
@@ -76,78 +76,6 @@
 
                     <!-- Input component -->
                     @livewire('sender-bank-details', ['sender' => $sender])
-
-                    {{-- <!-- Banking Institution -->
-                    <div class="flex flex-wrap mb-4">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="name">
-                                Banking Institution
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                                @error('bankInstitution') border-red-500 @enderror"
-                                name="bankInstitution"
-                                type="text"
-                                placeholder="Institution Name"
-                                value="{{ $sender->bank_institution }}">
-
-                                @error('bankInstitution')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Banking Account Name -->
-                    <div class="flex flex-wrap mb-4">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="name">
-                                Banking Account Name
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                                @error('bankAccountName') border-red-500 @enderror"
-                                name="bankAccountName"
-                                type="text"
-                                placeholder="Account Name"
-                                value="{{ $sender->bank_account_name }}">
-
-                                @error('bankAccountName')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Banking Account Number -->
-                    <div class="flex flex-wrap mb-4">
-                        <div class="w-1/3 align-middle">
-                            <label class="text-md p-3 inline-block align-middle" for="name">
-                                Banking Account Number
-                            </label>
-                        </div>
-                        <div class="w-2/3">
-                            <input
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
-                                @error('bankAccountNumber') border-red-500 @enderror"
-                                name="bankAccountNumber"
-                                type="text"
-                                placeholder="Account Number"
-                                value="{{ $sender->bank_account_number }}">
-
-                                @error('bankAccountNumber')
-                                <div class="text-red-500 mt-2 text-sm">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div> --}}
 
                     <!-- Buttons -->
                     <div class="flex justify-end">

@@ -2,7 +2,7 @@
 namespace App\Library\PDF;
 
 class PDF {
-    public static function create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
+    public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
 
@@ -23,7 +23,7 @@ class PDF {
         // * Quote title
         // *===================================== *
         $mpdf->SetY(25);
-        PDF::writeQuotationTitle($mpdf, app_path('Library/PDF/pdslogo.png'), $border);
+        PDF::writeQuotationTitle($mpdf, $logoPath, $border);
 
         // *===================================== *
         // * Quote number and date
@@ -126,7 +126,9 @@ class PDF {
         $mpdf->SetFont('', '', 12); // Reset font settings
 
         // Display logo
-        $mpdf->Image($imgPath, 140, $mpdf->y, 55);
+        if ($imgPath) {
+            $mpdf->Image($imgPath, 145, $mpdf->y);
+        }
 
         $mpdf->SetY($mpdf->y);
     }

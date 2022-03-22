@@ -11,6 +11,8 @@ use App\Models\Quotation;
 use App\Models\QuoteCounter;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class CreateQuoteController extends Controller
 {
@@ -122,7 +124,8 @@ class CreateQuoteController extends Controller
         $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
         $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
         if ($temporaryFile) {
-            $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))->toMediaCollection('attachments');
+            $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))
+                ->toMediaCollection('attachments');
             rmdir(storage_path('app/attachments/tmp/' . $attachmentRequest));
             $temporaryFile->delete();
         }
@@ -190,7 +193,15 @@ class CreateQuoteController extends Controller
             $banks[] = $bank;
         }
 
-        // Attachment
+        // Logo path
+        $logo = $senderOrg->getMedia('logo');
+        $logoPath = null;
+        if (!$logo->isEmpty()) {
+            $logoPath = $logo[0]->getPath();
+            Image::load($logoPath)->fit(Manipulations::FIT_MAX, 180, 60)->save();
+        }
+
+        // Attachment path
         $attachment = $quote->getMedia('attachments');
         $attachmentPath = null;
         if (!$attachment->isEmpty()) {
@@ -198,7 +209,7 @@ class CreateQuoteController extends Controller
         }
 
         // Create PDF
-        pdf::create($quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
+        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
     }
 
     // Admin only section

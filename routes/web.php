@@ -98,6 +98,7 @@ Route::group([
     Route::get('/admin/sender/{sender}', [SenderController::class, 'show'])->name('admin.sender.show');
     Route::post('/admin/sender/create', [SenderController::class, 'store']);
     Route::post('/admin/sender/{sender}', [SenderController::class, 'update']);
+    Route::post('/admin/sender/create/upload', [UploadController::class, 'senderLogoStore']);
     Route::delete('/admin/sender/{sender}', [SenderController::class, 'destroy'])->name('admin.sender.destroy');
 
     // Division
