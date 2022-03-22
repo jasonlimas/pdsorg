@@ -30,7 +30,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "App\\Library\\": "app/Library/Pdf"
+            "App\\Library\\": "app/Library/pdf"
         }
     },
     "autoload-dev": {

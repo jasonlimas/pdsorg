@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Library\Pdf\PDF;
+use app\Library\pdf\PDF;
 use App\Mail\QuoteSent;
 use App\Models\Client;
 use App\Models\Division;
