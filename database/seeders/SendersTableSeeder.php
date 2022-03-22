@@ -18,6 +18,11 @@ class SendersTableSeeder extends Seeder
         DB::table('senders')->insert([
             'name' => 'PT. XDC Indonesia',
             'address' => 'KETAPANG BUSINESS CENTER BLOK D2-D3',
+            'bank_info' => [[
+                'bank_name' => 'BCA',
+                'account_number' => '1458888808',
+                'account_name' => 'XDC INDONESIA PT'
+            ]],
         ]);
     }
 }
