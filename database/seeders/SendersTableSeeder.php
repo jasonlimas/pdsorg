@@ -16,13 +16,9 @@ class SendersTableSeeder extends Seeder
     {
         // XDC Indonesia
         DB::table('senders')->insert([
-            'name' => 'PT. XDC Indonesia',
+            'name' => '*DELETE ME*',
             'address' => 'KETAPANG BUSINESS CENTER BLOK D2-D3',
-            'bank_info' => [
-                'institution' => 'BCA',
-                'accountName' => 'XDC INDONESIA PT',
-                'accountNumber' => '1458888808',
-            ],
+            'bank_info' => null,
         ]);
     }
 }
