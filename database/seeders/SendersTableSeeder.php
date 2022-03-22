@@ -18,7 +18,7 @@ class SendersTableSeeder extends Seeder
         DB::table('senders')->insert([
             'name' => '*DELETE ME*',
             'address' => 'KETAPANG BUSINESS CENTER BLOK D2-D3',
-            'bank_info' => null,
+            'bank_info' => 'bca',
         ]);
     }
 }
