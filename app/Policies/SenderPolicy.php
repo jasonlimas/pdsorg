@@ -11,11 +11,11 @@ class SenderPolicy
 
     public function delete(User $user)
     {
-        return $user->role_id === 1;
+        return $user->role_id == 1;
     }
 
     public function edit(User $user)
     {
-        return $user->role_id === 1;
+        return $user->role_id == 1;
     }
 }
