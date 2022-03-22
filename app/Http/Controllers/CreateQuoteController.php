@@ -40,7 +40,7 @@ class CreateQuoteController extends Controller
         // Input validation
         $this->validate($request, [
             // Quote date
-            'date' => 'required|after:today',
+            'date' => 'required|after_or_equal:today',
 
             // Receiver
             'receiver' => 'required|exists:clients,id',

@@ -336,7 +336,7 @@ class QuoteController extends Controller
     {
         // Validate input
         $this->validate($request, [
-            'date' => 'required|after:today',
+            'date' => 'required|after_or_equal:today',
             'tax' => 'required|integer|min:0|max:100',
         ]);
 
