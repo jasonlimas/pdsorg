@@ -395,7 +395,7 @@ class QuoteController extends Controller
         $client = Client::withTrashed()->find($quote->client_id)->only(['name', 'email']);
 
         // Array to store emails to be CC'd
-        $emailToCC = [];
+        $emailToCC = [config('mail.from.address')];
 
         // Quote creator
         $creator = User::find($quote->user_id)->only(['name', 'email', 'phone', 'sender_id']);
