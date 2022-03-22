@@ -59,10 +59,7 @@ Route::group([
 
     // Client Profiles
     Route::get('/profiles/client/create', [ClientController::class, 'index'])->name('profiles.client.create');
-    Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
     Route::post('/profiles/client/create', [ClientController::class, 'store']);
-    Route::post('/profiles/client/{client}', [ClientController::class, 'update']);
-    Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
 
     // Terms & Conditions
     Route::get('/profiles/terms/create', [TermsConditionsController::class, 'index'])->name('profiles.terms.create');
@@ -81,6 +78,11 @@ Route::group([
 ], function () {
     // Admin Panel
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    // Client
+    Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
+    Route::post('/profiles/client/{client}', [ClientController::class, 'update']);
+    Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
 
     // Quote
     Route::get('/admin/quote/create', [CreateQuoteController::class, 'indexManual'])->name('admin.quote.create');
@@ -115,6 +117,11 @@ Route::group([
 ], function() {
     // Leader Panel
     Route::get('/leader', [LeaderController::class, 'index'])->name('leader');
+
+    // Client
+    Route::get('/profiles/client/{client}', [ClientController::class, 'show'])->name('profiles.client.show');
+    Route::post('/profiles/client/{client}', [ClientController::class, 'update']);
+    Route::delete('/profiles/client/{client}', [ClientController::class, 'destroy'])->name('profiles.client.destroy');
 
     // User Management
     Route::get('/leader/user/create', [RegisterController::class, 'index'])->name('leader.user.create');
