@@ -162,13 +162,13 @@
                 Note on quote status:
             </p>
             <ul class="text-sm">
-                <li class="mb-3.5">
+                <li class="mb-4">
                     <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 bg-opacity-50 rounded-lg">Not Sent</span> - Quote has not been sent to the client.
                 </li>
-                <li class="mb-3.5">
+                <li class="mb-4">
                     <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">Sent</span> - Quote sent to the client.
                 </li>
-                <li class="mb-3.5">
+                <li class="mb-4">
                     <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bg-opacity-50 rounded-lg">Expired</span> - Quote is 30 days old or older.
                 </li>
             </ul>
