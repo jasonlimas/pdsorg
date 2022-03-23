@@ -9,6 +9,8 @@ Thank you for contacting us. {{ $senderOrg }} sent you a quote for the item(s) b
 - {{ $item['name'] }}
 @endforeach
 
+Amount (incl. tax): **Rp. {{ number_format($quote->amount) }}**
+
 Click the button below for more details about the quote.
 @component('mail::button', ['url' => $downloadLink, 'color' => 'primary'])
 View Quote
