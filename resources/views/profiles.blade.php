@@ -17,7 +17,7 @@
 
             <!-- Your Details (Currently logged in user's details) -->
             <div class="bg-gray-100 p-6 rounded-lg mb-3 shadow-lg">
-                <h2 class="text-2xl font-medium">Your Details</h2>
+                <h2 class="text-2xl font-medium">Your Account</h2>
                 <p class="text-gray-600 mb-5">
                     Your details. Will be shown in the generated quotes as part of sender. <br>
                     Please contact your administrator if it is displaying incorrect name or email.
@@ -29,7 +29,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
-                                Your Name
+                                Name
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -54,7 +54,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="email">
-                                Your Work Email
+                                Work Email
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -79,7 +79,7 @@
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="phone">
-                                Your Work Phone
+                                Work Phone
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -101,8 +101,13 @@
 
                     <!-- Save button -->
                     <div class="flex justify-end">
+                        <a
+                            href=""
+                            class="w-40 bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200">
+                            Change Password
+                        </a>
                         <button
-                            class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
+                            class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                             type="submit">
                             Save Info
                         </button>
@@ -203,7 +208,7 @@
                 <!-- Add new client button -->
                 <div class="flex justify-end">
                     <a
-                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
+                        class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                         type="button"
                         href="{{ route('profiles.client.create') }}">
                         Add Client
@@ -250,7 +255,7 @@
                 <!-- Add Preset button -->
                 <div class="flex justify-end">
                     <a
-                        class="w-1/6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
+                        class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                         type="button"
                         href="{{ route('profiles.terms.create') }}">
                         Add Preset
