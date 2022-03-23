@@ -26,7 +26,6 @@
                     </a>
                 </div>
                 <nav class="md:flex space-x-10">
-
                     <!-- Links -->
                     <div class="relative inline-block text-left" x-data="{ isOpen: false }" @mouseleave="isOpen = false">
                         <a
@@ -66,7 +65,7 @@
                     @endguest
 
                     @auth
-                        <p>User: <a class="font-semibold">{{ auth()->user()->name }}</a></p>
+                        <p class="hidden lg:block">User: <a class="font-semibold">{{ auth()->user()->name }}</a></p>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button
