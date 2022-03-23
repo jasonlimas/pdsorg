@@ -102,11 +102,11 @@
                     <div class="flex justify-end">
                         <!-- Cancel button -->
                         <a href="{{ route('admin') }}"
-                            class="mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            class="w-20 mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
                         <button
-                            class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="w-40 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Add Details
                         </button>
