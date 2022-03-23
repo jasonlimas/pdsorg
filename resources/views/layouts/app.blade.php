@@ -65,7 +65,7 @@
                     @endguest
 
                     @auth
-                        <p class="font-semibold">{{ auth()->user()->name }}</p>
+                        <a href="{{ route('profiles') }}" class="font-semibold hover:underline">{{ auth()->user()->name }}</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button
