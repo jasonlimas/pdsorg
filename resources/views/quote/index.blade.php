@@ -15,14 +15,6 @@
                 <h1 class="text-4xl font-semibold mb-1">Your Quotes</h1>
                 @endsalesperson
 
-                <!-- If user is not logged in, tell the user -->
-                @guest
-                    <p>
-                        Not logged in. <br>
-                        You must be logged in to view this page.
-                    </p>
-                @endguest
-
                 <!-- If user is logged in, show name -->
                 @auth
                     <p>
@@ -165,6 +157,21 @@
                     </div>
                 @endauth
             </div>
+
+            <p class="text-sm mb-2">
+                Note on quote status:
+            </p>
+            <ul class="text-sm">
+                <li class="mb-3.5">
+                    <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 bg-opacity-50 rounded-lg">Not Sent</span> - Quote has not been sent to the client.
+                </li>
+                <li class="mb-3.5">
+                    <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">Sent</span> - Quote sent to the client.
+                </li>
+                <li class="mb-3.5">
+                    <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bg-opacity-50 rounded-lg">Expired</span> - Quote is 30 days old or older.
+                </li>
+            </ul>
         </div>
     </div>
 @endsection

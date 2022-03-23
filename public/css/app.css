@@ -556,6 +556,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mb-3\.5 {
+  margin-bottom: 0.875rem;
+}
 .block {
   display: block;
 }
@@ -684,6 +687,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .resize {
   resize: both;
+}
+.list-inside {
+  list-style-position: inside;
+}
+.list-disc {
+  list-style-type: disc;
 }
 .appearance-none {
   -webkit-appearance: none;
