@@ -65,7 +65,7 @@
                     @endguest
 
                     @auth
-                        <p class="hidden lg:block">User: <a class="font-semibold">{{ auth()->user()->name }}</a></p>
+                        <p class="font-semibold">{{ auth()->user()->name }}</p>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button
