@@ -32,6 +32,24 @@ class UserManagementController extends Controller
         }
     }
 
+    public function updatePassword(Request $request)
+    {
+        // Validation
+        $this->validate($request, [
+            'oldPassword' => 'required|password',   // 'password' in the validation means the current password
+            'newPassword' => 'required|min:8|confirmed',
+        ]);
+
+        // Update password
+        $user = User::find(auth()->user()->id);
+        $user->update([
+            'password' => Hash::make($request->newPassword),
+        ]);
+
+        // Redirect to profiles page with success message
+        return redirect()->route('profiles')->with('status', 'Password updated successfully');
+    }
+
     // Update an user in the database. Called when clicking the edit icon
     public function update(Request $request, User $user)
     {

@@ -24,7 +24,7 @@
                 </p>
 
                 <!-- The form -->
-                <form action="" method="">
+                <form action="{{ route('profiles.change-password') }}" method="POST">
                     @csrf
                     <!-- Old Password -->
                     <div class="flex flex-wrap mb-2">
