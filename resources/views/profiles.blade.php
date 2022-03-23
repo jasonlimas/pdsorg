@@ -103,7 +103,7 @@
                     <div class="flex justify-end">
                         <a
                             href="{{ route('profiles.change-password') }}"
-                            class="w-40 bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 mr-1 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200">
+                            class="w-40 mr-2 bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200">
                             Change Password
                         </a>
                         <button
