@@ -19,7 +19,7 @@
 
         <div class="flex">
             <button
-                class="bg-indigo-500 hover:bg-indigo-700 w-32 text-white font-bold py-2 px-4 m-2 rounded"
+                class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 w-32 text-white font-bold py-2 px-4 m-2 rounded"
                 wire:click.prevent="applyPreset"
                 type="button">
                 Apply Preset

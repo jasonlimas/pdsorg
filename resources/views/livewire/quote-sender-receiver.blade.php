@@ -68,7 +68,7 @@
     </div>
 
     <!-- Quote sender and receiver details -->
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-2 gap-2 mb-2">
         <!-- Sender details -->
         <textarea disabled style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -79,5 +79,13 @@
         <textarea disabled style="resize: none"
             class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             cols="30" rows="5" wire:model="clientDetails"></textarea>
+    </div>
+
+    <div class="flex justify-end">
+        <a
+            href="{{ route('profiles.client.create') }}"
+            class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-auto text-white font-bold py-2 px-4 rounded">
+            Add Client
+        </a>
     </div>
 </div>

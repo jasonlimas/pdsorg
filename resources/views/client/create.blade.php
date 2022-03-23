@@ -24,7 +24,7 @@
             <form action="{{ route('profiles.client.create') }}" method="POST">
                 @csrf
                 <!-- Name -->
-                <div class="flex flex-wrap mb-4">
+                <div class="flex flex-wrap mb-2">
                     <div class="w-1/3 align-middle">
                         <label class="text-md p-3 inline-block align-middle" for="name">
                             Client Name
@@ -32,7 +32,7 @@
                     </div>
                     <div class="w-2/3">
                         <input
-                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                             @error('name') border-red-500 @enderror"
                             name="name"
                             id="name"
@@ -49,7 +49,7 @@
                 </div>
 
                 <!-- Client email -->
-                <div class="flex flex-wrap mb-4">
+                <div class="flex flex-wrap mb-2">
                     <div class="w-1/3 align-middle">
                         <label class="text-md p-3 inline-block align-middle" for="email">
                             Client Email
@@ -57,7 +57,7 @@
                     </div>
                     <div class="w-2/3">
                         <input
-                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                             @error('email') border-red-500 @enderror"
                             name="email"
                             id="email"
@@ -74,7 +74,7 @@
                 </div>
 
                 <!-- Client phone -->
-                <div class="flex flex-wrap mb-4">
+                <div class="flex flex-wrap mb-2">
                     <div class="w-1/3 align-middle">
                         <label class="text-md p-3 inline-block align-middle" for="phone">
                             Client Phone
@@ -82,7 +82,7 @@
                     </div>
                     <div class="w-2/3">
                         <input
-                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                             @error('phone') border-red-500 @enderror"
                             name="phone"
                             id="phone"
@@ -99,7 +99,7 @@
                 </div>
 
                 <!-- Client address -->
-                <div class="flex flex-wrap mb-4">
+                <div class="flex flex-wrap mb-2">
                     <div class="w-1/3 align-middle">
                         <label class="text-md p-3 inline-block align-middle" for="address">
                             Client Address

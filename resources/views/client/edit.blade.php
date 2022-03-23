@@ -24,7 +24,7 @@
                 <form action="{{ route('profiles.client.show', $client) }}" method="POST">
                     @csrf
                     <!-- Name -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
                                 Client Name
@@ -49,7 +49,7 @@
                     </div>
 
                     <!-- Client email -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="email">
                                 Client Email
@@ -75,7 +75,7 @@
                     </div>
 
                     <!-- Client phone -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="phone">
                                 Client Phone
@@ -101,7 +101,7 @@
                     </div>
 
                     <!-- Client address -->
-                    <div class="flex flex-wrap mb-4">
+                    <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="address">
                                 Client Address
