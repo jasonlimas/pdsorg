@@ -55,6 +55,7 @@ Route::group([
     Route::get('/profiles', [ProfilesController::class, 'index'])->name('profiles');
 
     // User Profile
+    Route::get('/profile/change-password', [ProfilesController::class, 'indexPassword'])->name('profiles.change-password');
     Route::post('/profiles', [ProfilesController::class, 'update'])->name('profiles.update');
 
     // Client Profiles

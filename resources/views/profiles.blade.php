@@ -20,7 +20,7 @@
                 <h2 class="text-2xl font-medium">Your Account</h2>
                 <p class="text-gray-600 mb-5">
                     Your details. Will be shown in the generated quotes as part of sender. <br>
-                    Please contact your administrator if it is displaying incorrect name or email.
+                    Please contact an admin if it is displaying incorrect name or email. <br>
                 </p>
 
                 <form action="{{ route('profiles.update', auth()->user()) }}" method="POST">
@@ -42,11 +42,11 @@
                                 placeholder="Your Name"
                                 value="{{ $user->name }}">
 
-                                @error('name')
-                                    <div class="text-red-500 mt-2 text-sm">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            @error('name')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -102,14 +102,14 @@
                     <!-- Save button -->
                     <div class="flex justify-end">
                         <a
-                            href=""
-                            class="w-40 bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200">
+                            href="{{ route('profiles.change-password') }}"
+                            class="w-40 bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 mr-1 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200">
                             Change Password
                         </a>
                         <button
                             class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center transition-colors duration-200"
                             type="submit">
-                            Save Info
+                            Update Info
                         </button>
                     </div>
                 </form>
