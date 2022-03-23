@@ -131,12 +131,12 @@
                         <!-- Cancel button -->
                         <a
                             href="{{ route('profiles') }}"
-                            class="mr-2 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            class="mr-2 w-20 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
                         <!-- Update button -->
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="w-40 bg-blue-500 hover:bg-blue-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Update Client
                         </button>

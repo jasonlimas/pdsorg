@@ -32,6 +32,14 @@ class ProfilesController extends Controller
         ]);
     }
 
+    public function indexPassword()
+    {
+        $user = auth()->user();
+        return view('user.change-password', [
+            'user' => $user,
+        ]);
+    }
+
     // Update the user profile
     public function update(Request $request)
     {
