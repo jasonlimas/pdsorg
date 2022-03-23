@@ -28,7 +28,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
-                                Organization Name
+                                Name
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -54,7 +54,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="address">
-                                Organization Address
+                                Address
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -80,7 +80,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="logo">
-                                Organization Logo
+                                Logo
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -88,6 +88,7 @@
                                 required
                                 name="logo"
                                 id="logo">
+                            <p class="text-sm">Accepted file types: PNG, JPEG, JPG</p>
                         </div>
                     </div>
 
@@ -116,8 +117,13 @@
 
         @section('scripts')
         <script>
+            // Register the plugin
+            FilePond.registerPlugin(FilePondPluginFileValidateType);
+
             const inputElement = document.querySelector('input[id="logo"]');
-            const pond = FilePond.create(inputElement);
+            const pond = FilePond.create(inputElement, {
+                acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+            });
             FilePond.setOptions({
                 server: {
                     url: '/admin/sender/create/upload',

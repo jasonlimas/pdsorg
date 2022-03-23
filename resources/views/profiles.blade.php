@@ -133,7 +133,7 @@
                 <textarea
                     disabled
                     style="resize: none"
-                    class="shadow border rounded w-full p-3 mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     cols="30"
                     rows="5">{{ $sender->address }}</textarea>
 
