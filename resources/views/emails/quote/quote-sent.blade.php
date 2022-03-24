@@ -9,11 +9,12 @@ Thank you for contacting us. {{ $senderOrg }} sent you a quote for the item(s) b
 - {{ $item['name'] }}
 @endforeach
 
-Amount (incl. tax): **Rp. {{ number_format($quote->amount) }}**
+Amount (incl. tax): **Rp. {{ number_format($quote->amount) }}** <br>
+Quote Number: **{{ substr($quote->quote_date, 0, 4) .'/' .$quote->div .'/' .$quote->sales_person .'/' .substr($quote->quote_date, 5, 2) .'/' .$quote->number }}**
 
 Click the button below for more details about the quote.
 @component('mail::button', ['url' => $downloadLink, 'color' => 'primary'])
-View Quote
+Download Quote
 @endcomponent
 
 @component('mail::panel')

@@ -42,6 +42,12 @@ class QuoteSent extends Mailable
     {
         return $this->markdown('emails.quote.quote-sent')
             ->from(config('mail.from.address'), $this->senderOrg)
-            ->subject('You received a quote from ' . $this->senderOrg);
+            ->subject('You received a quote from '
+            . $this->senderOrg . ' ['
+            . substr($this->quote->quote_date, 0, 4) . '/'
+            . $this->quote->div . '/'
+            . $this->quote->sales_person . '/'
+            . substr($this->quote->quote_date, 5, 2) . '/'
+            . $this->quote->number . ']');
     }
 }
