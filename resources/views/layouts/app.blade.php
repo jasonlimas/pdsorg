@@ -12,6 +12,34 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        function bsd(status) {
+        var body = document.querySelector("body");
+
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+        window.onscroll = function () {};
+
+        if (status === true) {
+            // Check window scroll exists else use traditional method
+            if (window.onscroll !== null) {
+                // if any scroll is attempted, set this to the previous value
+                window.onscroll = function () {
+                    window.scrollTo(scrollLeft, scrollTop);
+                };
+            }
+        } else {
+            //body.classList.remove("fixed", "overflow-y-scroll");
+            window.onscroll = function () {};
+        }
+    }
+    </script>
     @livewireStyles
 </head>
 <body class="bg-slate-200">

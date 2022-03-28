@@ -1,7 +1,15 @@
 @props(['quote' => $quote])
 
 <tr class="odd:bg-white even:bg-slate-100 text-gray-700">
-    <td class="p-3 whitespace-nowrap">{{ $quote->id }}</td>
+    <td class="p-3 whitespace-nowrap">
+        <button
+            type="button"
+            class="text-blue-600 hover:underline"
+            x-data="{id:'view-quote-modal'}"
+            x-on:click="bsd(true), $dispatch('modal-overlay',{id})">
+            {{ $quote->id }}
+        </button>
+    </td>
     <td class="p-3 whitespace-nowrap">{{ $quote->quote_date }}</td>
     <td class="p-3 whitespace-nowrap">{{ $quote->client }}</td>
     <td class="p-3 whitespace-nowrap">{{ $quote->amount }}</td>
