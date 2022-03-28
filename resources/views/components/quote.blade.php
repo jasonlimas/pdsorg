@@ -5,8 +5,18 @@
         <button
             type="button"
             class="text-blue-600 hover:underline"
-            x-data="{id:'view-quote-modal'}"
-            x-on:click="bsd(true), $dispatch('modal-overlay',{id})">
+            x-data="{ id: 'view-quote-modal' }"
+            x-on:click="quoteInfo=[
+                'Quote#: {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' .  $quote->number }}',
+                'Date: {{ $quote->quote_date }}',
+                'Quoted By: {{ $quote->createdBy }}',
+                'Quoted To: {{ $quote->client }}',
+                'Amount: {{ $quote->amount }}',
+                'Status: {{ $quote->status }}'
+                ],
+                quoteItems={{ json_encode($quote->items) }},
+                quoteTerms={{ json_encode($quote->terms_conditions) }},
+                bsd(true), $dispatch('modal-overlay', {id})">
             {{ $quote->id }}
         </button>
     </td>
@@ -29,7 +39,7 @@
     <!-- Action icons -->
     <td class="p-3 whitespace-nowrap flex text-center">
         <!-- Download the quote -->
-        <form action="{{ route('quotes.download', $quote) }}" method="POST">
+        <form action="{{ route('quotes.download', $quote) }}" method="POST" target="_blank">
             @csrf
             <x-enabled-download-icon />
         </form>

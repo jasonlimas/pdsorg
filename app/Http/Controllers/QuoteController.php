@@ -34,6 +34,7 @@ class QuoteController extends Controller
             $quote->amount = 'Rp ' . number_format($quote['amount']);
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
             $quote->status = QuoteStatus::find($quote['status_id'])->name;
+            //dd($quote->items);
         }
 
         // Get all clients for quote filtering purposes

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex justify-center">
+    <div class="flex justify-center"  x-data="{ quoteInfo: null, quoteItems: null, quoteTerms: null }">
         <div class="w-8/12">
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
@@ -174,9 +174,9 @@
             </ul>
         </div>
 
+        <!-- MODAL!! -->
         <div
             class="fixed inset-0 z-50 flex flex-col items-center justify-end px-5 overflow-y-auto bg-gray-600 bg-opacity-50 sm:justify-start sm:px-0"
-            x-data="{modal:false}"
             x-show="modal"
             x-on:modal-overlay.window="if ($event.detail.id == 'view-quote-modal') modal=true"
             x-transition:enter="transition ease-out duration-500"
@@ -197,7 +197,50 @@
                 x-transition:leave-end="opacity-0 -translate-y-4 sm:translate-y-4"
                 x-on:click.away="modal=false, bsd(false)">
                 <div class="p-10 bg-white rounded-sm shadow-sm">
-                    Lorem Ipsum
+                    <h1 class="text-center font-bold text-3xl mb-5">QUOTE INFO</h1>
+
+                    <!-- General info -->
+                    <template x-for="attr in quoteInfo">
+                        <p class="" x-text="attr"></p>
+                    </template>
+
+                    <!-- Items -->
+                    <h2 class="mt-3 text-xl text-left font-semibold">Items</h2>
+                    <table>
+                        <thead class="bg-gray-200 border-2 border-gray-300">
+                            <tr>
+                                <th class="w-24">Name</th>
+                                <th class="w-10">Qty</th>
+                                <th class="w-14">Unit Price</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-50 border-2 border-gray-300">
+                            <template x-for="item in quoteItems">
+                                <tr class="border-2 border-gray-300">
+                                    <td class="overflow-y-auto" x-text="item.name"></td>
+                                    <td class="truncate text-center" x-text="item.quantity"></td>
+                                    <td class="truncate text-center">Rp. <span x-text="item.price"></span></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+
+                    <!-- Terms and conditions -->
+                    <h2 class="mt-3 text-xl text-left font-semibold">Terms & Conditions</h2>
+                    <ul class="mx-5 list-disc">
+                        <template x-for="term in quoteTerms">
+                            <li class="text-sm" x-text="term"></li>
+                        </template>
+                    </ul>
+
+                    <!-- Button -->
+                    <div class="mt-5 flex justify-center">
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-700 transition-colors text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            x-on:click="modal=false, bsd(false)">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

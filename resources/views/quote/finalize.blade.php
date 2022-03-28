@@ -36,7 +36,7 @@
                     </button>
                 </form>
 
-                <form action="{{ route('quotes.create.download', $quote) }}" method="GET">
+                <form action="{{ route('quotes.create.download', $quote) }}" method="GET" target="_blank">
                     @csrf
                     <button
                         class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"

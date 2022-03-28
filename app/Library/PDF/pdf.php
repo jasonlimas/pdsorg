@@ -95,7 +95,7 @@ class pdf {
         // * Output PDF
         // *===================================== *
         $outputName = PDF::buildQuoteNumber($quoteNumber, '-');
-        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'D');
+        $mpdf->Output('Quotation ' . $outputName . '.pdf', 'I');
 
         return response()->streamDownload(
             fn() => 'export_protocol.pdf'
