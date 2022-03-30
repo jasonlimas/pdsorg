@@ -47,6 +47,15 @@
                         <!-- Terms and conditions component -->
                         @livewire('quote-terms-conditions', ['quote' => $quote])
 
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
+
+                        <!-- Add attachment component -->
+                        @livewire('quote-attachment')
+
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9"></div></div>
+
                         <!-- Submit button -->
                         <div class="flex justify-center">
                             <button

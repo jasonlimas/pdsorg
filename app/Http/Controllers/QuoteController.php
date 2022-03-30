@@ -9,6 +9,7 @@ use App\Models\Division;
 use App\Models\Quotation;
 use App\Models\QuoteStatus;
 use App\Models\Sender;
+use App\Models\TemporaryFile;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -389,7 +390,7 @@ class QuoteController extends Controller
         }
 
         // Save to database
-        $request->user()->quotes()->create([
+        $newQuote = $request->user()->quotes()->create([
             'div' => $quote->div,
             'sales_person' => $quote->sales_person,
             'number' => $quote->number + 1,
@@ -403,6 +404,16 @@ class QuoteController extends Controller
             'user_id' => auth()->user()->id,
             'status_id' => 1, // Status 1 = "Not sent"
         ]);
+
+        // Store temporary file in the database
+        $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
+        $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
+        if ($temporaryFile) {
+            $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))
+            ->toMediaCollection('attachments');
+            rmdir(storage_path('app/attachments/tmp/' . $attachmentRequest));
+            $temporaryFile->delete();
+        }
 
         return redirect()->route('quotes.create.finalize')->with('success', 'Quote duplicated successfully');
     }
