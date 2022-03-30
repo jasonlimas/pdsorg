@@ -94,13 +94,13 @@
                                 </tr>
                             </thead>
                             <!-- Table Body -->
-                            <tbody class="divide-y divide-gray-200">
+                            <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($quote->items as $item)
                                     <tr>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item->name }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item->quantity }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item->price }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item->price }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item['name'] }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item['quantity'] }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">{{ 'Rp ' .  number_format($item['price']) }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">{{ 'Rp ' .  number_format($item['price'] * $item['quantity']) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

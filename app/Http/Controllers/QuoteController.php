@@ -164,8 +164,6 @@ class QuoteController extends Controller
         // Get client info
         $quote->client = Client::withTrashed()->find($quote->client_id)->name;
 
-        dd($quote->items);
-
         return view('quote.view', [
             'quote' => $quote,
         ]);
