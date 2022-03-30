@@ -152,6 +152,25 @@ class QuoteController extends Controller
         ]);
     }
 
+    public function view(Quotation $quote)
+    {
+        // Status of quote in text, because the data stored in database is status ID
+        $quote->status_text = QuoteStatus::find($quote->status_id)->name;
+
+        // Make date to be more readable
+        $brokenDate = explode('-', $quote->quote_date);
+        $quote->formatted_date = date('l, d F Y', mktime(0, 0, 0, $brokenDate[1], $brokenDate[2], $brokenDate[0]));
+
+        // Get client info
+        $quote->client = Client::withTrashed()->find($quote->client_id)->name;
+
+        dd($quote->items);
+
+        return view('quote.view', [
+            'quote' => $quote,
+        ]);
+    }
+
     public function show(Quotation $quote)
     {
         return view('quote.edit', [

@@ -2,23 +2,11 @@
 
 <tr class="odd:bg-white even:bg-slate-100 text-gray-700">
     <td class="p-3 whitespace-nowrap">
-        <button
-            type="button"
-            class="text-blue-600 hover:underline"
-            x-data="{ id: 'view-quote-modal' }"
-            x-on:click="quoteInfo=[
-                'Quote#: {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' .  $quote->number }}',
-                'Date: {{ $quote->quote_date }}',
-                'Quoted By: {{ $quote->createdBy }}',
-                'Quoted To: {{ $quote->client }}',
-                'Amount: {{ $quote->amount }}',
-                'Status: {{ $quote->status }}'
-                ],
-                quoteItems={{ json_encode($quote->items) }},
-                quoteTerms={{ json_encode($quote->terms_conditions) }},
-                bsd(true), $dispatch('modal-overlay', {id})">
+        <a
+            href="{{ route('quotes.view', $quote) }}"
+            class="p-3 whitespace-nowrap text-blue-600 hover:underline">
             {{ $quote->id }}
-        </button>
+        </a>
     </td>
     <td class="p-3 whitespace-nowrap">{{ $quote->quote_date }}</td>
     <td class="p-3 whitespace-nowrap">{{ $quote->client }}</td>

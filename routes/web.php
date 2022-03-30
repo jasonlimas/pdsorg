@@ -42,7 +42,8 @@ Route::group([
 
     // Quotation List
     Route::get('/quotes', [QuoteController::class, 'index'])->name('quotes');
-    Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
+    Route::get('/quotes/{quote}', [QuoteController::class, 'view'])->name('quotes.view');
+    Route::get('/quotes/{quote}/edit', [QuoteController::class, 'show'])->name('quotes.show');
     Route::get('/quotes/{quote}/copy', [QuoteController::class, 'duplicate'])->name('quotes.duplicate');
     Route::get('/quotes/{quote}/email', [QuoteController::class, 'sendEmail'])->name('quotes.email');
     Route::post('/quotes/filter', [QuoteController::class, 'query'])->name('quotes.filter');
