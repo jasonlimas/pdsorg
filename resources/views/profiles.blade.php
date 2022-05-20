@@ -79,7 +79,7 @@
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="phone">
-                                Work Phone
+                                Mobile Phone
                             </label>
                         </div>
                         <div class="w-2/3">
@@ -88,7 +88,7 @@
                                 @error('phone') border-red-500 @enderror"
                                 name="phone"
                                 type="text"
-                                placeholder="Work Phone"
+                                placeholder="Mobile Phone"
                                 value="{{ $user->phone }}">
 
                             @error('phone')

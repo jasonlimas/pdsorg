@@ -45,7 +45,7 @@
                     <div class="flex flex-wrap mb-4">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name_abbreviation">
-                                Name Abbreviation/Initials
+                                Name Initial
                             </label>
                         </div>
                         <div class="w-2/3">

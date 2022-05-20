@@ -32,18 +32,20 @@
                 </div>
 
                 <!-- Password textbox -->
-                <div class="mb-4">
+                <div class="mb-4" x-data="{ show: true }">
                     <label for="password" class="mx-2">Password</label>
-                    <input type="password" name="password" placeholder="Enter your password"
-                    class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror"
-                    value="">
+                    <div class="relative">
+                      <input type="password" name="password" placeholder="Enter your password"
+                      class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror"
+                      value="">
 
-                    <!-- Display error message if there is an error -->
-                    @error('password')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                      <!-- Display error message if there is an error -->
+                      @error('password')
+                          <div class="text-red-500 mt-2 text-sm">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                    </div>
                 </div>
 
                 <!-- Remember me checkbox -->

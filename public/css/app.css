@@ -561,9 +561,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-ml-px {
   margin-left: -1px;
 }
-.ml-5 {
-  margin-left: 1.25rem;
-}
 .block {
   display: block;
 }
