@@ -17,7 +17,13 @@ class ProfilesController extends Controller
         $sender = Sender::withTrashed()->find(auth()->user()->sender_id);
 
         // Get clients and termsConditions from the database
-        $clients = Client::latest()->paginate(5, ['*'], 'clients');
+        // For admin, get all clients, for other users, get only clients from that division
+        if (auth()->user()->role_id == 1) {
+            $clients = Client::latest()->paginate(5, ['*'], 'clients');
+        } else {
+            $clients = Client::where('division_id', auth()->user()->division_id)->latest()->paginate(5, ['*'], 'clients');
+        }
+
         $terms = TermsConditions::latest()->paginate(5, ['*'], 'terms');
 
         // Get user's division details
