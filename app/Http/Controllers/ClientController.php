@@ -43,6 +43,7 @@ class ClientController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
+            'division_id' => auth()->user()->division_id,
         ]);
 
         // Redirect back with success message
