@@ -55,7 +55,8 @@
                 name="receiver" wire:model="selectedClient">
                 <option value="">-- Select a client --</option>
                 @foreach ($clients as $client)
-                    <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }}</option>
+                    <option value="{{ $client->id }}">ID:{{ $client->id }} - {{ $client->name }} (PIC:
+                        {{ $client->pic }})</option>
                 @endforeach
             </select>
 
@@ -82,8 +83,7 @@
     </div>
 
     <div class="flex justify-end">
-        <a
-            href="{{ route('profiles.client.create') }}"
+        <a href="{{ route('profiles.client.create') }}"
             class="bg-blue-500 hover:bg-blue-700 transition-colors duration-200 w-auto text-white font-bold py-2 px-4 rounded">
             Add Client
         </a>
