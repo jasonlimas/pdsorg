@@ -211,7 +211,7 @@ class QuoteController extends Controller
         // Include soft deleted records when looking for client information
         $recipientObject = Client::withTrashed()->find($quote->client_id);
         $recipient = [
-            'name' => $recipientObject->name,
+            'name' => $recipientObject->name . ' (PIC: ' . $recipientObject->pic . ')',
             'addr' => $recipientObject->address,
             'phone' => $recipientObject->phone,
             'email' => $recipientObject->email,
@@ -410,7 +410,7 @@ class QuoteController extends Controller
         $temporaryFile = TemporaryFile::where('folder', $attachmentRequest)->first();
         if ($temporaryFile) {
             $newQuote->addMedia(storage_path('app/attachments/tmp/' . $temporaryFile->folder . '/' . $temporaryFile->filename))
-            ->toMediaCollection('attachments');
+                ->toMediaCollection('attachments');
             rmdir(storage_path('app/attachments/tmp/' . $attachmentRequest));
             $temporaryFile->delete();
         }
