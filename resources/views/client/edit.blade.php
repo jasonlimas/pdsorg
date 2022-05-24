@@ -27,7 +27,7 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="name">
-                                Client Name
+                                Client Company Name
                             </label>
                         </div>
                         <!-- Text box -->
@@ -35,19 +35,36 @@
                             <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('name') border-red-500 @enderror"
-                                name="name"
-                                type="text"
-                                placeholder="Client Name"
-                                value="{{ $client->name }}">
+                                name="name" type="text" placeholder="PT. Some Company" value="{{ $client->name }}">
 
-                                @error('name')
-                                    <div class="text-red-500 mt-2 text-sm">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            @error('name')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
+                    <!-- Name -->
+                    <div class="flex flex-wrap mb-2">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="pic">
+                                Person In Charge
+                            </label>
+                        </div>
+                        <div class="w-2/3">
+                            <input
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                            @error('name') border-red-500 @enderror"
+                                name="pic" id="pic" type="text" placeholder="John Doe" value="{{ old('pic') }}">
+
+                            @error('pic')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <!-- Client email -->
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
@@ -60,10 +77,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('email') border-red-500 @enderror"
-                                name="email"
-                                id="email"
-                                type="text"
-                                placeholder="Client Email"
+                                name="email" id="email" type="text" placeholder="Client Email"
                                 value="{{ $client->email }}">
 
                             @error('email')
@@ -86,10 +100,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('phone') border-red-500 @enderror"
-                                name="phone"
-                                id="phone"
-                                type="text"
-                                placeholder="Client Phone"
+                                name="phone" id="phone" type="text" placeholder="Client Phone"
                                 value="{{ $client->phone }}">
 
                             @error('phone')
@@ -109,13 +120,9 @@
                         </div>
                         <!-- Text box -->
                         <div class="w-2/3">
-                            <textarea
-                                cols=30
-                                rows=4
-                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline
+                            <textarea cols=30 rows=4 class="shadow appearance-none border rounded w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline
                                 @error('address') border-red-500 @enderror"
-                                name="address"
-                                id="address"
+                                name="address" id="address"
                                 placeholder="Client Address">{{ $client->address }}</textarea>
 
                             @error('address')
@@ -129,8 +136,7 @@
                     <!-- Buttons -->
                     <div class="flex justify-end">
                         <!-- Cancel button -->
-                        <a
-                            href="{{ route('profiles') }}"
+                        <a href="{{ route('profiles') }}"
                             class="mr-2 w-20 bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Cancel
                         </a>
