@@ -14,7 +14,7 @@ class AddDivisionIdToClientsTable extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->foreignId('division_id')->constrained();
+            $table->foreignId('division_id');
         });
     }
 
