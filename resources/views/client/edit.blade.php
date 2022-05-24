@@ -56,7 +56,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                             @error('name') border-red-500 @enderror"
-                                name="pic" id="pic" type="text" placeholder="John Doe" value="{{ old('pic') }}">
+                                name="pic" id="pic" type="text" placeholder="John Doe" value="{{ $client->pic }}">
 
                             @error('pic')
                                 <div class="text-red-500 mt-2 text-sm">
