@@ -21,6 +21,8 @@
                     @livewire('emails-to-send', ['clientId' => $quote->client_id])
 
                     <div class="flex justify-center">
+                        <a href="{{ route('quotes') }}"
+                            class="bg-red-500 hover:bg-red-700 transition-colors duration-200 text-white font-bold py-2 px-4 mr-1 rounded-lg">Cancel</a>
                         <button onclick="return confirm('Are you sure you want to send this quote to the emails above?')"
                             class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
                             type="submit">
