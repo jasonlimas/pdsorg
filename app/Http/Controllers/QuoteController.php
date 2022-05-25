@@ -418,6 +418,13 @@ class QuoteController extends Controller
         return redirect()->route('quotes.create.finalize')->with('success', 'Quote duplicated successfully');
     }
 
+    public function prepareEmail(Quotation $quote)
+    {
+        return view('quote.send-email', [
+            'quote' => $quote,
+        ]);
+    }
+
     public function sendEmail(Quotation $quote)
     {
         // Get client's email
