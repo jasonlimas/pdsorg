@@ -46,7 +46,7 @@ Route::group([
     Route::get('/quotes/{quote}/edit', [QuoteController::class, 'show'])->name('quotes.show');
     Route::get('/quotes/{quote}/copy', [QuoteController::class, 'duplicate'])->name('quotes.duplicate');
     Route::get('/quotes/{quote}/email', [QuoteController::class, 'prepareEmail'])->name('quotes.prepare-email');
-    Route::get('/quotes/{quote}/email/send', [QuoteController::class, 'sendEmail'])->name('quotes.email');
+    Route::post('/quotes/{quote}/email/send', [QuoteController::class, 'sendEmail'])->name('quotes.email');
     Route::post('/quotes/filter', [QuoteController::class, 'query'])->name('quotes.filter');
     Route::post('/quotes/{quote}/download', [QuoteController::class, 'download'])->name('quotes.download');
     Route::post('/quotes/{quote}', [QuoteController::class, 'update']);
