@@ -7,6 +7,7 @@
         <p>Sending quote:
             {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}
         </p>
+        <p>Send an email to the client's email as stored in the database, or edit and add more emails to send to.</p>
     </div>
 
     <div class="flex justify-center">
@@ -14,7 +15,7 @@
             <div class="bg-gray-100 p-6 rounded-lg">
                 <!-- List of recipients -->
                 <form action="" method="">
-                    @livewire('emails-to-send')
+                    @livewire('emails-to-send', ['clientId' => $quote->client_id])
                 </form>
 
                 <!-- Send email button -->

@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Client;
 use Livewire\Component;
 
 class EmailsToSend extends Component
 {
-    public $emails = ['']; // Store email inputs
+    public $emails = []; // Store email inputs
+    public $clientId = '';
 
     public function mount()
     {
-        //
+        // Get client email of selected quote to be sent
+        $this->emails[] = Client::find($this->clientId)->email;
     }
 
     public function render()
