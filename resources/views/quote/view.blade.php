@@ -5,7 +5,9 @@
         <div class="w-8/12">
             <!-- Header -->
             <div class="p-6 text-gray-700">
-                <h1 class="text-4xl font-semibold mb-1">Quote Info: {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}</h1>
+                <h1 class="text-4xl font-semibold mb-1">Quote Info:
+                    {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}
+                </h1>
                 <p>Quote details</p>
             </div>
 
@@ -20,11 +22,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="number"
-                            type="text"
+                            name="number" type="text"
                             value="{{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}">
                     </div>
                 </div>
@@ -37,12 +37,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="number"
-                            type="text"
-                            value="{{ $quote->formatted_date }}">
+                            name="number" type="text" value="{{ $quote->formatted_date }}">
                     </div>
                 </div>
 
@@ -54,12 +51,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="by"
-                            type="text"
-                            value="{{ $quote->sales_person }}">
+                            name="by" type="text" value="{{ $quote->sales_person }}">
                     </div>
                 </div>
 
@@ -71,12 +65,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="client"
-                            type="text"
-                            value="{{ $quote->client }}">
+                            name="client" type="text" value="{{ $quote->client }} (PIC: {{ $quote->pic }})">
                     </div>
                 </div>
 
@@ -88,12 +79,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="status"
-                            type="text"
-                            value="{{ $quote->status_text }}">
+                            name="status" type="text" value="{{ $quote->status_text }}">
                     </div>
                 </div>
 
@@ -105,12 +93,9 @@
                         </label>
                     </div>
                     <div class="w-2/3">
-                        <input
-                            readonly
+                        <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="amount"
-                            type="text"
-                            value="{{ 'Rp ' . number_format($quote->amount) }}">
+                            name="amount" type="text" value="{{ 'Rp ' . number_format($quote->amount) }}">
                     </div>
                 </div>
 
@@ -135,8 +120,10 @@
                                     <tr>
                                         <td class="p-3 text-sm tracking-wide text-left">{{ $item['name'] }}</td>
                                         <td class="p-3 text-sm tracking-wide text-left">{{ $item['quantity'] }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ 'Rp ' .  number_format($item['price']) }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ 'Rp ' .  number_format($item['price'] * $item['quantity']) }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">
+                                            {{ 'Rp ' . number_format($item['price']) }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">
+                                            {{ 'Rp ' . number_format($item['price'] * $item['quantity']) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -145,7 +132,7 @@
                 </div>
 
                 <!-- Terms and conditions -->
-                <div class="flex flex-wrap mb-2">
+                <div class="mb-2">
                     <h2 class="text-2xl font-medium">Terms and Conditions</h2>
                     <ul class="list-disc mx-5">
                         @foreach ($quote->terms_conditions as $term)
@@ -156,8 +143,7 @@
 
                 <!-- Go back button -->
                 <div class="flex justify-end">
-                    <a
-                        href="{{ route('quotes') }}"
+                    <a href="{{ route('quotes') }}"
                         class="bg-blue-500 hover:bg-blue-700 transition-colors text-white font-bold py-2 px-4 rounded">
                         Go back
                     </a>

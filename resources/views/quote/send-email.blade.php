@@ -5,8 +5,11 @@
     <div class="p-6 text-gray-700 text-center">
         <h1 class="text-4xl font-semibold mb-1">Send Email</h1>
         <p>Sending quote:
-            {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}
+            <span
+                class="font-bold">{{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}</span>
         </p>
+        <p>To client: <span class="font-bold">{{ $client->pic }} - {{ $client->name }} -
+                {{ $client->email }}</span></p>
         <p>Send an email to the client's email as stored in the database, or edit and add more emails to send to.</p>
     </div>
 
