@@ -2,9 +2,7 @@
 
 <tr class="odd:bg-white even:bg-slate-100 text-gray-700">
     <td class="p-3 whitespace-nowrap">
-        <a
-            href="{{ route('quotes.view', $quote) }}"
-            class="p-3 whitespace-nowrap text-blue-600 hover:underline">
+        <a href="{{ route('quotes.view', $quote) }}" class="p-3 whitespace-nowrap text-blue-600 hover:underline">
             {{ $quote->id }}
         </a>
     </td>
@@ -16,11 +14,14 @@
     <!-- Status -->
     <td class="p-3 whitespace-nowrap">
         @if ($quote->status_id == 1)
-            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+            <span
+                class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
         @elseif ($quote->status_id == 2)
-            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+            <span
+                class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
         @elseif ($quote->status_id == 3)
-            <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
+            <span
+                class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 bg-opacity-50 rounded-lg">{{ $quote->status }}</span>
         @endif
     </td>
 
@@ -60,7 +61,7 @@
         </form>
 
         <!-- Email Quote -->
-        <form action="{{ route('quotes.email', $quote) }}" method="GET">
+        <form action="{{ route('quotes.prepare-email', $quote) }}" method="GET">
             @csrf
             <x-enabled-email-icon />
         </form>
