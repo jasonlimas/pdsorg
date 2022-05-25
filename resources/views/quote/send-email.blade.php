@@ -14,21 +14,20 @@
         <div class="w-8/12">
             <div class="bg-gray-100 p-6 rounded-lg">
                 <!-- List of recipients -->
-                <form action="" method="">
-                    @livewire('emails-to-send', ['clientId' => $quote->client_id])
-                </form>
+                <form action="{{ route('quotes.email', $quote) }}" method="POST">
+                    @csrf
+                    <p class="text-sm text-red-500 mb-2">Please make sure that all the emails are correct.</p>
 
-                <!-- Send email button -->
-                <div class="flex justify-center space-x-2 text-center">
-                    <form action="{{ route('quotes.email', $quote) }}" method="POST">
-                        @csrf
-                        <button
+                    @livewire('emails-to-send', ['clientId' => $quote->client_id])
+
+                    <div class="flex justify-center">
+                        <button onclick="return confirm('Are you sure you want to send this quote to the emails above?')"
                             class="bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded-lg"
                             type="submit">
                             Send Email
                         </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
