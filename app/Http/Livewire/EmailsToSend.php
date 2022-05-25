@@ -13,7 +13,7 @@ class EmailsToSend extends Component
     public function mount()
     {
         // Get client email of selected quote to be sent
-        $this->emails[] = Client::find($this->clientId)->email;
+        $this->emails[] = Client::withTrashed()->find($this->clientId)->email;
     }
 
     public function render()
