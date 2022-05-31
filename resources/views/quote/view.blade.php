@@ -67,7 +67,8 @@
                     <div class="w-2/3">
                         <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="client" type="text" value="{{ $quote->client }} (PIC: {{ $quote->pic }})">
+                            name="client" type="text"
+                            value="{{ $quote->client->name }} (PIC: {{ $quote->client->pic }})">
                     </div>
                 </div>
 
