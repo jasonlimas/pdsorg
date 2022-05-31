@@ -163,7 +163,7 @@ class QuoteController extends Controller
         $quote->formatted_date = date('l, d F Y', mktime(0, 0, 0, $brokenDate[1], $brokenDate[2], $brokenDate[0]));
 
         // Get client info
-        $quote->client = Client::withTrashed()->find($quote->client_id)->name;
+        $quote->client = Client::withTrashed()->find($quote->client_id);
 
         return view('quote.view', [
             'quote' => $quote,
@@ -422,13 +422,14 @@ class QuoteController extends Controller
     {
         return view('quote.send-email', [
             'quote' => $quote,
+            'client' => Client::withTrashed()->find($quote->client_id),
         ]);
     }
 
     public function sendEmail(Quotation $quote, Request $request)
     {
-        // Get client's email
-        // $client = Client::withTrashed()->find($quote->client_id)->only(['name', 'email']);
+        // Get client's name
+        $clientName = Client::withTrashed()->find($quote->client_id)->name;
 
         // Array to store emails to be CC'd
         $emailToCC = [config('mail.from.address')];
@@ -449,7 +450,7 @@ class QuoteController extends Controller
         foreach ($request->emails as $email) {
             Mail::to($email)
                 ->cc($emailToCC)
-                ->send(new QuoteSent($email, $quote, route('quote.download', $quote), $creator));
+                ->queue(new QuoteSent($clientName, $quote, route('quote.download', $quote), $creator));
         }
 
         // Change quote status to "Sent"
