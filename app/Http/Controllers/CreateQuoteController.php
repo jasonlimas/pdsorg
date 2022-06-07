@@ -118,7 +118,11 @@ class CreateQuoteController extends Controller
             'amount' => $amount,
             'user_id' => auth()->user()->id,
             'status_id' => 1, // Default status. 1 is "Not sent"
+            'hash_of_id' => 0, // Will be replaced after this
         ]);
+
+        // Generate hash based on the quote id
+        $newQuote->update(['hash_of_id' => md5($newQuote->id)]);
 
         // Store temporary file in the database
         $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
