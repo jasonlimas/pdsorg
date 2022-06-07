@@ -26,6 +26,7 @@ class Quotation extends Model implements HasMedia
         'terms_conditions',
         'amount',
         'status_id',
+        'hash_of_id'
     ];
 
     protected $casts = [
@@ -51,5 +52,10 @@ class Quotation extends Model implements HasMedia
     public function status()
     {
         return $this->hasOne(QuoteStatus::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'hash_of_id';
     }
 }
