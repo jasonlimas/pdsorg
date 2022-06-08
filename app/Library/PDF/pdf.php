@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Library\PDF;
 
-class pdf {
-    public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath) {
+class pdf
+{
+    public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath)
+    {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf();
 
@@ -98,7 +101,7 @@ class pdf {
         $mpdf->Output('Quotation ' . $outputName . '.pdf', 'I');
 
         return response()->streamDownload(
-            fn() => 'export_protocol.pdf'
+            fn () => 'export_protocol.pdf'
         );
     }
 
@@ -111,7 +114,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeQuotationTitle($mpdf, $imgPath, $border) {
+    private static function writeQuotationTitle($mpdf, $imgPath, $border)
+    {
         // Cell width and height
         $cellWidth = 0;
         $cellHeight = 14;
@@ -142,7 +146,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeQuoteNumber($mpdf, $number, $border) {
+    private static function writeQuoteNumber($mpdf, $number, $border)
+    {
         // Quote number cell width and height
         $cellWidth = 0;
         $cellHeight = 7;
@@ -166,7 +171,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeDate($mpdf, $date, $border) {
+    private static function writeDate($mpdf, $date, $border)
+    {
         // Dater cell width and height
         $cellWidth = 0;
         $cellHeight = 7;
@@ -194,7 +200,8 @@ class pdf {
      *
      * @return float $endBoxYPos: Y position before calling this function
      */
-    private static function writeSenderOrRecipient($mpdf, $isSender = true, $data, $border) {
+    private static function writeSenderOrRecipient($mpdf, $isSender = true, $data, $border)
+    {
         // Write Cell max width and height
         $cellWidth = 80;
         $cellHeight = 4.5;
@@ -212,8 +219,7 @@ class pdf {
 
             if ($isSender) {
                 $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'QUOTATION FROM', 'B', 2);
-            }
-            else {
+            } else {
                 $mpdf->SetX($mpdf->x + 95);
                 $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'QUOTATION TO', 'B', 2);
             }
@@ -250,7 +256,8 @@ class pdf {
      *
      * @return float $endTableYPos: Y position after filling the items table
      */
-    private static function writeItems($mpdf, $data) {
+    private static function writeItems($mpdf, $data)
+    {
         // Item number cell max width and height
         $itemNumCellWidth = 10;
         $itemNumCellHeight = 5;
@@ -325,7 +332,8 @@ class pdf {
      *
      * @return int grandTotal: Grand total
      */
-    private static function writeTotal($mpdf, $data, $taxRate) {
+    private static function writeTotal($mpdf, $data, $taxRate)
+    {
         // Write Cell max width and height
         $cellWidth = 30;
         $cellHeight = 4.5;
@@ -381,7 +389,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeTotalInWords($mpdf, $total, $border) {
+    private static function writeTotalInWords($mpdf, $total, $border)
+    {
         // Write Cell max width and height
         $cellWidth = 12;
         $cellHeight = 5;
@@ -414,7 +423,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeTermsConditions($mpdf, $text, $border) {
+    private static function writeTermsConditions($mpdf, $text, $border)
+    {
         // Write Cell max width and height
         $cellWidth = 46;
         $cellHeight = 6;
@@ -450,7 +460,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeBestRegards($mpdf, $data, $border) {
+    private static function writeBestRegards($mpdf, $data, $border)
+    {
         // Write Cell max height
         $cellHeight = 5.2;
 
@@ -485,7 +496,8 @@ class pdf {
      *
      * @return void
      */
-    private static function writeBankDetails($mpdf, $data) {
+    private static function writeBankDetails($mpdf, $data)
+    {
         // Write Cell max height
         $cellHeight = 5.2;
 
@@ -495,11 +507,11 @@ class pdf {
 
         // Write bank details
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
-        $mpdf->WriteCell(0, $cellHeight, 'Pembayaran melalui transfer bank', 0, 2);
+        $mpdf->WriteCell(0, $cellHeight, 'Payment through bank transfer', 0, 2);
         $mpdf->SetFont('', '');
         foreach ($data as $bank) {
             $mpdf->WriteCell(0, $cellHeight, $bank['institution'], 0, 2);
-            $mpdf->WriteCell(0, $cellHeight, 'A/N ' . $bank['accountName'], 0, 2);
+            $mpdf->WriteCell(0, $cellHeight, $bank['accountName'], 0, 2);
             $mpdf->WriteCell(0, $cellHeight, $bank['accountNumber'], 0, 2);
             $mpdf->WriteCell(0, $cellHeight, '', 0, 2);
         }
@@ -514,7 +526,8 @@ class pdf {
      *
      * @return float: Y position after drawing the boxes
      */
-    private static function drawSenderRecipientBoxes($mpdf) {
+    private static function drawSenderRecipientBoxes($mpdf)
+    {
         // Rectangle settings
         $rectWidth = 87;
         $rectHeight = 40;
@@ -547,7 +560,8 @@ class pdf {
      *
      * @return string: Formatted quote number
      */
-    private static function buildQuoteNumber($number, $format = '/') {
+    private static function buildQuoteNumber($number, $format = '/')
+    {
         // Combine everything in $number into one string with specified format
         $combinedString =
             $number['year'] . $format .
@@ -566,7 +580,8 @@ class pdf {
      *
      * @return float: X position of unit price column
      */
-    private static function drawItemTable($mpdf) {
+    private static function drawItemTable($mpdf)
+    {
         $itemNumWidth = 10;
         $itemNameWidth = 100;
         $itemQuantityWidth = 10;
@@ -595,7 +610,8 @@ class pdf {
      *
      * @return void
      */
-    private static function addAttachment($mpdf, $file) {
+    private static function addAttachment($mpdf, $file)
+    {
         // Select the source file to be added as attachment
         // SetSourceFile() returns the number of pages of the source file
         if ($file) {
@@ -626,18 +642,21 @@ class pdf {
      *
      * @return string: Number in words
      */
-    private static function convertNumberToWord($num = false) {
-        $num = str_replace(array(',', ' '), '' , trim($num));
-        if(! $num) {
+    private static function convertNumberToWord($num = false)
+    {
+        $num = str_replace(array(',', ' '), '', trim($num));
+        if (!$num) {
             return false;
         }
         $num = (int) $num;
         $words = array();
-        $list1 = array('', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh', 'sebelas',
+        $list1 = array(
+            '', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh', 'sebelas',
             'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'delapan belas', 'sembilan belas'
         );
         $list2 = array('', 'sepuluh', 'dua puluh', 'tiga puluh', 'empat puluh', 'lima puluh', 'enam puluh', 'tujuh puluh', 'delapan puluh', 'sembilan puluh', 'ratus');
-        $list3 = array('', 'ribu', 'juta', 'miliar', 'triliun', 'quadrillion', 'quintillion', 'sextillion', 'septillion',
+        $list3 = array(
+            '', 'ribu', 'juta', 'miliar', 'triliun', 'quadrillion', 'quintillion', 'sextillion', 'septillion',
             'octillion', 'nonillion', 'decillion', 'undecillion', 'duodecillion', 'tredecillion', 'quattuordecillion',
             'quindecillion', 'sexdecillion', 'septendecillion', 'octodecillion', 'novemdecillion', 'vigintillion'
         );
@@ -651,21 +670,20 @@ class pdf {
             $hundreds = (int) ($num_levels[$i] / 100);
             if ($list1[$hundreds] == 'satu') {
                 $hundreds = ' seratus';
-            }
-            else {
+            } else {
                 $hundreds = ($hundreds ? ' ' . $list1[$hundreds] . ' ratus' . ' ' : '');
             }
             $tens = (int) ($num_levels[$i] % 100);
             $singles = '';
-            if ( $tens < 20 ) {
-                $tens = ($tens ? ' ' . $list1[$tens] . ' ' : '' );
+            if ($tens < 20) {
+                $tens = ($tens ? ' ' . $list1[$tens] . ' ' : '');
             } else {
                 $tens = (int)($tens / 10);
                 $tens = ' ' . $list2[$tens] . ' ';
                 $singles = (int) ($num_levels[$i] % 10);
                 $singles = ' ' . $list1[$singles] . ' ';
             }
-            $words[] = $hundreds . $tens . $singles . ( ( $levels && ( int ) ( $num_levels[$i] ) ) ? ' ' . $list3[$levels] . ' ' : '' );
+            $words[] = $hundreds . $tens . $singles . (($levels && (int) ($num_levels[$i])) ? ' ' . $list3[$levels] . ' ' : '');
         } //end for loop
         $commas = count($words);
         if ($commas > 1) {
