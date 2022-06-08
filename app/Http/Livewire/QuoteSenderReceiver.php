@@ -29,8 +29,13 @@ class QuoteSenderReceiver extends Component
             $this->senderAddress = $this->senders->address;
         }
 
-        // Get all clients from the database
-        $this->clients = Client::latest()->get();
+        if (auth()->user()->role_id == 1) {
+            // Get all clients from the database
+            $this->clients = Client::latest()->get();
+        } else {
+            // If user is not admin, then only show clients created from their division
+            $this->clients = Client::where('division_id', auth()->user()->division_id)->latest()->get();
+        }
 
         // If user is editing a copied quote, get the copied quote client
         if ($this->quote) {
