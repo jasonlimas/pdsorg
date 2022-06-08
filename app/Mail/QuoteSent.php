@@ -41,8 +41,8 @@ class QuoteSent extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->markdown('emails.quote.quote-sent')
-            ->from(config('mail.from.address'), $this->senderOrg)
-            ->subject('You received a quote from '
+            ->from(config('mail.from.address'), $this->contact['name'])
+            ->subject('You received quotation from '
                 . $this->senderOrg . ' ['
                 . substr($this->quote->quote_date, 0, 4) . '/'
                 . $this->quote->div . '/'
