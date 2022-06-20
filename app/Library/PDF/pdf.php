@@ -68,7 +68,7 @@ class pdf
         PDF::writeTotalInWords($mpdf, $grandtotal, $border);
 
         $mpdf->SetFont('', '');
-        $mpdf->WriteCell(0, 13, 'Terima kasih atas kerja sama Anda, berharap untuk mendengar dari Anda segera.', $border, 2);
+        $mpdf->WriteCell(0, 13, 'Thank you for your cooperation. We look forward to hearing from you.', $border, 2);
 
         // *===================================== *
         // * Terms and conditions field
@@ -354,21 +354,21 @@ class pdf
 
         // Write the sub total (sum of all number from Total Price)
         $mpdf->SetFont('Arial', 'B', 9);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Sub-total', '1', 0, 'R');
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'Sub-total', '1', 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($subtotal), 1, 2, 'R');
 
         // Write tax rate and calculated tax
         $mpdf->SetX($mpdf->x - $cellWidth);
         $mpdf->SetFont('Arial', 'B', 9);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'PPN (' . $taxRate . '%)', 1, 0, 'R');
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'PPN (' . $taxRate . '%)', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($tax), 1, 2, 'R');
 
         // Write the grand total (sub total with tax)
         $mpdf->SetX($mpdf->x - $cellWidth);
         $mpdf->SetFont('Arial', 'B', 9);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Total', 1, 0, 'R');
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'Total', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, 'B', $fontSize);    // Make it bold
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($grandtotal), 1, 2, 'R');
 
@@ -405,7 +405,7 @@ class pdf
 
         // Write total in words
         $mpdf->SetFont($fontFamily, '', $fontSize);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Total: ', $border, 0);
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'Total:', $border, 0);
         $mpdf->SetFont('', 'B');
         $mpdf->MultiCell(0, $cellHeight, $text, $border);
     }
@@ -438,7 +438,7 @@ class pdf
 
         // Write terms and conditions
         $mpdf->SetFont($fontFamily, 'B', $fontSize + 3);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Syarat & Ketentuan', 'B', 2);
+        $mpdf->WriteCell($cellWidth, $cellHeight, 'Terms & Conditions', 'B', 2);
 
         $mpdf->SetFont($fontFamily, '', $fontSize);
         for ($i = 0; $i < count($text); $i++) {
@@ -472,7 +472,7 @@ class pdf
         // Write sender info
         // Name
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
-        $mpdf->WriteCell(0, $cellHeight, 'Hormat kami,', $border, 2);
+        $mpdf->WriteCell(0, $cellHeight, 'Best regards,', $border, 2);
         $mpdf->SetFont('', '');
         $mpdf->WriteCell(0, $cellHeight, $data['person'], $border, 2);
         $mpdf->WriteCell(0, $cellHeight, $data['name'], $border, 2);
