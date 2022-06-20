@@ -166,7 +166,7 @@ class CreateQuoteController extends Controller
         // Client data
         $recipientObject = Client::find($quote->client_id);
         $recipient = [
-            'name' => $recipientObject->name . ' (PIC: ' . $recipientObject->pic . ')',
+            'name' => $recipientObject->name . ' - ' . $recipientObject->pic,
             'addr' => $recipientObject->address,
             'phone' => $recipientObject->phone,
             'email' => $recipientObject->email,
