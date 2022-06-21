@@ -20,7 +20,7 @@ class pdf
         // * Show border for all elements
         // * (for debugging purposes)
         // *===================================== *
-        $border = 1;
+        $border = 0;
 
         // *===================================== *
         // * Quote title
@@ -232,6 +232,7 @@ class pdf
         // Address
         $mpdf->SetFont($fontFamily, '', $fontSize - 1);
         $tmpX = $mpdf->x;
+        $mpdf->setX($mpdf->x - 0.8); // To align the address with the name and number
         $mpdf->MultiCell($cellWidth, $cellHeight, $data['addr'], $border);
         $mpdf->SetX($tmpX);
 
