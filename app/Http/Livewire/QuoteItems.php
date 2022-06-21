@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class QuoteItems extends Component
@@ -27,6 +28,8 @@ class QuoteItems extends Component
 
             $this->tax = $this->quote->tax;
         } else {
+            // Get the tax from the database
+            $this->tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
             $this->items = [
                 ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0, 'formattedTotalPrice' => ''],
             ];

@@ -133,7 +133,7 @@
             <input disabled min="1" type="number"
                 class="shadow appearance-none border rounded p-1 text-gray-700 leading-none focus:outline-none focus:shadow-outline text-right
             @error('tax') border-red-500 @enderror"
-                id="tax" name="tax" placeholder="Tax" value="11" wire:model.lazy="tax">
+                id="tax" name="tax" placeholder="Tax" wire:model.lazy="tax">
 
             @error('tax')
                 <div class="text-red-500 mt-1 text-xs text-right">
