@@ -20,7 +20,8 @@
                 <!-- Users header -->
                 <h2 class="text-2xl font-medium">Registered Users</h2>
                 <p class="text-gray-600 mb-5">
-                    Manage registered users here. Click the <a class="font-semibold">Add User</a> button to register a new user
+                    Manage registered users here. Click the <a class="font-semibold">Add User</a> button to register a new
+                    user
                 </p>
 
                 <!-- Table -->
@@ -54,10 +55,8 @@
 
                 <!-- Add new user button -->
                 <div class="flex justify-end">
-                    <a
-                        class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                        type="button"
-                        href="{{ route('admin.user.create') }}">
+                    <a class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                        type="button" href="{{ route('admin.user.create') }}">
                         Add User
                     </a>
                 </div>
@@ -103,10 +102,8 @@
 
                     <!-- Add new organization button -->
                     <div class="flex justify-end">
-                        <a
-                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white transition-colors duration-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                            type="button"
-                            href="{{ route('admin.sender.create') }}">
+                        <a class="w-1/6 bg-indigo-500 hover:bg-indigo-700 text-white transition-colors duration-200 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button" href="{{ route('admin.sender.create') }}">
                             Add Organization
                         </a>
                     </div>
@@ -150,10 +147,8 @@
 
                     <!-- Add new division button -->
                     <div class="flex justify-end">
-                        <a
-                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                            type="button"
-                            href="{{ route('admin.division.create') }}">
+                        <a class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button" href="{{ route('admin.division.create') }}">
                             Add Division
                         </a>
                     </div>
@@ -170,9 +165,50 @@
 
                 <!-- Tell the user to go to profiles page to edit clients -->
                 <h2 class="text-lg font-medium text-center">
-                    Go to <a class="text-blue-600 no-underline hover:underline" href="{{ route('profiles') }}">Profiles page</a> to edit or add clients
+                    Go to <a class="text-blue-600 no-underline hover:underline" href="{{ route('profiles') }}">Profiles
+                        page</a> to edit or add clients
                 </h2>
             </div>
+
+            <!-- More Settings Section -->
+            <div class=" bg-indigo-600/10 p-6 rounded-lg mb-3 shadow-lg">
+                <!-- More settings header -->
+                <h2 class="text-2xl font-medium">More Settings</h2>
+                <p class="text-gray-600 mb-5">
+                    More settings for the application such as changing the tax
+                </p>
+
+                <form action="">
+                    @csrf
+                    <!-- Tax -->
+                    <div class="flex flex-wrap mb-2">
+                        <div class="w-1/3 align-middle">
+                            <label class="text-md p-3 inline-block align-middle" for="tax">
+                                Tax
+                            </label>
+                        </div>
+                        <div class="w-2/3 mb-2">
+                            <input
+                                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
+                                @error('tax') border-red-500 @enderror"
+                                name="tax" type="number" placeholder="Tax" value="">
+
+                            @error('tax')
+                                <div class="text-red-500 mt-2 text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Save setting button -->
+                    <div class="flex justify-end">
+                        <a class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="button" href="">
+                            Save
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
