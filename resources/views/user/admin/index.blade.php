@@ -191,7 +191,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline
                                 @error('tax') border-red-500 @enderror"
-                                name="tax" type="number" placeholder="Tax" value="">
+                                name="tax" type="number" placeholder="Tax" value="{{ $tax }}" min=0 max=100>
 
                             @error('tax')
                                 <div class="text-red-500 mt-2 text-sm">
