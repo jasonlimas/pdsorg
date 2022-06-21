@@ -11,6 +11,7 @@ use App\Models\Quotation;
 use App\Models\QuoteCounter;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
@@ -45,9 +46,6 @@ class CreateQuoteController extends Controller
             // Receiver
             'receiver' => 'required|exists:clients,id',
 
-            // Tax
-            'tax' => 'required|integer|min:0|max:100',
-
             // Items and Terms & Conditions are validated separately
         ]);
 
@@ -75,6 +73,9 @@ class CreateQuoteController extends Controller
             throw $error;
         }
 
+        // Get tax from the database
+        $tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
+
         $items = [];
         $amount = 0;
         foreach ($request->items as $item) {
@@ -97,7 +98,7 @@ class CreateQuoteController extends Controller
         }
 
         // Calculate amount again, but with tax
-        $amount = $amount + ($amount * $request->tax / 100);
+        $amount = $amount + ($amount * $tax / 100);
 
         $termsConditions = [];
         foreach ($request->termsConditions as $term) {
@@ -113,7 +114,7 @@ class CreateQuoteController extends Controller
             'sender_id' => $request->sender,
             'client_id' => $request->receiver,
             'items' => $items,
-            'tax' => $request->tax,
+            'tax' => $tax,
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => auth()->user()->id,
