@@ -20,7 +20,7 @@ class pdf
         // * Show border for all elements
         // * (for debugging purposes)
         // *===================================== *
-        $border = 0;
+        $border = 1;
 
         // *===================================== *
         // * Quote title
@@ -671,7 +671,7 @@ class pdf
             if ($list1[$hundreds] == 'satu') {
                 $hundreds = ' seratus';
             } else {
-                $hundreds = ($hundreds ? ' ' . $list1[$hundreds] . ' ratus' . ' ' : '');
+                $hundreds = ($hundreds ? '' . $list1[$hundreds] . ' ratus' . ' ' : '');
             }
             $tens = (int) ($num_levels[$i] % 100);
             $singles = '';
