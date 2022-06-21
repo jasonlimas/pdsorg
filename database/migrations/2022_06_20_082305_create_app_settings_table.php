@@ -15,7 +15,8 @@ class CreateAppSettingsTable extends Migration
     {
         Schema::create('app_settings', function (Blueprint $table) {
             $table->id();
-            $table->float('tax');
+            $table->string('setting_name');
+            $table->string('setting_value');
             $table->timestamps();
         });
     }
