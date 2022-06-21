@@ -178,7 +178,7 @@
                     More settings for the application such as changing the tax
                 </p>
 
-                <form action="">
+                <form action="{{ route('admin.settings') }}" method="POST">
                     @csrf
                     <!-- Tax -->
                     <div class="flex flex-wrap mb-2">
@@ -203,10 +203,11 @@
 
                     <!-- Save setting button -->
                     <div class="flex justify-end">
-                        <a class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
-                            type="button" href="">
+                        <button
+                            class="w-1/6 bg-indigo-500 hover:bg-indigo-700 transition-colors duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center"
+                            type="submit">
                             Save
-                        </a>
+                        </button>
                     </div>
                 </form>
             </div>
