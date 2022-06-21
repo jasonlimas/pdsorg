@@ -12,7 +12,11 @@ class pdf
         // *===================================== *
         // * PDF template. Located in the same directory as this file
         // *===================================== *
-        $template = $mpdf->setSourceFile(app_path('Library/PDF/template.pdf'));
+        // If sender organization is 'Paradisestore.id', use PDS template. Otherwise, use XDC template
+        if ($sender['name'] == 'Paradisestore.id') $templatePath = 'Library/PDF/template-pds.pdf';
+        else $templatePath = 'Library/PDF/template-xdc.pdf';
+
+        $template = $mpdf->setSourceFile(app_path($templatePath));
         $fileId = $mpdf->importPage($template);
         $mpdf->useTemplate($fileId);
 
