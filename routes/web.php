@@ -85,6 +85,7 @@ Route::group([
 ], function () {
     // Admin Panel
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin', [AdminController::class, 'updateTax'])->name('admin.settings');
 
     // Quote
     Route::get('/admin/quote/create', [CreateQuoteController::class, 'indexManual'])->name('admin.quote.create');
