@@ -211,7 +211,7 @@ class QuoteController extends Controller
         // Include soft deleted records when looking for client information
         $recipientObject = Client::withTrashed()->find($quote->client_id);
         $recipient = [
-            'name' => $recipientObject->name . ' (PIC: ' . $recipientObject->pic . ')',
+            'name' => $recipientObject->name . ' - ' . $recipientObject->pic,
             'addr' => $recipientObject->address,
             'phone' => $recipientObject->phone,
             'email' => $recipientObject->email,
