@@ -69,15 +69,15 @@ class pdf
         // * Total in words
         // *===================================== *
         $mpdf->SetXY(15, $mpdf->y + 3);
-        PDF::writeTotalInWords($mpdf, $grandtotal, $border);
+        //PDF::writeTotalInWords($mpdf, $grandtotal, $border);
 
         $mpdf->SetFont('', '');
-        $mpdf->WriteCell(0, 13, 'Thank you for your cooperation. We look forward to hearing from you.', $border, 2);
+        //$mpdf->WriteCell(0, 13, 'Thank you for your cooperation. We look forward to hearing from you.', $border, 2);
 
         // *===================================== *
         // * Terms and conditions field
         // *===================================== *
-        $mpdf->SetY($mpdf->y + 3);
+        $mpdf->SetY($mpdf->y + 10);
         PDF::writeTermsConditions($mpdf, $termsConditions, $border);
 
         // *===================================== *
@@ -125,7 +125,7 @@ class pdf
         $cellHeight = 14;
 
         // Font size
-        $fontSize = 24;
+        $fontSize = 23;
 
         // Write title
         $title = 'Quotation';
@@ -222,10 +222,10 @@ class pdf
             $mpdf->SetFont('Helvetica', 'BU', $fontSize + 3);
 
             if ($isSender) {
-                $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'QUOTATION FROM', 'B', 2);
+                $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'FROM', 'B', 2);
             } else {
                 $mpdf->SetX($mpdf->x + 95);
-                $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'QUOTATION TO', 'B', 2);
+                $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'TO', 'B', 2);
             }
         }
 
@@ -411,7 +411,7 @@ class pdf
         // Write total in words
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Total:', $border, 0);
-        $mpdf->SetFont('', 'B');
+        $mpdf->SetFont('', '');
         $mpdf->MultiCell(0, $cellHeight, $text, $border);
     }
 
@@ -431,18 +431,18 @@ class pdf
     private static function writeTermsConditions($mpdf, $text, $border)
     {
         // Write Cell max width and height
-        $cellWidth = 46;
-        $cellHeight = 6;
+        $cellWidth = 35;
+        $cellHeight = 5.7;
 
         // Font family and size
         $fontFamily = 'Helvetica';
         $fontSize = 10;
 
         // Show cells border. 1 for yes, 0 for no
-        $border = 0;
+        $border = $border;
 
         // Write terms and conditions
-        $mpdf->SetFont($fontFamily, 'B', $fontSize + 3);
+        $mpdf->SetFont($fontFamily, 'B', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Terms & Conditions', 'B', 2);
 
         $mpdf->SetFont($fontFamily, '', $fontSize);
@@ -472,7 +472,7 @@ class pdf
 
         // Font family and size
         $fontFamily = 'Helvetica';
-        $fontSize = 10.5;
+        $fontSize = 10;
 
         // Write sender info
         // Name
@@ -508,7 +508,7 @@ class pdf
 
         // Font family and size
         $fontFamily = 'Helvetica';
-        $fontSize = 10.5;
+        $fontSize = 10;
 
         // Write bank details
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
