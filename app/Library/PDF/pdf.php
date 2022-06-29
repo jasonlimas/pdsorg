@@ -7,7 +7,7 @@ class pdf
     public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath)
     {
         // Create an instance of the class
-        $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch', 'autoMarginPadding' => 30]);
+        $mpdf = new \Mpdf\Mpdf(['format' => 'A4', 'setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch', 'autoMarginPadding' => 30]);
 
         // *===================================== *
         // * PDF template. Located in the same directory as this file
@@ -284,16 +284,23 @@ class pdf
     private static function writeItems($mpdf, $data)
     {
         // Item number cell max width and height
-        $itemNumCellWidth = 10;
+        $itemNumCellWidth = 7;
         $itemNumCellHeight = 4.3;
 
+        // Part number cell max width and height
+        $itemPartNumberCellWidth = 30;
+        $itemPartNumberCellHeight = $itemNumCellHeight;
+
         // Item name cell max width and height
-        $nameCellWidth = 100;
+        $nameCellWidth = 61;
         $nameCellHeight = $itemNumCellHeight;
 
         // Item quantity cell max width and height
-        $quantityCellWidth = 10;
+        $quantityCellWidth = 19;
         //$quantityCellHeight = $itemNumCellHeight;
+
+        // Currency Cell width
+        $currencyCellWidth = 5;
 
         // Unit price cell max width and height
         $uPriceCellWidth = 30;
@@ -313,7 +320,8 @@ class pdf
             $startY = $mpdf->y;
 
             // Item name
-            $mpdf->SetX($mpdf->x + $itemNumCellWidth);
+            $mpdf->SetX($mpdf->x + $itemNumCellWidth + $itemPartNumberCellWidth);
+
             // Get current position before calling MultiCell()
             $x = $mpdf->x;
             $y = $mpdf->y;
@@ -323,18 +331,33 @@ class pdf
             // Item quantity
             // Set current position to correct position before calling WriteCell()
             $mpdf->SetXY($x + $nameCellWidth, $y);
-            $mpdf->WriteCell($quantityCellWidth, $nameActualCellHeight - $mpdf->y, strval($data[$i]['quantity']), 'TLB', 0, 'C');
+            $mpdf->WriteCell($quantityCellWidth, $nameActualCellHeight - $mpdf->y, strval($data[$i]['quantity']) . ' Pcs', 'TLB', 0, 'C');
 
             // Unit price
-            $mpdf->WriteCell($uPriceCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp. ' . number_format($data[$i]['price']), 'TLB', 0, 'R');
+            // WriteCell "-" if unit price is 0
+            if ($data[$i]['price'] == 0) {
+                $mpdf->WriteCell($uPriceCellWidth, $nameActualCellHeight - $mpdf->y, '-', 'TLB', 0, 'R');
+            } else {
+                $mpdf->WriteCell($currencyCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
+                $mpdf->WriteCell($uPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($data[$i]['price']), 'TRB', 0, 'R');
+            }
 
             // Total price
             $totalPrice = $data[$i]['price'] * $data[$i]['quantity'];   // Calculate the total price(unit price * quantity)
-            $mpdf->WriteCell($tPriceCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp. ' . number_format($totalPrice), 'TLRB', 1, 'R');
+            // WriteCell "-" if total price is 0
+            if ($totalPrice == 0) {
+                $mpdf->WriteCell($tPriceCellWidth, $nameActualCellHeight - $mpdf->y, '-', 'TLRB', 0, 'R');
+            } else {
+                $mpdf->WriteCell($currencyCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
+                $mpdf->WriteCell($tPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($totalPrice), 'TRB', 1, 'R');
+            }
 
             // Item number
             $mpdf->SetY($startY);
             $mpdf->WriteCell($itemNumCellWidth, $nameActualCellHeight - $mpdf->y, strval($i + 1), 'TLB', 0, 'C');
+
+            // Write part number
+            $mpdf->WriteCell($itemPartNumberCellWidth, $nameActualCellHeight - $mpdf->y, ' ABC#2139FKD2WS$', 'TLB', 0);
 
             // Set the position for the next item to be written to the table in the template
             $mpdf->SetY($nameActualCellHeight);
@@ -363,6 +386,9 @@ class pdf
         $cellWidth = 30;
         $cellHeight = 4.5;
 
+        // Currency Cell width
+        $currencyCellWidth = 5;
+
         // Font family and size
         $fontFamily = 'Helvetica';
         $fontSize = 8;
@@ -381,21 +407,24 @@ class pdf
         $mpdf->SetFont('Arial', 'B', 9);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Sub-total', '1', 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($subtotal), 1, 2, 'R');
+        $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($subtotal), 'TRB', 2, 'R');
 
         // Write tax rate and calculated tax
-        $mpdf->SetX($mpdf->x - $cellWidth);
+        $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
         $mpdf->SetFont('Arial', 'B', 9);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'PPN (' . $taxRate . '%)', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($tax), 1, 2, 'R');
+        $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($tax), 'TRB', 2, 'R');
 
         // Write the grand total (sub total with tax)
-        $mpdf->SetX($mpdf->x - $cellWidth);
+        $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
         $mpdf->SetFont('Arial', 'B', 9);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Total', 1, 0, 'L');
-        $mpdf->SetFont($fontFamily, 'B', $fontSize);    // Make it bold
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Rp. ' . number_format($grandtotal), 1, 2, 'R');
+        $mpdf->SetFont($fontFamily, '', $fontSize);    // Make it bold (TODO: Remove this comment, if everything's ok)
+        $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($grandtotal), 'TRB', 2, 'R');
 
         // Return the grand total
         return $grandtotal;
@@ -607,16 +636,18 @@ class pdf
      */
     private static function drawItemTable($mpdf)
     {
-        $itemNumWidth = 10;
-        $itemNameWidth = 100;
-        $itemQuantityWidth = 10;
+        $itemNumWidth = 7;
+        $itemPartNumberWidth = 30;
+        $itemNameWidth = 61;
+        $itemQuantityWidth = 19;
         $uPriceWidth = 30;
         $tPriceWidth = 30;
 
         $cellHeight = 5;
 
-        $mpdf->SetFont('Arial', 'B', 9);
+        $mpdf->SetFont('Arial', 'B', 8);
         $mpdf->WriteCell($itemNumWidth, $cellHeight, 'No.', 1, 0, 'C');
+        $mpdf->WriteCell($itemPartNumberWidth, $cellHeight, 'P/N', 1, 0, 'C');
         $mpdf->WriteCell($itemNameWidth, $cellHeight, 'Item', 1, 0, 'C');
         $mpdf->WriteCell($itemQuantityWidth, $cellHeight, 'Qty', 1, 0, 'C');
         $uPriceXPos = $mpdf->x;
