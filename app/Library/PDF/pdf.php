@@ -7,7 +7,7 @@ class pdf
     public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath)
     {
         // Create an instance of the class
-        $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch', 'autoMarginPadding' => 30]);
 
         // *===================================== *
         // * PDF template. Located in the same directory as this file
@@ -41,21 +41,22 @@ class pdf
         // *===================================== *
         // * Draw sender and receiver box
         // *===================================== *
-        $mpdf->SetY($mpdf->y + 2);
-        $endBoxYPos = PDF::drawSenderRecipientBoxes($mpdf);
+        //$mpdf->SetY($mpdf->y + 2);
+        //$endBoxYPos = PDF::drawSenderRecipientBoxes($mpdf);
 
         // *===================================== *
         // * Write sender and receiver details
         // *===================================== *
-        $mpdf->SetXY($mpdf->x + 3, $mpdf->y + 1);
-        $newYPos = PDF::writeSenderOrRecipient($mpdf, true, $sender, $border);
-        $mpdf->SetY($newYPos);
-        PDF::writeSenderOrRecipient($mpdf, false, $recipient, $border);
+        //$mpdf->SetXY($mpdf->x, $mpdf->y + 1);
+        $mpdf->SetY($mpdf->y + 1);
+        $newYPos = PDF::writeSenderOrRecipient($mpdf, true, $recipient, $border);
+        //$mpdf->SetY($newYPos);
+        //PDF::writeSenderOrRecipient($mpdf, false, $recipient, $border);
 
         // *===================================== *
         // * Draw table header and fill the table
         // *===================================== *
-        $mpdf->SetY($endBoxYPos + 5);
+        $mpdf->SetY($mpdf->y + 5);
         $newXPos = PDF::drawItemTable($mpdf);
         $newYPos = PDF::writeItems($mpdf, $items);
 
@@ -75,23 +76,26 @@ class pdf
         //$mpdf->WriteCell(0, 13, 'Thank you for your cooperation. We look forward to hearing from you.', $border, 2);
 
         // *===================================== *
-        // * Terms and conditions field
+        // * Best regards field (was Terms and conditions field)
         // *===================================== *
         $mpdf->SetY($mpdf->y + 10);
         PDF::writeTermsConditions($mpdf, $termsConditions, $border);
+        //PDF::writeBestRegards($mpdf, $sender, $border);
 
         // *===================================== *
         // * Transfer to bank details
         // *===================================== *
         $tempYPos = $mpdf->y;
-        $mpdf->SetY($mpdf->y + 15);
-        PDF::writeBankDetails($mpdf, $banks);
+        //$mpdf->SetY($mpdf->y + 15);
+        //PDF::writeBankDetails($mpdf, $banks);
 
         // *===================================== *
-        // * Best regards field
+        // * Terms and conditions field (was Best regards field)
         // *===================================== *
-        $mpdf->SetXY(135, $tempYPos + 15);
+        //$mpdf->SetXY(135, $tempYPos + 15);
+        $mpdf->setY($mpdf->y + 10);
         PDF::writeBestRegards($mpdf, $sender, $border);
+        //PDF::writeTermsConditions($mpdf, $termsConditions, $border);
 
         // *===================================== *
         // * Attachment
@@ -131,7 +135,7 @@ class pdf
         $title = 'Quotation';
         $mpdf->SetFont('', 'B', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, $title, $border, 0);
-        $mpdf->SetFont('', '', 12); // Reset font settings
+        $mpdf->SetFont('', '', 11); // Reset font settings
 
         // Display logo
         if ($imgPath) {
@@ -156,11 +160,22 @@ class pdf
         $cellWidth = 0;
         $cellHeight = 7;
 
+        // Store temporary X location
+        $tmpX = $mpdf->x;
+
+        $mpdf->SetFont('Helvetica', 'B', 10);
+
         // Build quote number
         $combinedString = PDF::buildQuoteNumber($number, '/');
 
         // Write quote number
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'No       : ' . $combinedString, $border, 2);
+        $mpdf->WriteCell(23, $cellHeight, 'Number', $border, 0);
+
+        $mpdf->SetFont('', '', 10);
+        $mpdf->WriteCell($cellWidth, $cellHeight, $combinedString, $border, 2);
+
+        // Reset X location
+        $mpdf->x = $tmpX;
     }
 
     /**
@@ -187,8 +202,13 @@ class pdf
         $brokenDate = explode('-', $date);
         $formattedDate = date('l, d F Y', mktime(0, 0, 0, $brokenDate[1], $brokenDate[2], $brokenDate[0]));
 
+        $mpdf->SetFont('Helvetica', 'B', 10);
+
         // Write date
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Date    : ' . $formattedDate, $border, 2);
+        $mpdf->WriteCell(23, $cellHeight, 'Date', $border, 0);
+
+        $mpdf->SetFont('', '', 10);
+        $mpdf->WriteCell($cellWidth, $cellHeight, $formattedDate, $border, 2);
     }
 
     /**
@@ -207,22 +227,22 @@ class pdf
     private static function writeSenderOrRecipient($mpdf, $isSender = true, $data, $border)
     {
         // Write Cell max width and height
-        $cellWidth = 80;
-        $cellHeight = 4.5;
+        $cellWidth = 0;
+        $cellHeight = 5.5;
 
         // Font family and size
-        $fontFamily = 'Times';
-        $fontSize = 9;
+        $fontFamily = 'Helvetica';
+        $fontSize = 10;
 
         // Store Y pos before writing everything
         $currentYPos = $mpdf->y;
 
         // If isSender is false, then move x to the recipient info field
         if (is_bool($isSender)) {
-            $mpdf->SetFont('Helvetica', 'BU', $fontSize + 3);
+            $mpdf->SetFont($fontFamily, 'B', $fontSize);
 
             if ($isSender) {
-                $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'FROM', 'B', 2);
+                $mpdf->WriteCell(23, $cellHeight, 'Quoted To', $border, 0);
             } else {
                 $mpdf->SetX($mpdf->x + 95);
                 $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'TO', 'B', 2);
@@ -230,11 +250,11 @@ class pdf
         }
 
         // Name, in bold
-        $mpdf->SetFont($fontFamily, 'B', $fontSize);
+        $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, $data['name'], $border, 2);
 
         // Address
-        $mpdf->SetFont($fontFamily, '', $fontSize - 1);
+        $mpdf->SetFont($fontFamily, '', $fontSize);
         $tmpX = $mpdf->x;
         $mpdf->setX($mpdf->x - 0.8); // To align the address with the name and number
         $mpdf->MultiCell($cellWidth, $cellHeight, $data['addr'], $border);
@@ -265,7 +285,7 @@ class pdf
     {
         // Item number cell max width and height
         $itemNumCellWidth = 10;
-        $itemNumCellHeight = 5;
+        $itemNumCellHeight = 4.3;
 
         // Item name cell max width and height
         $nameCellWidth = 100;
@@ -431,8 +451,8 @@ class pdf
     private static function writeTermsConditions($mpdf, $text, $border)
     {
         // Write Cell max width and height
-        $cellWidth = 35;
-        $cellHeight = 5.7;
+        $cellWidth = 37;
+        $cellHeight = 5.5;
 
         // Font family and size
         $fontFamily = 'Helvetica';
@@ -468,7 +488,7 @@ class pdf
     private static function writeBestRegards($mpdf, $data, $border)
     {
         // Write Cell max height
-        $cellHeight = 5.2;
+        $cellHeight = 5.5;
 
         // Font family and size
         $fontFamily = 'Helvetica';
@@ -544,11 +564,11 @@ class pdf
         // Set fill color;
         $mpdf->SetFillColor($fillColor_R, $fillColor_G, $fillColor_B);
 
-        // Draw rectangle for sender field
+        // Draw rectangle for recipient field (was sender field)
         $mpdf->RoundedRect($mpdf->x, $mpdf->y, $rectWidth, $rectHeight, 2, 'F');
 
-        // Rectangle for recipient field
-        $mpdf->RoundedRect($mpdf->x + 93, $mpdf->y, $rectWidth, $rectHeight, 2, 'F');
+        // Rectangle for recipient field (disabled due to request)
+        // $mpdf->RoundedRect($mpdf->x + 93, $mpdf->y, $rectWidth, $rectHeight, 2, 'F');
 
         // Return the Y position after drawing the boxes
         return $mpdf->y + $rectHeight;
@@ -600,8 +620,8 @@ class pdf
         $mpdf->WriteCell($itemNameWidth, $cellHeight, 'Item', 1, 0, 'C');
         $mpdf->WriteCell($itemQuantityWidth, $cellHeight, 'Qty', 1, 0, 'C');
         $uPriceXPos = $mpdf->x;
-        $mpdf->WriteCell($uPriceWidth, $cellHeight, 'Item Price (IDR)', 1, 0, 'C');
-        $mpdf->WriteCell($tPriceWidth, $cellHeight, 'Total Price (IDR)', 1, 1, 'C');
+        $mpdf->WriteCell($uPriceWidth, $cellHeight, 'Item Price', 1, 0, 'C');
+        $mpdf->WriteCell($tPriceWidth, $cellHeight, 'Total Price', 1, 1, 'C');
 
         // Return the X position of unit price column
         return $uPriceXPos;
