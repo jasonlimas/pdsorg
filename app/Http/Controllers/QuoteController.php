@@ -13,6 +13,7 @@ use App\Models\TemporaryFile;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
@@ -356,8 +357,11 @@ class QuoteController extends Controller
         // Validate input
         $this->validate($request, [
             'date' => 'required|after_or_equal:today',
-            'tax' => 'required|integer|min:0|max:100',
+            'tax' => 'integer|min:0|max:100',
         ]);
+
+        // Get tax from the database
+        $tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
 
         // Create new quote
         $items = [];
@@ -398,12 +402,16 @@ class QuoteController extends Controller
             'sender_id' => $quote->sender_id,
             'client_id' => $quote->client_id,
             'items' => $items,
-            'tax' => $request->tax,
+            'tax' => $tax,
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => auth()->user()->id,
             'status_id' => 1, // Status 1 = "Not sent"
+            'hash_of_id' => 0, // Will be replaced after this
         ]);
+
+        // Generate hash based on the quote id
+        $newQuote->update(['hash_of_id' => md5($newQuote->id)]);
 
         // Store temporary file in the database
         $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway
