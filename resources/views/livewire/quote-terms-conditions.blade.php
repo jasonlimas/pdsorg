@@ -48,12 +48,13 @@
                                 <!-- Terms & conditions input -->
                                 <div class="w-full">
                                     <label for="terms" class="sr-only">Terms & Conditions</label>
-                                    <input
+                                    <textarea
+                                        rows="2"
                                         required
-                                        class="shadow appearance-none border rounded w-full p-2 mx-1 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                        class="shadow appearance-none border rounded w-full p-2 mx-1 text-gray-700 focus:outline-none focus:shadow-outline"
                                         name="termsConditions[{{ $index }}]"
                                         placeholder="Terms & Conditions"
-                                        wire:model="termsConditions.{{ $index }}">
+                                        wire:model="termsConditions.{{ $index }}"></textarea>
                                 </div>
                             </div>
                         </td>
