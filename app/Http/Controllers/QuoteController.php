@@ -258,8 +258,11 @@ class QuoteController extends Controller
             $attachmentPath = $attachment[0]->getPath();
         }
 
+        // Language
+        $languageIsIndonesia = $quote->language_is_indonesia;
+
         // Create PDF
-        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
+        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath, $languageIsIndonesia);
     }
 
     // Update a quote from the database. Called when clicking the edit quote button

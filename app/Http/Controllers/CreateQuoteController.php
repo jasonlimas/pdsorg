@@ -46,6 +46,9 @@ class CreateQuoteController extends Controller
             // Receiver
             'receiver' => 'required|exists:clients,id',
 
+            // Validate language input
+            'language' => 'required'
+
             // Items and Terms & Conditions are validated separately
         ]);
 
@@ -105,6 +108,12 @@ class CreateQuoteController extends Controller
             $termsConditions[] = $term;
         }
 
+        // Get language
+        $languageIsIndonesia = 0;
+        if ($request->language == 'indonesia') {
+            $languageIsIndonesia = 1;
+        }
+
         // Save to database
         $newQuote = $request->user()->quotes()->create([
             'div' => Division::withTrashed()->find(auth()->user()->division_id)->abbreviation,
@@ -120,6 +129,7 @@ class CreateQuoteController extends Controller
             'user_id' => auth()->user()->id,
             'status_id' => 1, // Default status. 1 is "Not sent"
             'hash_of_id' => 0, // Will be replaced after this
+            'language_is_indonesia' => $languageIsIndonesia,
         ]);
 
         // Generate hash based on the quote id
@@ -213,8 +223,11 @@ class CreateQuoteController extends Controller
             $attachmentPath = $attachment[0]->getPath();
         }
 
+        // Language
+        $languageIsIndonesia = $quote->language_is_indonesia;
+
         // Create PDF
-        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath);
+        pdf::create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath, $languageIsIndonesia);
     }
 
     // Admin only section
