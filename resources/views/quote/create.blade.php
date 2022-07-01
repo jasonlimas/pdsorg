@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="w-8/12">
+        <div class="w-11/12">
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Create a Quote</h1>
@@ -43,6 +43,25 @@
                         @csrf
                         <!-- Quote number component -->
                         @livewire('quote-number')
+
+                        <!-- DIVIDER -->
+                        <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
+
+                        <!-- 2 radio buttons -->
+                        <h2 class="text-2xl font-medium">Select Language</h2>
+                        <p class="text-gray-600 mb-4">
+                            Select the language for the PDF output.
+                        </p>
+
+                        <div>
+                            <input type="radio" name="language" id="english" value="english" checked="checked">
+                            <label for="english">English</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="language" id="indonesia" value="indonesia">
+                            <label for="indonesia">Indonesia</label>
+                        </div>
 
                         <!-- DIVIDER -->
                         <div class="flex justify-center"><div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div></div>
