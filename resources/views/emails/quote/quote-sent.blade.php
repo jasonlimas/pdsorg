@@ -1,4 +1,9 @@
+
 @component('mail::message')
+@component('mail::panel')
+This is an official email from {{ $senderOrg }}.
+For any enquiries, please use **Reply All** when replying to this email.
+@endcomponent
 # You received a quote from {{ $senderOrg }}!
 
 Hi {{ $recipient }}
@@ -15,14 +20,6 @@ Quote Number: **{{ substr($quote->quote_date, 0, 4) .'/' .$quote->div .'/' .$quo
 Click the button below for more details about the quote.
 @component('mail::button', ['url' => $downloadLink, 'color' => 'primary'])
 Download Quote
-@endcomponent
-
-@component('mail::panel')
-Please do not reply here as we are not monitoring this email.
-For any enquiries, please contact:<br>
-**{{ $contact['name'] }}**<br>
-**{{ $contact['email'] }}**<br>
-**{{ $contact['phone'] }}**
 @endcomponent
 
 Thanks and best regards,<br>
