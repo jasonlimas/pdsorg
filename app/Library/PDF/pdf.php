@@ -4,7 +4,7 @@ namespace App\Library\PDF;
 
 class pdf
 {
-    public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath)
+    public static function create($logoPath, $quoteNumber, $date, $sender, $recipient, $items, $tax, $termsConditions, $banks, $attachmentPath, $languageIsIndonesia)
     {
         // Create an instance of the class
         $mpdf = new \Mpdf\Mpdf(['format' => 'A4', 'setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch', 'autoMarginPadding' => 30]);
@@ -30,26 +30,26 @@ class pdf
         // * Quote title
         // *===================================== *
         $mpdf->SetY(25);
-        PDF::writeQuotationTitle($mpdf, $logoPath, $border);
+        PDF::writeQuotationTitle($mpdf, $logoPath, $border, $languageIsIndonesia);
 
         // *===================================== *
         // * Quote number and date
         // *===================================== *
-        PDF::writeQuoteNumber($mpdf, $quoteNumber, $border);
-        PDF::writeDate($mpdf, $date, $border);
+        PDF::writeQuoteNumber($mpdf, $quoteNumber, $border, $languageIsIndonesia);
+        PDF::writeDate($mpdf, $date, $border, $languageIsIndonesia);
 
         // *===================================== *
-        // * Draw sender and receiver box
+        // * Draw sender and receiver box (DISABLED)
         // *===================================== *
         //$mpdf->SetY($mpdf->y + 2);
         //$endBoxYPos = PDF::drawSenderRecipientBoxes($mpdf);
 
         // *===================================== *
-        // * Write sender and receiver details
+        // * Write receiver details
         // *===================================== *
         //$mpdf->SetXY($mpdf->x, $mpdf->y + 1);
         $mpdf->SetY($mpdf->y + 1);
-        $newYPos = PDF::writeSenderOrRecipient($mpdf, true, $recipient, $border);
+        $newYPos = PDF::writeSenderOrRecipient($mpdf, true, $recipient, $border, $languageIsIndonesia);
         //$mpdf->SetY($newYPos);
         //PDF::writeSenderOrRecipient($mpdf, false, $recipient, $border);
 
@@ -57,7 +57,7 @@ class pdf
         // * Draw table header and fill the table
         // *===================================== *
         $mpdf->SetY($mpdf->y + 5);
-        $newXPos = PDF::drawItemTable($mpdf);
+        $newXPos = PDF::drawItemTable($mpdf, $languageIsIndonesia);
         $newYPos = PDF::writeItems($mpdf, $items);
 
         // *===================================== *
@@ -67,7 +67,7 @@ class pdf
         $grandtotal = PDF::writeTotal($mpdf, $items, $tax);
 
         // *===================================== *
-        // * Total in words
+        // * Total in words (DISABLED)
         // *===================================== *
         $mpdf->SetXY(15, $mpdf->y + 3);
         //PDF::writeTotalInWords($mpdf, $grandtotal, $border);
@@ -79,7 +79,7 @@ class pdf
         // * Best regards field (was Terms and conditions field)
         // *===================================== *
         $mpdf->SetY($mpdf->y + 10);
-        PDF::writeTermsConditions($mpdf, $termsConditions, $border);
+        PDF::writeTermsConditions($mpdf, $termsConditions, $border, $languageIsIndonesia);
         //PDF::writeBestRegards($mpdf, $sender, $border);
 
         // *===================================== *
@@ -94,7 +94,7 @@ class pdf
         // *===================================== *
         //$mpdf->SetXY(135, $tempYPos + 15);
         $mpdf->setY($mpdf->y + 10);
-        PDF::writeBestRegards($mpdf, $sender, $border);
+        PDF::writeBestRegards($mpdf, $sender, $border, $languageIsIndonesia);
         //PDF::writeTermsConditions($mpdf, $termsConditions, $border);
 
         // *===================================== *
@@ -122,7 +122,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeQuotationTitle($mpdf, $imgPath, $border)
+    private static function writeQuotationTitle($mpdf, $imgPath, $border, $languageIsIndonesia)
     {
         // Cell width and height
         $cellWidth = 0;
@@ -131,10 +131,12 @@ class pdf
         // Font size
         $fontSize = 23;
 
-        // Write title
-        $title = 'Quotation';
+        // "Quotation" text depending on the selected language
+        if ($languageIsIndonesia) $quotationText = 'Penawaran';
+        else $quotationText = 'Quotation';
+
         $mpdf->SetFont('', 'B', $fontSize);
-        $mpdf->WriteCell($cellWidth, $cellHeight, $title, $border, 0);
+        $mpdf->WriteCell($cellWidth, $cellHeight, $quotationText, $border, 0);
         $mpdf->SetFont('', '', 11); // Reset font settings
 
         // Display logo
@@ -154,7 +156,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeQuoteNumber($mpdf, $number, $border)
+    private static function writeQuoteNumber($mpdf, $number, $border, $languageIsIndonesia)
     {
         // Quote number cell width and height
         $cellWidth = 0;
@@ -168,8 +170,15 @@ class pdf
         // Build quote number
         $combinedString = PDF::buildQuoteNumber($number, '/');
 
+        // "Number" text language depending on selected language
+        if ($languageIsIndonesia) {
+            $numberText = 'Nomor';
+        } else {
+            $numberText = 'Number';
+        }
+
         // Write quote number
-        $mpdf->WriteCell(23, $cellHeight, 'Number', $border, 0);
+        $mpdf->WriteCell(23, $cellHeight, $numberText, $border, 0);
 
         $mpdf->SetFont('', '', 10);
         $mpdf->WriteCell($cellWidth, $cellHeight, $combinedString, $border, 2);
@@ -190,7 +199,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeDate($mpdf, $date, $border)
+    private static function writeDate($mpdf, $date, $border, $languageIsIndonesia)
     {
         // Dater cell width and height
         $cellWidth = 0;
@@ -204,8 +213,15 @@ class pdf
 
         $mpdf->SetFont('Helvetica', 'B', 10);
 
+        // "Date" text language depending on selected language
+        if ($languageIsIndonesia) {
+            $dateText = 'Tanggal';
+        } else {
+            $dateText = 'Date';
+        }
+
         // Write date
-        $mpdf->WriteCell(23, $cellHeight, 'Date', $border, 0);
+        $mpdf->WriteCell(23, $cellHeight, $dateText, $border, 0);
 
         $mpdf->SetFont('', '', 10);
         $mpdf->WriteCell($cellWidth, $cellHeight, $formattedDate, $border, 2);
@@ -224,7 +240,7 @@ class pdf
      *
      * @return float $endBoxYPos: Y position before calling this function
      */
-    private static function writeSenderOrRecipient($mpdf, $isSender = true, $data, $border)
+    private static function writeSenderOrRecipient($mpdf, $isSender = true, $data, $border, $languageIsIndonesia)
     {
         // Write Cell max width and height
         $cellWidth = 0;
@@ -241,8 +257,15 @@ class pdf
         if (is_bool($isSender)) {
             $mpdf->SetFont($fontFamily, 'B', $fontSize);
 
+            // "Quoted To" text language depending on selected language
+            if ($languageIsIndonesia) {
+                $quotedToText = 'Kepada';
+            } else {
+                $quotedToText = 'Quoted To';
+            }
+
             if ($isSender) {
-                $mpdf->WriteCell(23, $cellHeight, 'Quoted To', $border, 0);
+                $mpdf->WriteCell(23, $cellHeight, $quotedToText, $border, 0);
             } else {
                 $mpdf->SetX($mpdf->x + 95);
                 $mpdf->WriteCell($cellWidth, $cellHeight + 3, 'TO', 'B', 2);
@@ -477,7 +500,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeTermsConditions($mpdf, $text, $border)
+    private static function writeTermsConditions($mpdf, $text, $border, $languageIsIndonesia)
     {
         // Write Cell max width and height
         $cellWidth = 37;
@@ -490,9 +513,16 @@ class pdf
         // Show cells border. 1 for yes, 0 for no
         $border = $border;
 
+        // "Terms and Conditions" text depending on the selected language
+        if ($languageIsIndonesia) {
+            $termsConditionsText = 'Syarat & Ketentuan';
+        } else {
+            $termsConditionsText = 'Terms & Conditions';
+        }
+
         // Write terms and conditions
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
-        $mpdf->WriteCell($cellWidth, $cellHeight, 'Terms & Conditions', 'B', 2);
+        $mpdf->WriteCell($cellWidth, $cellHeight, $termsConditionsText, 'B', 2);
 
         $mpdf->SetFont($fontFamily, '', $fontSize);
         for ($i = 0; $i < count($text); $i++) {
@@ -514,7 +544,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeBestRegards($mpdf, $data, $border)
+    private static function writeBestRegards($mpdf, $data, $border, $languageIsIndonesia)
     {
         // Write Cell max height
         $cellHeight = 5.5;
@@ -523,10 +553,17 @@ class pdf
         $fontFamily = 'Helvetica';
         $fontSize = 10;
 
+        // "Best Regards" text depending on the selected language
+        if ($languageIsIndonesia) {
+            $bestRegardsText = 'Hormat Kami,';
+        } else {
+            $bestRegardsText = 'Best Regards,';
+        }
+
         // Write sender info
         // Name
         $mpdf->SetFont($fontFamily, 'B', $fontSize);
-        $mpdf->WriteCell(0, $cellHeight, 'Best regards,', $border, 2);
+        $mpdf->WriteCell(0, $cellHeight, $bestRegardsText, $border, 2);
         $mpdf->SetFont('', '');
         $mpdf->WriteCell(0, $cellHeight, $data['person'], $border, 2);
         $mpdf->WriteCell(0, $cellHeight, $data['name'], $border, 2);
@@ -634,7 +671,7 @@ class pdf
      *
      * @return float: X position of unit price column
      */
-    private static function drawItemTable($mpdf)
+    private static function drawItemTable($mpdf, $languageIsIndonesia)
     {
         $itemNumWidth = 7;
         $itemPartNumberWidth = 30;
@@ -645,14 +682,21 @@ class pdf
 
         $cellHeight = 5;
 
+        // Some texts depending on selected language
+        $partNumberText = $languageIsIndonesia ? 'Kode Barang' : 'P/N';
+        $nameText = $languageIsIndonesia ? 'Nama Barang' : 'Item';
+        $quantityText = $languageIsIndonesia ? 'Jumlah' : 'Qty';
+        $itemPriceText = $languageIsIndonesia ? 'Harga Satuan' : 'Item Price';
+        $totalPriceText = $languageIsIndonesia ? 'Total Harga' : 'Total Price';
+
         $mpdf->SetFont('Arial', 'B', 8);
         $mpdf->WriteCell($itemNumWidth, $cellHeight, 'No.', 1, 0, 'C');
-        $mpdf->WriteCell($itemPartNumberWidth, $cellHeight, 'P/N', 1, 0, 'C');
-        $mpdf->WriteCell($itemNameWidth, $cellHeight, 'Item', 1, 0, 'C');
-        $mpdf->WriteCell($itemQuantityWidth, $cellHeight, 'Qty', 1, 0, 'C');
+        $mpdf->WriteCell($itemPartNumberWidth, $cellHeight, $partNumberText, 1, 0, 'C');
+        $mpdf->WriteCell($itemNameWidth, $cellHeight, $nameText, 1, 0, 'C');
+        $mpdf->WriteCell($itemQuantityWidth, $cellHeight, $quantityText, 1, 0, 'C');
         $uPriceXPos = $mpdf->x;
-        $mpdf->WriteCell($uPriceWidth, $cellHeight, 'Item Price', 1, 0, 'C');
-        $mpdf->WriteCell($tPriceWidth, $cellHeight, 'Total Price', 1, 1, 'C');
+        $mpdf->WriteCell($uPriceWidth, $cellHeight, $itemPriceText, 1, 0, 'C');
+        $mpdf->WriteCell($tPriceWidth, $cellHeight, $totalPriceText, 1, 1, 'C');
 
         // Return the X position of unit price column
         return $uPriceXPos;
