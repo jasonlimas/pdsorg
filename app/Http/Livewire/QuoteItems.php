@@ -20,8 +20,8 @@ class QuoteItems extends Component
                 $this->items[] = [
                     'name' => $item['name'],
                     'quantity' => intval($item['quantity']),
-                    'unitPrice' => intval($item['price']),
-                    'totalPrice' => 0,              // This will be calculated later
+                    'unitPrice' => floatval($item['price']),
+                    'totalPrice' => 0.00,              // This will be calculated later
                     'formattedTotalPrice' => '',    // Same for this one
                 ];
             }
@@ -31,7 +31,7 @@ class QuoteItems extends Component
             // Get the tax from the database
             $this->tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
             $this->items = [
-                ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0, 'formattedTotalPrice' => ''],
+                ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0.00, 'formattedTotalPrice' => ''],
             ];
         }
     }
@@ -40,16 +40,16 @@ class QuoteItems extends Component
     {
         // Calculate total price for each item (quantity * unitPrice)
         foreach ($this->items as $index => $item) {
-            $this->items[$index]['totalPrice'] = intval($item['quantity']) * intval($item['unitPrice']);
-            $this->items[$index]['formattedTotalPrice'] = 'Rp. ' . number_format($this->items[$index]['totalPrice']);
+            $this->items[$index]['totalPrice'] = intval($item['quantity']) * floatval($item['unitPrice']);
+            $this->items[$index]['formattedTotalPrice'] = 'Rp. ' . number_format($this->items[$index]['totalPrice'], 2);
         }
 
         // Calculate sub total: Sum of all total prices
         $tempSubTotal = array_sum(array_column($this->items, 'totalPrice'));
-        $this->subTotal = 'Rp. ' . number_format($tempSubTotal);
+        $this->subTotal = 'Rp. ' . number_format($tempSubTotal, 2);
 
         // Calculate the grand total: sub total + tax
-        $this->grandTotal = 'Rp. ' . number_format(intval($tempSubTotal + ($tempSubTotal * (intval($this->tax) / 100))));
+        $this->grandTotal = 'Rp. ' . number_format(floatval($tempSubTotal + ($tempSubTotal * (floatval($this->tax) / 100))), 2);
 
         return view('livewire.quote-items');
     }
