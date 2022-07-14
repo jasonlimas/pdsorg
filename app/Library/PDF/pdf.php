@@ -423,7 +423,7 @@ class pdf
         }
 
         // Calculate the grand total (sub total with tax)
-        $tax = intval($subtotal * ($taxRate / 100));
+        $tax = floatval($subtotal * ($taxRate / 100));
         $grandtotal = $subtotal + $tax;
 
         // Write the sub total (sum of all number from Total Price)
@@ -439,7 +439,7 @@ class pdf
         $mpdf->WriteCell($cellWidth, $cellHeight, 'PPN (' . $taxRate . '%)', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
-        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($tax), 'TRB', 2, 'R');
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($tax, 2), 'TRB', 2, 'R');
 
         // Write the grand total (sub total with tax)
         $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
