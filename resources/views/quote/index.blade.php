@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center"  x-data="{ quoteInfo: null, quoteItems: null, quoteTerms: null }">
-        <div class="w-8/12">
+        <div class="w-11/12">
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
                 @admin
