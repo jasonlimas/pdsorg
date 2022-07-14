@@ -133,13 +133,13 @@
                         <table class="w-full text-sm">
                             <thead class="bg-gray-50 border-b-2 border-gray-300">
                                 <tr>
-                                    <th class="w-14 p-2 text-left">ID</th>
-                                    <th class="w-24 p-2 text-left">Date</th>
-                                    <th class="w-52 p-2 text-left">Quoted To</th>
+                                    <th class="w-32 p-2 text-left">Quote#</th>
+                                    <th class="w-20 p-2 text-left">Date</th>
+                                    <th class="w-56 p-2 text-left">Quoted To</th>
                                     <th class="w-32 p-2 text-left">Amount</th>
                                     <th class="w-20 p-2 text-left">Sender</th>
                                     <th class="w-20 p-2 text-left">Status</th>
-                                    <th class="w-40 p-2 text-left"></th>
+                                    <th class="w-36 p-2 text-left"></th>
                                 </tr>
                             </thead>
 
