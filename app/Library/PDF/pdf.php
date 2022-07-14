@@ -427,7 +427,7 @@ class pdf
         $grandtotal = $subtotal + $tax;
 
         // Write the sub total (sum of all number from Total Price)
-        $mpdf->SetFont('Arial', 'B', 9);
+        $mpdf->SetFont('Arial', 'B', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Sub-total', '1', 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
@@ -435,7 +435,7 @@ class pdf
 
         // Write tax rate and calculated tax
         $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
-        $mpdf->SetFont('Arial', 'B', 9);
+        $mpdf->SetFont('Arial', 'B', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'PPN (' . $taxRate . '%)', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
@@ -443,7 +443,7 @@ class pdf
 
         // Write the grand total (sub total with tax)
         $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
-        $mpdf->SetFont('Arial', 'B', 9);
+        $mpdf->SetFont('Arial', 'B', $fontSize);
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Total', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);    // Make it bold (TODO: Remove this comment, if everything's ok)
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
