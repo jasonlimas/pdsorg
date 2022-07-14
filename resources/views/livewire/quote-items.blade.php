@@ -2,7 +2,7 @@
     <!-- Items texts -->
     <h2 class="text-2xl font-medium">Items, Tax, and Total Price</h2>
     <p class="text-gray-600 mb-3">
-        Add items, tax, and total price.
+        Decimal values are allowed. To write a decimal value, use a dot (example: 500.25).
     </p>
 
     <!-- Items input -->
