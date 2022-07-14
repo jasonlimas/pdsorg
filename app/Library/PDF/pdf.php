@@ -326,11 +326,11 @@ class pdf
         $currencyCellWidth = 5;
 
         // Unit price cell max width and height
-        $uPriceCellWidth = 30;
+        $uPriceCellWidth = 32;
         //$uPriceCellHeight = $itemNumCellHeight;
 
         // Total price cell max width and height
-        $tPriceCellWidth = 30;
+        $tPriceCellWidth = 32;
         //$tPriceCellHeight = $itemNumCellHeight;
 
         // Font family and size
@@ -362,7 +362,7 @@ class pdf
                 $mpdf->WriteCell($uPriceCellWidth, $nameActualCellHeight - $mpdf->y, '-', 'TLB', 0, 'R');
             } else {
                 $mpdf->WriteCell($currencyCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
-                $mpdf->WriteCell($uPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($data[$i]['price']), 'TRB', 0, 'R');
+                $mpdf->WriteCell($uPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($data[$i]['price'], 2), 'TRB', 0, 'R');
             }
 
             // Total price
@@ -372,7 +372,7 @@ class pdf
                 $mpdf->WriteCell($tPriceCellWidth, $nameActualCellHeight - $mpdf->y, '-', 'TLRB', 0, 'R');
             } else {
                 $mpdf->WriteCell($currencyCellWidth, $nameActualCellHeight - $mpdf->y, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
-                $mpdf->WriteCell($tPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($totalPrice), 'TRB', 1, 'R');
+                $mpdf->WriteCell($tPriceCellWidth - $currencyCellWidth, $nameActualCellHeight - $mpdf->y, number_format($totalPrice, 2), 'TRB', 1, 'R');
             }
 
             // Item number
@@ -406,7 +406,7 @@ class pdf
     private static function writeTotal($mpdf, $data, $taxRate)
     {
         // Write Cell max width and height
-        $cellWidth = 30;
+        $cellWidth = 32;
         $cellHeight = 4.5;
 
         // Currency Cell width
@@ -431,7 +431,7 @@ class pdf
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Sub-total', '1', 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
-        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($subtotal), 'TRB', 2, 'R');
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($subtotal, 2), 'TRB', 2, 'R');
 
         // Write tax rate and calculated tax
         $mpdf->SetX($mpdf->x - $cellWidth - $currencyCellWidth);
@@ -447,7 +447,7 @@ class pdf
         $mpdf->WriteCell($cellWidth, $cellHeight, 'Total', 1, 0, 'L');
         $mpdf->SetFont($fontFamily, '', $fontSize);    // Make it bold (TODO: Remove this comment, if everything's ok)
         $mpdf->WriteCell($currencyCellWidth, $cellHeight, 'Rp', 'TLB', 0, 'L'); // WriteCell for writing only "Rp"
-        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($grandtotal), 'TRB', 2, 'R');
+        $mpdf->WriteCell($cellWidth - $currencyCellWidth, $cellHeight, number_format($grandtotal, 2), 'TRB', 2, 'R');
 
         // Return the grand total
         return $grandtotal;
@@ -693,8 +693,8 @@ class pdf
         $itemPartNumberWidth = 30;
         $itemNameWidth = 61;
         $itemQuantityWidth = 19;
-        $uPriceWidth = 30;
-        $tPriceWidth = 30;
+        $uPriceWidth = 32;
+        $tPriceWidth = 32;
 
         $cellHeight = 5;
 
