@@ -55,7 +55,7 @@
                             <td>
                                 <div class="flex flex-wrap">
                                     <div class="w-full">
-                                        <input type="number" min="0"
+                                        <input type="number" min="0" step="any"
                                             class="shadow appearance-none border rounded w-full px-1 py-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
                                             name="items[{{ $index }}][unitPrice]" placeholder="Unit price"
                                             wire:model="items.{{ $index }}.unitPrice">
