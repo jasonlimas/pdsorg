@@ -113,11 +113,11 @@
                     <div class="flex flex-wrap mb-2">
                         <div class="w-1/3 align-middle">
                             <label class="text-md p-3 inline-block align-middle" for="address">
-                                Client Address
+                                Client Address (max 200 chars)
                             </label>
                         </div>
                         <div class="w-2/3">
-                            <textarea cols=30 rows=4 class="shadow appearance-none border rounded w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline
+                            <textarea maxlength=200 cols=30 rows=4 class="shadow appearance-none border rounded w-full p-3 text-gray-700 focus:outline-none focus:shadow-outline
                             @error('address') border-red-500 @enderror"
                                 name="address" id="address"
                                 placeholder="Client Address">{{ old('address') }}</textarea>
