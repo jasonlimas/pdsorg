@@ -1,6 +1,9 @@
 <div>
     <!-- Items texts -->
     <h2 class="text-2xl font-medium">Items, Tax, and Total Price</h2>
+    <p class="text-red-600 font-bold">
+        Note that an item name input is limited to 250 characters.
+    </p>
     <p class="text-gray-600 mb-3">
         Decimal values are allowed. To write a decimal value, use a dot (example: 500.25).
     </p>
@@ -13,7 +16,7 @@
                 <thead class="bg-gray-50 border-b-1 border-gray-400">
                     <tr>
                         <th class="w-1/12">No.</th>
-                        <th class="w-5/12">Item Name</th>
+                        <th class="w-5/12">Item Name (250 chars max)</th>
                         <th class="w-1/12">Qty</th>
                         <th class="w-2/12">Unit Price</th>
                         <th class="w-2/12">Total Price</th>
@@ -32,7 +35,7 @@
                             <td>
                                 <div class="flex flex-wrap">
                                     <div class="w-full">
-                                        <textarea rows="2"
+                                        <textarea rows="2" maxlength="250"
                                             class="shadow appearance-none border rounded w-full p-1 leading-tight text-gray-700 focus:outline-none focus:shadow-outline align-middle"
                                             name="items[{{ $index }}][name]" placeholder="Item name" wire:model="items.{{ $index }}.name"></textarea>
                                     </div>
