@@ -79,7 +79,7 @@ class pdf
         // * Best regards field (was Terms and conditions field)
         // *===================================== *
         $mpdf->SetY($mpdf->y + 10);
-        PDF::writeTermsConditions($mpdf, $termsConditions, $border, $languageIsIndonesia);
+        PDF::writeTermsConditions($mpdf, $termsConditions, $banks, $border, $languageIsIndonesia);
         //PDF::writeBestRegards($mpdf, $sender, $border);
 
         // *===================================== *
@@ -500,7 +500,7 @@ class pdf
      *
      * @return void
      */
-    private static function writeTermsConditions($mpdf, $text, $border, $languageIsIndonesia)
+    private static function writeTermsConditions($mpdf, $text, $banks, $border, $languageIsIndonesia)
     {
         // Write Cell max width and height
         $cellWidth = 37;
@@ -525,8 +525,24 @@ class pdf
         $mpdf->WriteCell($cellWidth, $cellHeight, $termsConditionsText, 'B', 2);
 
         $mpdf->SetFont($fontFamily, '', $fontSize);
+
+        // Write banks first
+        // String of banks information
+        if ($languageIsIndonesia) {
+            $banksText = "Pembayaran melalui transfer bank\n";
+        } else {
+            $banksText = "Payment through bank transfer\n";
+        }
+
+        // Write banks text
+        foreach ($banks as $bank) {
+            $banksText .= $bank['institution'] . ': ' . $bank['accountName'] . ' - ' . $bank['accountNumber'] . "\n";
+        }
+
+        $mpdf->WriteCell(5, $cellHeight, '1. ', $border, 0);
+        $mpdf->MultiCell(0, $cellHeight, $banksText, $border);
         for ($i = 0; $i < count($text); $i++) {
-            $mpdf->WriteCell(5, $cellHeight, $i + 1 . '. ', $border, 0);
+            $mpdf->WriteCell(5, $cellHeight, $i + 2 . '. ', $border, 0);
             $mpdf->MultiCell(0, $cellHeight, $text[$i], $border);
         }
     }

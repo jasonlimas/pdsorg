@@ -36,7 +36,7 @@ Route::group([
     Route::get('/quotes/create', [CreateQuoteController::class, 'index'])->name('quotes.create');
     Route::get('/quotes/create/done', [CreateQuoteController::class, 'finalize'])->name('quotes.create.finalize');
     Route::get('/quotes/create/done/{quote}', [CreateQuoteController::class, 'download'])->name('quotes.create.download');
-    Route::get('/quotes/create/done/{quote}/email', [QuoteController::class, 'sendEmail'])->name('quotes.create.email');
+    Route::get('/quotes/create/done/{quote}/email', [QuoteController::class, 'prepareEmail'])->name('quotes.create.email');
     Route::post('/quotes/create', [CreateQuoteController::class, 'store']);
     Route::post('/upload', [UploadController::class, 'store']);
 
