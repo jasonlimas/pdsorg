@@ -33,7 +33,7 @@ class QuoteController extends Controller
 
         foreach ($quotes as $quote) {
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
-            $quote->amount = 'Rp ' . number_format($quote['amount']);
+            $quote->amount = 'Rp ' . number_format($quote['amount'], 2);
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
             $quote->status = QuoteStatus::find($quote['status_id'])->name;
             //dd($quote->items);
@@ -136,7 +136,7 @@ class QuoteController extends Controller
         // The amount needs to be formatted too, for better viewing experience
         foreach ($quotes as $quote) {
             $quote->client = Client::withTrashed()->find($quote['client_id'])->name;
-            $quote->amount = 'Rp ' . number_format($quote['amount']);
+            $quote->amount = 'Rp ' . number_format($quote['amount'], 2);
             $quote->createdBy = User::withTrashed()->find($quote['user_id'])->name_abbreviation;
             $quote->status = QuoteStatus::find($quote['status_id'])->name;
         }
