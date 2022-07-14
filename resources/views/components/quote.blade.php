@@ -3,7 +3,7 @@
 <tr class="odd:bg-white even:bg-slate-100 text-gray-700">
     <td class="p-3 whitespace-nowrap">
         <a href="{{ route('quotes.view', $quote) }}" class="p-3 whitespace-nowrap text-blue-600 hover:underline">
-            {{ $quote->id }}
+            {{ substr($quote->quote_date, 0, 4) . '/' . $quote->div . '/' . $quote->sales_person . '/' . substr($quote->quote_date, 5, 2) . '/' . $quote->number }}
         </a>
     </td>
     <td class="p-3 whitespace-nowrap">{{ $quote->quote_date }}</td>
