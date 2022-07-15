@@ -19,6 +19,7 @@ class pdf
         $template = $mpdf->setSourceFile(app_path($templatePath));
         $fileId = $mpdf->importPage($template);
         $mpdf->useTemplate($fileId);
+        $mpdf->SetPageTemplate($fileId);
 
         // *===================================== *
         // * Show border for all elements
