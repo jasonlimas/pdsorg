@@ -15,12 +15,14 @@
             <table class="w-full">
                 <thead class="bg-gray-50 border-b-1 border-gray-400">
                     <tr>
-                        <th class="w-1/12">No.</th>
-                        <th class="w-5/12">Item Name (250 chars max)</th>
-                        <th class="w-1/12">Qty</th>
-                        <th class="w-2/12">Unit Price</th>
-                        <th class="w-2/12">Total Price</th>
-                        <th class="w-1/12"></th>
+                        <th class="w-6">No.</th>
+                        <th class="w-20">P/N</th>
+                        <th class="w-48">Item Name (250 chars max)</th>
+                        <th class="w-7">Qty</th>
+                        <th class="w-8">Qty unit</th>
+                        <th class="w-16">Unit Price</th>
+                        <th class="w-16">Total Price</th>
+                        <th class="w-6"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +31,21 @@
                             <!-- Number -->
                             <td class="text-center align-middle">
                                 <p class="font-semibold">{{ $index + 1 }}</p>
+                            </td>
+
+                            <!-- P/N -->
+                            <td>
+                                <div class="flex flex-wrap">
+                                    <div class="w-full">
+                                        <input
+                                            maxlength="15"
+                                            class="shadow appearance-none border rounded w-full px-2 py-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                            name="items[{{ $index }}][pn]"
+                                            placeholder="P/N"
+                                            wire:model="items.{{ $index }}.pn"
+                                            required>
+                                    </div>
+                                </div>
                             </td>
 
                             <!-- Item name -->
@@ -50,6 +67,21 @@
                                             class="text-center shadow appearance-none border rounded w-full px-1 py-2 leading-none text-gray-700 focus:outline-none focus:shadow-outline"
                                             name="items[{{ $index }}][quantity]" placeholder="Qty"
                                             wire:model="items.{{ $index }}.quantity">
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- Qty unit -->
+                            <td>
+                                <div class="flex flex-wrap">
+                                    <div class="w-full">
+                                        <input
+                                            maxlength="4"
+                                            class="shadow appearance-none border rounded w-full px-2 py-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
+                                            name="items[{{ $index }}][qty_unit]"
+                                            placeholder="Unit"
+                                            wire:model="items.{{ $index }}.qty_unit"
+                                            required>
                                     </div>
                                 </div>
                             </td>
