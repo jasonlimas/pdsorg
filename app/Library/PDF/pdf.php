@@ -354,7 +354,7 @@ class pdf
             // Item quantity
             // Set current position to correct position before calling WriteCell()
             $mpdf->SetXY($x + $nameCellWidth, $y);
-            $mpdf->WriteCell($quantityCellWidth, $nameActualCellHeight - $mpdf->y, strval($data[$i]['quantity']) . ' Pcs', 'TLB', 0, 'C');
+            $mpdf->WriteCell($quantityCellWidth, $nameActualCellHeight - $mpdf->y, strval($data[$i]['quantity']) . ' ' . $data[$i]['quantityUnit'], 'TLB', 0, 'C');
 
             // Unit price
             // WriteCell "-" if unit price is 0
@@ -380,7 +380,7 @@ class pdf
             $mpdf->WriteCell($itemNumCellWidth, $nameActualCellHeight - $mpdf->y, strval($i + 1), 'TLB', 0, 'C');
 
             // Write part number
-            $mpdf->WriteCell($itemPartNumberCellWidth, $nameActualCellHeight - $mpdf->y, ' ABC#2139FKD2WS$', 'TLB', 0);
+            $mpdf->WriteCell($itemPartNumberCellWidth, $nameActualCellHeight - $mpdf->y, ' ' . $data[$i]['pn'], 'TLB', 0);
 
             // Set the position for the next item to be written to the table in the template
             $mpdf->SetY($nameActualCellHeight);
