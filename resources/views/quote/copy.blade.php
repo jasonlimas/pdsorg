@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="w-8/12">
+        <div class="w-11/12">
             <!-- Main Header -->
             <div class="p-6 text-gray-700">
                 <h1 class="text-4xl font-semibold mb-1">Edit Copied Quote Details</h1>

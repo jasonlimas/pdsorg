@@ -362,7 +362,6 @@ class QuoteController extends Controller
         // Validate input
         $this->validate($request, [
             'date' => 'required|after_or_equal:today',
-            'tax' => 'integer|min:0|max:100',
         ]);
 
         // Get tax from the database
@@ -374,7 +373,9 @@ class QuoteController extends Controller
         foreach ($request->items as $item) {
             $items[] = [
                 'name' => $item['name'],
+                'pn' => $item['pn'],
                 'quantity' => $item['quantity'],
+                'quantityUnit' => $item['quantityUnit'],
                 'price' => $item['unitPrice'],
             ];
 
