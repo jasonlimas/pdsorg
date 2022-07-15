@@ -96,7 +96,7 @@
                     <div class="w-2/3">
                         <input readonly
                             class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                            name="amount" type="text" value="{{ 'Rp ' . number_format($quote->amount) }}">
+                            name="amount" type="text" value="{{ 'Rp ' . number_format($quote->amount, 2) }}">
                     </div>
                 </div>
 
@@ -120,11 +120,11 @@
                                 @foreach ($quote->items as $item)
                                     <tr>
                                         <td class="p-3 text-sm tracking-wide text-left">{{ $item['name'] }}</td>
-                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item['quantity'] }}</td>
+                                        <td class="p-3 text-sm tracking-wide text-left">{{ $item['quantity'] . ' ' . $item['quantityUnit'] }}</td>
                                         <td class="p-3 text-sm tracking-wide text-left">
-                                            {{ 'Rp ' . number_format($item['price']) }}</td>
+                                            {{ 'Rp ' . number_format($item['price'], 2) }}</td>
                                         <td class="p-3 text-sm tracking-wide text-left">
-                                            {{ 'Rp ' . number_format($item['price'] * $item['quantity']) }}</td>
+                                            {{ 'Rp ' . number_format($item['price'] * $item['quantity'], 2) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
