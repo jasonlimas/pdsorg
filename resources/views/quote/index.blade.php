@@ -35,7 +35,7 @@
             @auth
                 <div>
                     <h2 class="mx-2 font-bold">Filter Settings</h2>
-                    <form action="{{ route('quotes.filter', $quotes) }}" method="POST">
+                    <form action="{{ url('quotes/filter') }}" method="POST">
                         @csrf
                         @if ($filter)
                             <div class="bg-gray-100 rounded-lg mb-2 shadow-lg flex justify-start space-x-2">

@@ -74,60 +74,60 @@ class QuoteController extends Controller
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
                         ->where('client_id', $request->client)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 } else if (auth()->user()->role_id == 2) {
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
                         ->where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
                         ->where('client_id', $request->client)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 } else {
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
                         ->where('user_id', auth()->user()->id)
                         ->where('client_id', $request->client)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 }
             } else {
                 // Check currently logged in user's role
                 if (auth()->user()->role_id == 1) {
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 } else if (auth()->user()->role_id == 2) {
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
                         ->where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 } else {
                     $quotes = Quotation::whereDate('quote_date', '<=', $end)
                         ->whereDate('quote_date', '>=', $start)
                         ->where('user_id', auth()->user()->id)
-                        ->latest()->paginate(10);
+                        ->latest()->paginate(1000);
                 }
             }
         } else if ($request->client) {  // Get all quotes quoted to the selected client
             // Check currently logged in user's role
             if (auth()->user()->role_id == 1) {
                 $quotes = Quotation::where('client_id', $request->client)
-                    ->latest()->paginate(10);
+                    ->latest()->paginate(1000);
             } else if (auth()->user()->role_id == 2) {
                 $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)
                     ->where('client_id', $request->client)
-                    ->latest()->paginate(10);
+                    ->latest()->paginate(1000);
             } else {
                 $quotes = Quotation::where('user_id', auth()->user()->id)
                     ->where('client_id', $request->client)
-                    ->latest()->paginate(10);
+                    ->latest()->paginate(1000);
             }
         } else {    // Get all quotes
             // Check currently logged in user's role
             if (auth()->user()->role_id == 1) {
-                $quotes = Quotation::latest()->paginate(10);
+                $quotes = Quotation::latest()->paginate(1000);
             } else if (auth()->user()->role_id == 2) {
-                $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)->latest()->paginate(10);
+                $quotes = Quotation::where('div', Division::withTrashed()->find(auth()->user()->division_id)->abbreviation)->latest()->paginate(1000);
             } else {
-                $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(10);
+                $quotes = Quotation::where('user_id', auth()->user()->id)->latest()->paginate(1000);
             }
         }
 
