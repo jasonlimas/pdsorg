@@ -19,8 +19,10 @@ class QuoteItems extends Component
             foreach ($this->quote->items as $item) {
                 $this->items[] = [
                     'name' => $item['name'],
+                    'pn' => $item['pn'],
                     'quantity' => intval($item['quantity']),
                     'unitPrice' => floatval($item['price']),
+                    'quantityUnit' => $item['quantityUnit'],
                     'totalPrice' => 0.00,              // This will be calculated later
                     'formattedTotalPrice' => '',    // Same for this one
                 ];
@@ -31,7 +33,7 @@ class QuoteItems extends Component
             // Get the tax from the database
             $this->tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
             $this->items = [
-                ['name' => '', 'quantity' => 1, 'unitPrice' => 0, 'totalPrice' => 0.00, 'formattedTotalPrice' => ''],
+                ['name' => '', 'pn' => '', 'quantity' => 1, 'unitPrice' => 0, 'quantityUnit' => '', 'totalPrice' => 0.00, 'formattedTotalPrice' => ''],
             ];
         }
     }
@@ -57,7 +59,7 @@ class QuoteItems extends Component
     // Add item row to the table in the form
     public function addItem()
     {
-        $this->items[] = ['name' => '', 'quantity' => 1, 'unitPrice' => 0];
+        $this->items[] = ['name' => '', 'pn' => '', 'quantity' => 1, 'quantityUnit' => '', 'unitPrice' => 0];
     }
 
     // Remove item row from the table in the form

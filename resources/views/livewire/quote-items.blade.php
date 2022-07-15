@@ -78,9 +78,9 @@
                                         <input
                                             maxlength="4"
                                             class="shadow appearance-none border rounded w-full px-2 py-2 text-gray-700 leading-none focus:outline-none focus:shadow-outline"
-                                            name="items[{{ $index }}][qty_unit]"
+                                            name="items[{{ $index }}][quantityUnit]"
                                             placeholder="Unit"
-                                            wire:model="items.{{ $index }}.qty_unit"
+                                            wire:model="items.{{ $index }}.quantityUnit"
                                             required>
                                     </div>
                                 </div>
