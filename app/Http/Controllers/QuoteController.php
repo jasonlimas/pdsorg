@@ -223,7 +223,9 @@ class QuoteController extends Controller
         foreach ($quote->items as $item) {
             $items[] = [
                 'name' => $item['name'],
+                'pn' => $item['pn'],
                 'quantity' => $item['quantity'],
+                'quantityUnit' => $item['quantityUnit'],
                 'price' => $item['price'],
             ];
         }
