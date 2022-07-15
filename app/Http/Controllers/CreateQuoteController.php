@@ -256,8 +256,10 @@ class CreateQuoteController extends Controller
             'sender' => 'required|exists:senders,id',
             'receiver' => 'required|exists:clients,id',
 
-            // Tax
-            'tax' => 'required|integer|min:0|max:100',
+            // Language
+            'language' => 'required',
+
+            // Tax is automated
 
             // Items and Terms & Conditions are validated separately
         ]);
@@ -270,6 +272,9 @@ class CreateQuoteController extends Controller
 
             throw $error;
         }
+
+        // Get tax from the database
+        $tax = DB::table('app_settings')->where('setting_name', 'tax')->first()->setting_value;
 
         $items = [];
         $amount = 0;
@@ -302,6 +307,13 @@ class CreateQuoteController extends Controller
             $termsConditions[] = $term;
         }
 
+
+        // Get language
+        $languageIsIndonesia = 0;
+        if ($request->language == 'indonesia') {
+            $languageIsIndonesia = 1;
+        }
+
         // Save to database
         $newQuote = $request->user()->quotes()->create([
             'div' => $request->numberDivision,
@@ -311,12 +323,17 @@ class CreateQuoteController extends Controller
             'sender_id' => $request->sender,
             'client_id' => $request->receiver,
             'items' => $items,
-            'tax' => $request->tax,
+            'tax' => $tax,
             'terms_conditions' => $termsConditions,
             'amount' => $amount,
             'user_id' => auth()->user()->id,
+            'hash_of_id' => 0, // Will be replaced after this
             'status_id' => 1, // Default status. 1 is "Not sent"
+            'language_is_indonesia' => $languageIsIndonesia,
         ]);
+
+        // Generate hash based on the quote id
+        $newQuote->update(['hash_of_id' => md5($newQuote->id)]);
 
         // Store temporary file in the database
         $attachmentRequest = strtok($request->attachment, '<'); // Using strtok() is probably a stupid fix but it works anyway

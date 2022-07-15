@@ -34,6 +34,27 @@
                             <div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div>
                         </div>
 
+                        <!-- 2 radio buttons -->
+                        <h2 class="text-2xl font-medium">Select Language</h2>
+                        <p class="text-gray-600 mb-4">
+                            Select the language for the PDF output.
+                        </p>
+
+                        <div>
+                            <input type="radio" name="language" id="english" value="english" checked="checked">
+                            <label for="english">English</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="language" id="indonesia" value="indonesia">
+                            <label for="indonesia">Indonesia</label>
+                        </div>
+
+                        <!-- DIVIDER -->
+                        <div class=" flex justify-center">
+                            <div class="w-4/5 my-9 border-b-2 border-slate-300-50"></div>
+                        </div>
+
                         <!-- Quote date component -->
                         @livewire('quote-date', ['isManual' => true])
 
